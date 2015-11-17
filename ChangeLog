@@ -34,3 +34,5 @@
 	  RD_RemoveCut() in 'lib/removecut.c', 'lib/removecut.h',
 	  RD_TrimAudio() in 'lib/trimaudio.c', 'lib/trimaudio.h',
 	  RD_UnassignSchedCode() in 'lib/unassignschedcode.c' 'lib/unassignschedcode.h'
+2015-11-17 Fred Gleason <fredg@paravelsystems.com>
+	* Autoconfiscated the contents of 'docbook/'.

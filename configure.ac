@@ -77,11 +77,8 @@ AC_CHECK_HEADER(expat.h,[],[AC_MSG_ERROR([*** Expat not found ***])])
 AC_CHECK_PROG(XSLTPROC_FOUND,xsltproc,[yes])
 AC_CHECK_PROG(FOP_FOUND,fop,[yes])
 if test $XSLTPROC_FOUND ; then
-   echo "HERE1"
    if test $FOP_FOUND ; then
-      echo "HERE2"
       if test $DOCBOOK_STYLESHEETS ; then
-        echo "HERE3"
         USING_DOCBOOK=yes
       fi
    fi
@@ -91,6 +88,7 @@ AM_CONDITIONAL([DOCBOOK_AM], [test "$USING_DOCBOOK" = yes])
 
 
 AC_CONFIG_FILES([ \
+    docbook/Makefile \
     lib/Makefile \
     tests/Makefile \
     Makefile \

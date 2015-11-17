@@ -20,7 +20,8 @@
 ##   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 ##
 
-SUBDIRS = lib\
+SUBDIRS = docbook\
+          lib\
           tests
 
 ACLOCAL_AMFLAGS = -I m4
