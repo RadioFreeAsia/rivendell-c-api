@@ -40,3 +40,6 @@
 	* Changed the <refname> value for each function reference in 'docbook/'
 	to the name of the corresponding Rivendell web API call.
 	* Enabled man page builds in 'docbook/Makefile.am'.
+2015-11-17 Fred Gleason <fredg@paravelsystems.com>
+	* Refactored the build system to place C headers in "rivendell/".
+	* Added a pkgconfig definition in 'rivendell.pc.in'.

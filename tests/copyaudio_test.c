@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "copyaudio.h"
+#include <rivendell/copyaudio.h>
 
 int main(int argc,char *argv[])
 {

@@ -1,6 +1,6 @@
-/* listgroups.h
+/* listcartschedcodes.h
  *
- * Header for the ListGroups Rivendell Access Library
+ * Header for the ListCartSchedulCodes  Web Rivendell Access Library
  *
  * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
  *
@@ -18,16 +18,16 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef LIST_GROUP_H
-#define LIST_GROUP_H
+#ifndef LISTCARTSCHEDCODES_H
+#define LISTCARTSCHEDCODES_H
 
-#include "rdgroup.h"
+#include <rivendell/rdschedcodes.h>
 
-int RD_ListGroup(struct rd_group *grp[],
+int RD_ListCartSchedCodes(struct rd_schedcodes *schedcodes[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
-			const char group[],
+			const unsigned cartnum,
 			unsigned *numrecs);
 
-#endif  // LIST_GROUP_H
+#endif  // LISTCARTSCHEDCODES_H

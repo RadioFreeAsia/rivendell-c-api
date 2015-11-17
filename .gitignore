@@ -4,6 +4,7 @@
 *.html
 *.la
 *.lo
+*.pc
 *.pdf
 *.rpm
 *.so

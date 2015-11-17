@@ -21,7 +21,7 @@
 #ifndef LIST_CARTS_H
 #define LIST_CARTS_H
 
-#include "rdcart.h"
+#include <rivendell/rdcart.h>
 
 int RD_ListCarts(struct rd_cart *carts[],
 		  	const char hostname[],

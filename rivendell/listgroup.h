@@ -1,6 +1,6 @@
-/* listcuts.h
+/* listgroups.h
  *
- * Header for the ListCuts  Rivendell Access Library
+ * Header for the ListGroups Rivendell Access Library
  *
  * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
  *
@@ -18,17 +18,16 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef LIST_CUT_H
-#define LIST_CUT_H
+#ifndef LIST_GROUP_H
+#define LIST_GROUP_H
 
-#include "rdcut.h"
+#include <rivendell/rdgroup.h>
 
-int RD_ListCut(struct rd_cut *cuts[],
+int RD_ListGroup(struct rd_group *grp[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
-			const unsigned cartnumber,
-                        const unsigned cutnumber,
+			const char group[],
 			unsigned *numrecs);
 
-#endif  // LIST_CUT_H
+#endif  // LIST_GROUP_H

@@ -1,6 +1,6 @@
-/* addcart.h
+/* listcuts.h
  *
- * Header for the AddCart  Rivendell Access Library
+ * Header for the ListCuts  Rivendell Access Library
  *
  * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
  *
@@ -18,18 +18,16 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef ADD_CART_H
-#define ADD_CART_H
+#ifndef LIST_CUTS_H
+#define LIST_CUTS_H
 
-#include "rdcart.h"
+#include <rivendell/rdcut.h>
 
-int RD_AddCart(struct rd_cart *cart[],
-			const char hostname[],
+int RD_ListCuts(struct rd_cut *cuts[],
+		  	const char hostname[],
 			const char username[],
 			const char passwd[],
-			const char group[],
-			const char type[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
 
-#endif  // ADD_CART_H
+#endif  // LIST_CUTS_H

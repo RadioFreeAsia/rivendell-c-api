@@ -21,7 +21,8 @@
 #ifndef EDIT_CUT_H
 #define EDIT_CUT_H
 
-#include "rdcut.h"
+#include <rivendell/rdcut.h>
+
 struct edit_cut_values {
   int cut_evergreen;
   int use_cut_evergreen;

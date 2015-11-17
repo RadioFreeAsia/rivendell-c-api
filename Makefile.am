@@ -21,7 +21,7 @@
 ##
 
 SUBDIRS = docbook\
-          lib\
+          rivendell\
           tests
 
 ACLOCAL_AMFLAGS = -I m4
@@ -29,13 +29,14 @@ ACLOCAL_AMFLAGS = -I m4
 maintainer-clean-local:	
 	rm -rf m4
 
-install-exec-local:	
-	ldconfig
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = rivendell.pc
 
 EXTRA_DIST = autogen.sh\
              get_distro.sh\
              get_target.sh\
-             PACKAGE_VERSION
+             PACKAGE_VERSION\
+             rivendell.pc.in
 
 CLEANFILES = *~\
              *.mo\
@@ -47,7 +48,8 @@ CLEANFILES = *~\
 DISTCLEANFILES = config.guess\
                  config.sub\
                  ltmain.sh\
-                 make_slack
+                 make_slack\
+                 rivendell.pc
 
 MAINTAINERCLEANFILES = *~\
                        *.tar.gz\

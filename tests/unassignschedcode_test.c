@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <unassignschedcode.h>
+#include <rivendell/unassignschedcode.h>
 
 int main(int argc,char *argv[])
 {

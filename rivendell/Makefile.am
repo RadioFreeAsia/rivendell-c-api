@@ -18,6 +18,7 @@
 ##
 ## Use automake to process this into a Makefile.in
 
+AM_CFLAGS = -I$(top_srcdir)
 lib_LTLIBRARIES = librivwebcapi.la 
 dist_librivwebcapi_la_SOURCES = listgroups.c listgroups.h \
 				listgroup.c listgroup.h \
@@ -34,8 +35,8 @@ dist_librivwebcapi_la_SOURCES = listgroups.c listgroups.h \
 				addcut.c addcut.h \
 				removecart.c removecart.h \
 				removecut.c removecut.h \
- 				deleteaudio.c deleteaudio.h \
- 				copyaudio.c copyaudio.h \
+				deleteaudio.c deleteaudio.h \
+				copyaudio.c copyaudio.h \
 				audioinfo.c audioinfo.h \
 				trimaudio.c trimaudio.h \
 				audiostore.c audiostore.h \
@@ -46,6 +47,39 @@ dist_librivwebcapi_la_SOURCES = listgroups.c listgroups.h \
 				import.c import.h \
 				export.c export.h \
 				exportpeaks.c exportpeaks.h
+
+includedir = $(prefix)/include/rivendell
+include_HEADERS = addcart.h\
+                  addcut.h\
+                  assignschedcode.h\
+                  audioinfo.h\
+                  audiostore.h\
+                  copyaudio.h\
+                  deleteaudio.h\
+                  editcart.h\
+                  editcut.h\
+                  export.h\
+                  exportpeaks.h\
+                  import.h\
+                  listcart.h\
+                  listcartschedcodes.h\
+                  listcarts.h\
+                  listcut.h\
+                  listcuts.h\
+                  listgroup.h\
+                  listgroups.h\
+                  listlog.h\
+                  listlogs.h\
+                  listschedcodes.h\
+                  listservices.h\
+                  rdcart.h\
+                  rdcut.h\
+                  rdgroup.h\
+                  rdschedcodes.h\
+                  removecart.h\
+                  removecut.h\
+                  trimaudio.h\
+                  unassignschedcode.h
 
 CLEANFILES = *~\
              moc_*\

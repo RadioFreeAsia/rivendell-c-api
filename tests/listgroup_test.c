@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <listgroup.h>
+#include <rivendell/listgroup.h>
 
 int main(int argc,char *argv[])
 {

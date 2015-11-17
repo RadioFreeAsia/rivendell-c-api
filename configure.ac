@@ -89,9 +89,10 @@ AM_CONDITIONAL([DOCBOOK_AM], [test "$USING_DOCBOOK" = yes])
 
 AC_CONFIG_FILES([ \
     docbook/Makefile \
-    lib/Makefile \
+    rivendell/Makefile \
     tests/Makefile \
     Makefile \
+    rivendell.pc \
     ])
 AC_OUTPUT()
 

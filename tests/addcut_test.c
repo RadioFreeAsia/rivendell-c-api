@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <addcut.h>
+#include <rivendell/addcut.h>
 
 int main(int argc,char *argv[])
 {

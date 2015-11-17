@@ -1,6 +1,6 @@
-/* listschedcodes.h
+/* listcuts.h
  *
- * Header for the ListSchedulCodes  Web Rivendell Access Library
+ * Header for the ListCuts  Rivendell Access Library
  *
  * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
  *
@@ -18,15 +18,17 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef LISTSCHEDCODES_H
-#define LISTSCHEDCODES_H
+#ifndef LIST_CUT_H
+#define LIST_CUT_H
 
-#include "rdschedcodes.h"
+#include <rivendell/rdcut.h>
 
-int RD_ListSchedCodes(struct rd_schedcodes *schedcodes[],
+int RD_ListCut(struct rd_cut *cuts[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const unsigned cartnumber,
+                        const unsigned cutnumber,
 			unsigned *numrecs);
 
-#endif  // LISTSCHEDCODES_H
+#endif  // LIST_CUT_H

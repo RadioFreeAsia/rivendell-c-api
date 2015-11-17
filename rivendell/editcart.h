@@ -21,7 +21,7 @@
 #ifndef EDIT_CART_H
 #define EDIT_CART_H
 
-#include "rdcart.h"
+#include <rivendell/rdcart.h>
 
 struct edit_cart_values {
   char cart_grp_name[11];

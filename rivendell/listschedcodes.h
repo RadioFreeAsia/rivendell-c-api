@@ -1,6 +1,6 @@
-/* listcarts.h
+/* listschedcodes.h
  *
- * Header for the ListCarts  Rivendell Access Library
+ * Header for the ListSchedulCodes  Web Rivendell Access Library
  *
  * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
  *
@@ -18,16 +18,15 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef LIST_CART_H
-#define LIST_CART_H
+#ifndef LISTSCHEDCODES_H
+#define LISTSCHEDCODES_H
 
-#include "rdcart.h"
+#include <rivendell/rdschedcodes.h>
 
-int RD_ListCart(struct rd_cart *carts[],
+int RD_ListSchedCodes(struct rd_schedcodes *schedcodes[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
-			const unsigned cartnumber,
 			unsigned *numrecs);
 
-#endif  // LIST_CART_H
+#endif  // LISTSCHEDCODES_H

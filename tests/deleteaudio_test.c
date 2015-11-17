@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "deleteaudio.h"
+#include <rivendell/deleteaudio.h>
 
 int main(int argc,char *argv[])
 {

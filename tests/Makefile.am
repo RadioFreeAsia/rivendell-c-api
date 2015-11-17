@@ -18,8 +18,8 @@
 ##
 ## Use automake to process this into a Makefile.in
 
-AM_CPPFLAGS = -Wall -I$(top_srcdir)/lib
-LIBS = -L$(top_srcdir)/lib
+AM_CFLAGS = -Wall -I$(top_srcdir)
+LIBS = -L$(top_srcdir)/rivendell
 noinst_PROGRAMS = listgroups_test \
 		listgroup_test \
 		listcarts_test \

@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <listservices.h>
+#include <rivendell/listservices.h>
 
 int main(int argc,char *argv[])
 {

@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <addcart.h>
+#include <rivendell/addcart.h>
 
 int main(int argc,char *argv[])
 {
