@@ -36,3 +36,7 @@
 	  RD_UnassignSchedCode() in 'lib/unassignschedcode.c' 'lib/unassignschedcode.h'
 2015-11-17 Fred Gleason <fredg@paravelsystems.com>
 	* Autoconfiscated the contents of 'docbook/'.
+2015-11-17 Fred Gleason <fredg@paravelsystems.com>
+	* Changed the <refname> value for each function reference in 'docbook/'
+	to the name of the corresponding Rivendell web API call.
+	* Enabled man page builds in 'docbook/Makefile.am'.

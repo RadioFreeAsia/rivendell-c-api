@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_ListCut</refname>
+    <refname>listcut</refname>
     <refpurpose>Rivendell List Cut C Library Function</refpurpose>
   </refnamediv>
   <info>

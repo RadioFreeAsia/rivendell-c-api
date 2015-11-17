@@ -33,6 +33,7 @@
 
 all-local:	addcart.html\
                 addcart.pdf\
+                addcart.xml\
                 addcut.html\
                 addcut.pdf\
                 addcut.xml\
@@ -115,86 +116,142 @@ all-local:	addcart.html\
                 unassignschedcode.pdf\
                 unassignschedcode.xml
 
-EXTRA_DIST = addcart.html\
+man_MANS = addcart.7\
+           addcut.7\
+           assignschedcode.7\
+           audioinfo.7\
+           audiostore.7\
+           copyaudio.7\
+           deleteaudio.7\
+           editcart.7\
+           editcut.7\
+           exportpeaks.7\
+           export.7\
+           import.7\
+           listcartschedcodes.7\
+           listcarts.7\
+           listcart.7\
+           listcuts.7\
+           listcut.7\
+           listgroups.7\
+           listgroup.7\
+           listlogs.7\
+           listlog.7\
+           listschedcodes.7\
+           listservices.7\
+           removecart.7\
+           removecut.7\
+           trimaudio.7\
+           unassignschedcode.7
+
+EXTRA_DIST = addcart.7\
+             addcart.html\
              addcart.pdf\
              addcart.xml\
+             addcut.7\
+             addcut.html\
              addcut.pdf\
              addcut.xml\
+             assignschedcode.7\
              assignschedcode.html\
              assignschedcode.pdf\
              assignschedcode.xml\
+             audioinfo.7\
              audioinfo.html\
              audioinfo.pdf\
              audioinfo.xml\
+             audiostore.7\
              audiostore.html\
              audiostore.pdf\
              audiostore.xml\
              clibsummary.xml\
              clibsummary.html\
              clibsummary.pdf\
+             copyaudio.7\
              copyaudio.html\
              copyaudio.pdf\
              copyaudio.xml\
+             deleteaudio.7\
              deleteaudio.html\
              deleteaudio.pdf\
              deleteaudio.xml\
+             editcart.7\
              editcart.html\
              editcart.pdf\
              editcart.xml\
+             editcut.7\
              editcut.html\
              editcut.pdf\
              editcut.xml\
+             exportpeaks.7\
              exportpeaks.html\
              exportpeaks.pdf\
              exportpeaks.xml\
+             export.7\
              export.html\
              export.pdf\
              export.xml\
+             import.7\
              import.html\
              import.pdf\
              import.xml\
+             listcartschedcodes.7\
              listcartschedcodes.html\
              listcartschedcodes.pdf\
              listcartschedcodes.xml\
+             listcarts.7\
              listcarts.html\
              listcarts.pdf\
              listcarts.xml\
+             listcart.7\
              listcart.html\
              listcart.pdf\
              listcart.xml\
+             listcuts.7\
              listcuts.html\
              listcuts.pdf\
              listcuts.xml\
+             listcut.7\
              listcut.html\
              listcut.pdf\
              listcut.xml\
+             listgroups.7\
              listgroups.html\
              listgroups.pdf\
              listgroups.xml\
+             listgroup.7\
              listgroup.html\
              listgroup.pdf\
              listgroup.xml\
+             listlogs.7\
              listlogs.html\
              listlogs.pdf\
              listlogs.xml\
+             listlog.7\
              listlog.html\
              listlog.pdf\
              listlog.xml\
+             listschedcodes.7\
              listschedcodes.html\
              listschedcodes.pdf\
              listschedcodes.xml\
+             listservices.7\
              listservices.html\
              listservices.pdf\
              listservices.xml\
+             removecart.7\
              removecart.html\
              removecart.pdf\
              removecart.xml\
+             removecut.7\
              removecut.html\
              removecut.pdf\
              removecut.xml\
+             trimaudio.7\
              trimaudio.html\
              trimaudio.pdf\
              trimaudio.xml\
+             unassignschedcode.7\
              unassignschedcode.html\
              unassignschedcode.pdf\
              unassignschedcode.xml

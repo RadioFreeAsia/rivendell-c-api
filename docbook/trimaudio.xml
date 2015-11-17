@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_TrimAudio</refname>
+    <refname>trimaudio</refname>
     <refpurpose>Rivendell Trim Audio C Library Function</refpurpose>
   </refnamediv>
   <info>

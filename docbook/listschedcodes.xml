@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_ListSchedCodes</refname>
+    <refname>listschedcodes</refname>
     <refpurpose>Rivendell List Scheduler Codes C Library Function</refpurpose>
   </refnamediv>
   <info>

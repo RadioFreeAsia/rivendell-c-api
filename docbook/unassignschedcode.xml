@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_UnassignSchedCode</refname>
+    <refname>unassignschedcode</refname>
     <refpurpose>Rivendell Unassign Scheduler Code from Cart C Library Function</refpurpose>
   </refnamediv>
   <info>

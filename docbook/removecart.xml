@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_RemoveCart</refname>
+    <refname>removecart</refname>
     <refpurpose>Rivendell Remove Cart C Library Function</refpurpose>
   </refnamediv>
   <info>

@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_ListLogs</refname>
+    <refname>listlogs</refname>
     <refpurpose>Rivendell List Logs C Library Function</refpurpose>
   </refnamediv>
   <info>

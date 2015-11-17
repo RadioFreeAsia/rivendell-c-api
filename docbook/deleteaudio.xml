@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>RD_DeleteAudio</refname>
+    <refname>deleteaudio</refname>
     <refpurpose>Rivendell Audio Store C Library Function</refpurpose>
   </refnamediv>
   <info>
