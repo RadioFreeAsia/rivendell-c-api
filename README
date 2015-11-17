@@ -1,0 +1,25 @@
+This is the README file for the Rivendell C API Package.
+
+
+This is the C Library to use to interface with the Rivendell Database.  
+
+The library utilizes the Rivendell WED Interface API to complete all of it's tasks.  It 
+generates a Web page that is passed to the Rivendell WEB server which processes the request
+and send the response back to the calling function.
+
+The C functions in this library need the EXPAT XML libary and the LIBCURL library installed
+before they will work correctly.  Information on getting these libraries is below:
+
+  The first library required is the EXPAT XMP Parser Library written in C which is available on the internet at:
+   http://sourceforge.new/projects/expat.
+
+  This second library also required is the LIBCURL Library which is a free open source client that can be used
+  to get documents to and from servers using many different protocols. It can be found at:
+   http://curl.haxx.se/
+
+
+The lib directory has all of the source code for the library.
+
+The tests directory has an example of each of the C Library function calls.
+
+The docbook directory has documentation on using this library - both in HTML and MAN formats.

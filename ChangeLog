@@ -1,0 +1,36 @@
+2015-09-08 Fred Gleason <fredg@paravelsystems.com>
+	* Implemented 'RD_ListGroups()' function in 'lib/listgroups.c' and
+	'lib/lisitgroups.h'.
+	* Incremented the package version to 0.0.1.
+2015-09-12 Fred Gleason <fredg@paravelsystems.com>
+	* Altered 'configure.ac' to use AC_CHECK_HEADER() to detect
+	Expat.
+	* Removed 'tests/listgroups_test.h'.
+2015-11-17 Todd Baker <bakert@rfa.org>
+	* Implemented the following functions:
+	  RD_AddCut() in 'lib/addcut.c', 'lib/addcut.h',
+	  RD_AssignSchedCode() in 'lib/assignschedcode.c', 'lib/assignschedcode.h',
+	  RD_AudioInfo() in 'lib/audioinfo.c', 'lib/audioinfo.h',
+	  RD_AudioStore() in 'lib/audiostore.c', 'lib/audiostore.h',
+	  RD_CopyAudio() in 'lib/copyaudio.c', 'lib/copyaudio.h',
+	  RD_DeleteAudio() in 'lib/deleteaudio.c', 'lib/deleteaudio.h',
+	  RD_EditCart() in 'lib/editcart.c', 'lib/editcart.h',
+	  RD_EditCut() in 'lib/editcut.c', 'lib/editcut.h',
+	  RD_Export() in 'lib/export.c', 'lib/export.h',
+	  RD_ExportPeaks() in 'lib/exportpeaks.c', 'lib/exportpeaks.h',
+	  RD_Import() in 'lib/import.c', 'lib/import.c',
+	  RD_ListCart() in 'lib/listcart.c', 'lib/listcart.h',
+	  RD_ListCarts() in 'lib/listcarts.c', 'lib/listcarts.h',
+	  RD_ListCartSchedCodes() in 'lib/listcartschedcodes.c', 'lib/listcartschedcodes.h',
+	  RD_ListCut() in 'lib/listcut.c', 'lib/listcut.h',
+	  RD_ListCuts() in 'lib/listcuts.c', 'lib/listcuts.h',
+	  RD_ListGroup() in 'lib/listgroup.c', 'lib/listgroup.h',
+	  RD_ListGroups() in 'lib/listgroups.c', 'lib/listgroups.h',
+	  RD_ListLog() in 'lib/listlog.c', 'lib/listlog.h',
+	  RD_ListLogs() in 'lib/listlogs.c', 'lib/listlogs.h',
+	  RD_ListSchedCodes() in 'lib/listschedcodes.c', 'lib/listschedcodes.h',
+	  RD_ListServices() in 'lib/listservices.c', 'lib/listservices.h',
+	  RD_RemoveCart() in 'lib/removecart.c', 'lib/removecart.h',
+	  RD_RemoveCut() in 'lib/removecut.c', 'lib/removecut.h',
+	  RD_TrimAudio() in 'lib/trimaudio.c', 'lib/trimaudio.h',
+	  RD_UnassignSchedCode() in 'lib/unassignschedcode.c' 'lib/unassignschedcode.h'
