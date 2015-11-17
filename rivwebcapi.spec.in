@@ -1,0 +1,133 @@
+Name:		rivwebcapi
+Version:	@VERSION@
+Release:	1%{?dist}
+Summary:	Integration library for Rivendell
+Group:		System Environment/Libraries
+License:	GPLv2
+URL:		https://github.com/RadioFreeAsia/rivendell-c-api
+Source0:	%{name}-%{version}.tar.gz
+BuildRoot: 	/var/tmp/%{name}-@VERSION@
+
+
+%package devel
+Summary:        Development components for the Rivendell integration library
+Group:		System Environment/Libraries
+Requires:	rivendell-c-api
+
+
+%description
+Rivendell-c-api provides a C binding for the set of Rivendell web API methods,
+allowing third-party applications to access a wide variety of services on
+a Rivendell system.  Rivendell is a full featured radio automation targeted for
+use in professional broadcast environments.
+
+
+%description devel
+These are the library components and headers required to develop application
+for the rivendell-c-api library.
+
+%prep
+%setup -q
+
+
+%build
+%configure
+make %{?_smp_mflags}
+
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
+
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+
+%post
+ldconfig
+
+
+%postun
+ldconfig
+
+
+%files
+%defattr(-,root,root,-)
+%{_libdir}/librivwebcapi.so
+%{_libdir}/librivwebcapi.so.@INTERFACE_MAJOR@
+%{_libdir}/librivwebcapi.so.@INTERFACE_MAJOR@.@INTERFACE_MINOR@.@INTERFACE_POINT@
+%doc AUTHORS
+%doc ChangeLog
+%doc COPYING
+%doc NEWS
+%doc README
+
+
+%files devel
+%{_includedir}/rivendell/addcart.h
+%{_includedir}/rivendell/addcut.h
+%{_includedir}/rivendell/assignschedcode.h
+%{_includedir}/rivendell/audioinfo.h
+%{_includedir}/rivendell/audiostore.h
+%{_includedir}/rivendell/copyaudio.h
+%{_includedir}/rivendell/deleteaudio.h
+%{_includedir}/rivendell/editcart.h
+%{_includedir}/rivendell/editcut.h
+%{_includedir}/rivendell/export.h
+%{_includedir}/rivendell/exportpeaks.h
+%{_includedir}/rivendell/import.h
+%{_includedir}/rivendell/listcart.h
+%{_includedir}/rivendell/listcartschedcodes.h
+%{_includedir}/rivendell/listcarts.h
+%{_includedir}/rivendell/listcut.h
+%{_includedir}/rivendell/listcuts.h
+%{_includedir}/rivendell/listgroup.h
+%{_includedir}/rivendell/listgroups.h
+%{_includedir}/rivendell/listlog.h
+%{_includedir}/rivendell/listlogs.h
+%{_includedir}/rivendell/listschedcodes.h
+%{_includedir}/rivendell/listservices.h
+%{_includedir}/rivendell/rdcart.h
+%{_includedir}/rivendell/rdcut.h
+%{_includedir}/rivendell/rdgroup.h
+%{_includedir}/rivendell/rdschedcodes.h
+%{_includedir}/rivendell/removecart.h
+%{_includedir}/rivendell/removecut.h
+%{_includedir}/rivendell/trimaudio.h
+%{_includedir}/rivendell/unassignschedcode.h
+%{_libdir}/pkgconfig/rivendell.pc
+%{_libdir}/librivwebcapi.a
+%{_libdir}/librivwebcapi.la
+%{_mandir}/man7/addcart.7.gz
+%{_mandir}/man7/addcut.7.gz
+%{_mandir}/man7/assignschedcode.7.gz
+%{_mandir}/man7/audioinfo.7.gz
+%{_mandir}/man7/audiostore.7.gz
+%{_mandir}/man7/copyaudio.7.gz
+%{_mandir}/man7/deleteaudio.7.gz
+%{_mandir}/man7/editcart.7.gz
+%{_mandir}/man7/editcut.7.gz
+%{_mandir}/man7/export.7.gz
+%{_mandir}/man7/exportpeaks.7.gz
+%{_mandir}/man7/import.7.gz
+%{_mandir}/man7/listcart.7.gz
+%{_mandir}/man7/listcarts.7.gz
+%{_mandir}/man7/listcartschedcodes.7.gz
+%{_mandir}/man7/listcut.7.gz
+%{_mandir}/man7/listcuts.7.gz
+%{_mandir}/man7/listgroup.7.gz
+%{_mandir}/man7/listgroups.7.gz
+%{_mandir}/man7/listlog.7.gz
+%{_mandir}/man7/listlogs.7.gz
+%{_mandir}/man7/listschedcodes.7.gz
+%{_mandir}/man7/listservices.7.gz
+%{_mandir}/man7/removecart.7.gz
+%{_mandir}/man7/removecut.7.gz
+%{_mandir}/man7/trimaudio.7.gz
+%{_mandir}/man7/unassignschedcode.7.gz
+
+
+%changelog
+* Tue Nov 17 2015 Fred Gleason <fredg@paravelsystems.com>
+-- Initial packaging.

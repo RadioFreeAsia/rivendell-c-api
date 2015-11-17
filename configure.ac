@@ -118,7 +118,22 @@ if test $XSLTPROC_FOUND ; then
 fi
 AM_CONDITIONAL([DOCBOOK_AM], [test "$USING_DOCBOOK" = yes])
 
-
+#
+# Configure RPM Build
+#
+AC_CHECK_PROG(RPMBUILD_FOUND,rpmbuild,[yes],[])
+if test -z $RPMBUILD_FOUND ; then
+  AC_SUBST(RPMBUILD,rpm)
+else
+  AC_SUBST(RPMBUILD,rpmbuild)
+fi
+if test -d /usr/src/redhat ; then
+  AC_SUBST(RPM_ROOT,/usr/src/redhat)
+  AC_SUBST(VENDOR,redhat)
+else
+  AC_SUBST(RPM_ROOT,/usr/src/packages)
+  AC_SUBST(VENDOR,suse)
+fi 
 
 AC_CONFIG_FILES([ \
     docbook/Makefile \
@@ -126,6 +141,7 @@ AC_CONFIG_FILES([ \
     tests/Makefile \
     Makefile \
     rivendell.pc \
+    rivwebcapi.spec \
     ])
 AC_OUTPUT()
 

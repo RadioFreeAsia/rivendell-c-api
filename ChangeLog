@@ -46,3 +46,5 @@
 2015-11-17 Fred Gleason <fredg@paravelsystems.com>
 	* Added code to implement explicit library API versioning in
 	'configure.ac' and 'rivendell/Makefile.am'.
+2015-11-17 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'make rpm' target.

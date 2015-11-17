@@ -29,6 +29,14 @@ ACLOCAL_AMFLAGS = -I m4
 maintainer-clean-local:	
 	rm -rf m4
 
+rpm:	dist
+	cp rivwebcapi-$(VERSION).tar.gz $(HOME)/rpmbuild/SOURCES/
+	$(RPMBUILD) -ba --target $(ARCH)-$(VENDOR)-linux rivwebcapi.spec
+	mv $(HOME)/rpmbuild/RPMS/$(ARCH)/rivwebcapi-*.rpm $(top_srcdir)/
+	mv $(HOME)/rpmbuild/SRPMS/rivwebcapi-*.src.rpm $(top_srcdir)/
+	rm $(HOME)/rpmbuild/SOURCES/rivwebcapi-$(VERSION).tar.gz
+	rm -rf $(HOME)/rpmbuild/BUILD/rivwebcapi-$(VERSION)
+
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = rivendell.pc
 
@@ -36,7 +44,8 @@ EXTRA_DIST = autogen.sh\
              get_distro.sh\
              get_target.sh\
              PACKAGE_VERSION\
-             rivendell.pc.in
+             rivendell.pc.in\
+             rivwebcapi.spec.in
 
 CLEANFILES = *~\
              *.mo\
