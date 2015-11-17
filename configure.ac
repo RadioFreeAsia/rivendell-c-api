@@ -56,6 +56,39 @@ case ${host} in
 esac
 
 #
+# Determine Library API Versioning
+#
+# From http://www.gnu.org/software/libtool/manual.html#Updating-version-info
+#
+#   1. Start with version information of 0:0:0 for each libtool library.
+#   2. Update the version information only immediately before a public
+#      release of your software. More frequent updates are unnecessary,
+#      and only guarantee that the current interface number gets larger
+#      faster.
+#   3. If the library source code has changed at all since the last update,
+#      then increment 'REVISION' (c:r:a becomes c:r+1:a).
+#   4. If any interfaces have been added, removed, or changed since the last
+#      update, increment 'CURRENT', and set 'REVISION' to 0.
+#   5. If any interfaces have been added since the last public release, then
+#      increment 'AGE'.
+#   6. If any interfaces have been removed since the last public release,
+#      then set 'AGE' to 0.
+CURRENT=0
+REVISION=0
+AGE=0
+POINT=$(($CURRENT - $AGE))
+
+#
+# Calculate the Library Version Values
+#
+AC_SUBST(INTERFACE_CURRENT,$CURRENT)
+AC_SUBST(INTERFACE_REVISION,$REVISION)
+AC_SUBST(INTERFACE_AGE,$AGE)
+AC_SUBST(INTERFACE_MAJOR,$POINT)
+AC_SUBST(INTERFACE_MINOR,$AGE)
+AC_SUBST(INTERFACE_POINT,$REVISION)
+
+#
 # Determine Distro
 #
 AR_GET_DISTRO()

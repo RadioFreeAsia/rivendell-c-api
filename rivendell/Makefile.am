@@ -48,6 +48,8 @@ dist_librivwebcapi_la_SOURCES = listgroups.c listgroups.h \
 				export.c export.h \
 				exportpeaks.c exportpeaks.h
 
+librivwebcapi_la_LDFLAGS = -version-info $(INTERFACE_CURRENT):$(INTERFACE_REVISION):$(INTERFACE_AGE)
+
 includedir = $(prefix)/include/rivendell
 include_HEADERS = addcart.h\
                   addcut.h\
