@@ -28,17 +28,41 @@ int main(int argc,char *argv[])
 {
   int i;
   struct rd_audiostore *audiostore=0;
-
   unsigned numrecs;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   //
   // Call the function
   //
 
   int result=RD_AudioStore(&audiostore,
-		"localhost",
-		"user",
-		"",
+		host,
+		user,
+		passwd,
 		&numrecs);
 
   if (result<0) {

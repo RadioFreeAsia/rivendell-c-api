@@ -30,6 +30,31 @@ int main(int argc,char *argv[])
   char buf[BUFSIZ];
   char *p;
   long int cartnum=0;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Cart Number that you want to Remove ==> ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -46,9 +71,9 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result=RD_RemoveCart("localhost",
-		"user",
-		"",
+  int result=RD_RemoveCart( host,
+		user,
+		passwd,
 		(unsigned)cartnum);
 
   if(result<0) {

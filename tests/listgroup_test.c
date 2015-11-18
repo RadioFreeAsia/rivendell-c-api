@@ -32,6 +32,31 @@ int main(int argc,char *argv[])
   char *grpptr;
   int i;
   char buf[BUFSIZ];
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   grpptr = &grp_name[0];
   printf("Please enter the Group Name you want to list ==>");
@@ -50,7 +75,12 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result= RD_ListGroup(&grp,"localhost","user","",grp_name,&numrecs);
+  int result= RD_ListGroup(&grp,
+			host,
+			user,
+			passwd,
+			grp_name,
+			&numrecs);
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
     exit(256);

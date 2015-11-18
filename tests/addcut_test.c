@@ -32,6 +32,31 @@ int main(int argc,char *argv[])
   char *p;
   long int cartnum=0;
   unsigned numrecs;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Cart Number that you want to Add a CUT to==> ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -49,9 +74,9 @@ int main(int argc,char *argv[])
   // Call the function
   //
   int result=RD_AddCut(&cut,
-		"localhost",
-		"user",
-		"",
+		host,
+		user,
+		passwd,
 		(unsigned)cartnum,
 		&numrecs);
 

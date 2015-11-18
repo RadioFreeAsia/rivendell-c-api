@@ -48,3 +48,9 @@
 	'configure.ac' and 'rivendell/Makefile.am'.
 2015-11-17 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'make rpm' target.
+2015-11-18 Todd Baker <bakert@rfa.org>
+	* Added environmental override capability for Hostname, User
+	  and Password variables in all of example test harness programs
+	  within tests directory.
+2015-11-18 Todd Baker <bakert@rfa.org>
+	* Added Environmental Variable Information into README file.

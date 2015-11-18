@@ -35,6 +35,31 @@ int main(int argc,char *argv[])
   long int cut=0;
   long int trimlevel=0;
   unsigned numrecs;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Cart Number ==> ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -80,9 +105,9 @@ int main(int argc,char *argv[])
   //
 
   int result=RD_TrimAudio(&trimaudio,
-		"localhost",
-		"user",
-		"",
+		host,
+		user,
+		passwd,
 		(unsigned)cart,
 		(unsigned)cut,
 		(int)trimlevel,

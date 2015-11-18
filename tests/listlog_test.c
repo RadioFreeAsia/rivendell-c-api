@@ -30,6 +30,31 @@ int main(int argc,char *argv[])
   struct rd_logline *logline=0;
   char buf[BUFSIZ];
   unsigned numrecs;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Log Name ==> ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -38,8 +63,12 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result= RD_ListLog(&logline,"localhost","user","",
-		buf,&numrecs);
+  int result= RD_ListLog(&logline,
+		host,
+		user,
+		passwd,
+		buf,
+		&numrecs);
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
     exit(256);

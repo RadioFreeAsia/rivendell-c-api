@@ -32,6 +32,31 @@ int main(int argc,char *argv[])
   char *p;
   long int cart=0;
   char *codeptr;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
 
   printf("Please enter the Cart Number ==> ");
@@ -62,9 +87,9 @@ int main(int argc,char *argv[])
  
   // Call the function
   //
-  int result= RD_AssignSchedCode("localhost",
-			"user",
-			"",
+  int result= RD_AssignSchedCode( host,
+		        user,
+		        passwd,
 			(unsigned)cart,	
                         code);
   if(result<0) {

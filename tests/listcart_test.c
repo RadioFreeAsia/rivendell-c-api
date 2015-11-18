@@ -32,6 +32,31 @@ int main(int argc,char *argv[])
   char *p;
   long int cart=0;
   unsigned numrecs;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Cart Number ==> ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -48,8 +73,12 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result= RD_ListCart(&carts,"localhost","user","",
-		(unsigned)cart,&numrecs);
+  int result= RD_ListCart(&carts,
+			host,
+			user,
+			passwd,
+			(unsigned)cart,
+			&numrecs);
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
     exit(256);

@@ -33,6 +33,31 @@ int main(int argc,char *argv[])
   long int src_cutnum=0;
   long int dest_cartnum=0;
   long int dest_cutnum=0;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Cart Number of the source audio that you want to copy from: ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -86,9 +111,9 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result=RD_CopyAudio("localhost",
-		"user",
-		"",
+  int result=RD_CopyAudio( host,
+		user,
+		passwd,
 		(unsigned)src_cartnum,
 		(unsigned)src_cutnum,
 		(unsigned)dest_cartnum,

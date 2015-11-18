@@ -33,6 +33,31 @@ int main(int argc,char *argv[])
   char svcname[11];
   long int trackable=0;
   unsigned numrecs;
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Service Name (default is All) ==> ");
   if(fgets(buf,sizeof(buf),stdin) != NULL)
@@ -57,9 +82,14 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result= RD_ListLogs(&logs,"localhost","user","",
-		&svcname[0],(int)trackable,&numrecs); 
-/*		"",0,&numrecs);*/
+  int result= RD_ListLogs(&logs,
+		host,
+		user,
+		passwd,
+		&svcname[0],
+		(int)trackable,
+		&numrecs); 
+
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
     exit(256);

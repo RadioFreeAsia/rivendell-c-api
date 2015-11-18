@@ -34,6 +34,31 @@ int main(int argc,char *argv[])
   long int cart=0;
   unsigned numrecs;
   char mynotes[1024];
+  char *host;
+  char *user;
+  char *passwd;
+
+  /*      Get the Rivendell Host, User and Password if set in env */
+  if (getenv("RIVHOST")!=NULL) {
+    host = getenv("RIVHOST");
+  }
+  else {
+    host="localhost";
+  }
+
+  if (getenv("RIVUSER")!=NULL) {
+    user = getenv("RIVUSER");
+  }
+  else {
+    user="USER";
+  }
+
+  if (getenv("RIVPASS")!=NULL) {
+    passwd = getenv("RIVPASS");
+  }
+  else {
+    passwd = "";
+  } 
 
   printf("Please enter the Cart Number ==> ");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
@@ -71,9 +96,9 @@ int main(int argc,char *argv[])
   //
   int result= RD_EditCart(&carts,
 		edit_cart,
-		"localhost",
-		"user",
-		"",
+		host,
+		user,
+		passwd,
                 (unsigned)cart,
 		&numrecs);
 
