@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/audiostore.h>
+#include <rivendell/rd_audiostore.h>
 
 int main(int argc,char *argv[])
 {

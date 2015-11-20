@@ -20,70 +20,70 @@
 
 AM_CFLAGS = -I$(top_srcdir)
 lib_LTLIBRARIES = librivwebcapi.la 
-dist_librivwebcapi_la_SOURCES = listgroups.c listgroups.h \
-				listgroup.c listgroup.h \
-				listcarts.c listcarts.h \
-				listcart.c listcart.h \
-				listcuts.c listcuts.h \
-				listcut.c listcut.h \
-				listservices.c listservices.h \
-				listschedcodes.c listschedcodes.h\
-				listcartschedcodes.c listcartschedcodes.h\
-				assignschedcode.c assignschedcode.h\
-				unassignschedcode.c unassignschedcode.h\
-				addcart.c addcart.h \
-				addcut.c addcut.h \
-				removecart.c removecart.h \
-				removecut.c removecut.h \
-				deleteaudio.c deleteaudio.h \
-				copyaudio.c copyaudio.h \
-				audioinfo.c audioinfo.h \
-				trimaudio.c trimaudio.h \
-				audiostore.c audiostore.h \
-				listlogs.c listlogs.h \
-				listlog.c listlog.h \
-				editcart.c editcart.h \
-				editcut.c editcut.h \
-				import.c import.h \
-				export.c export.h \
-				exportpeaks.c exportpeaks.h\
-                                rd_common.c rd_common.h
+dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
+				rd_addcut.c rd_addcut.h \
+				rd_assignschedcode.c rd_assignschedcode.h\
+				rd_audioinfo.c rd_audioinfo.h \
+				rd_audiostore.c rd_audiostore.h \
+                                rd_common.c rd_common.h\
+				rd_copyaudio.c rd_copyaudio.h \
+				rd_deleteaudio.c rd_deleteaudio.h \
+				rd_editcart.c rd_editcart.h \
+				rd_editcut.c rd_editcut.h \
+				rd_export.c rd_export.h \
+				rd_exportpeaks.c rd_exportpeaks.h\
+				rd_import.c rd_import.h \
+				rd_listcartschedcodes.c rd_listcartschedcodes.h\
+				rd_listcart.c rd_listcart.h \
+				rd_listcarts.c rd_listcarts.h \
+				rd_listcut.c rd_listcut.h \
+				rd_listcuts.c rd_listcuts.h \
+                                rd_listgroups.c rd_listgroups.h \
+				rd_listgroup.c rd_listgroup.h \
+				rd_listlog.c rd_listlog.h \
+				rd_listlogs.c rd_listlogs.h \
+				rd_listservices.c rd_listservices.h \
+				rd_listschedcodes.c rd_listschedcodes.h\
+				rd_removecart.c rd_removecart.h \
+				rd_removecut.c rd_removecut.h \
+				rd_trimaudio.c rd_trimaudio.h \
+				rd_unassignschedcode.c rd_unassignschedcode.h
 
 librivwebcapi_la_LDFLAGS = -version-info $(INTERFACE_CURRENT):$(INTERFACE_REVISION):$(INTERFACE_AGE)
 
 includedir = $(prefix)/include/rivendell
-include_HEADERS = addcart.h\
-                  addcut.h\
-                  assignschedcode.h\
-                  audioinfo.h\
-                  audiostore.h\
+include_HEADERS = rd_addcart.h\
+                  rd_addcut.h\
+                  rd_assignschedcode.h\
+                  rd_audioinfo.h\
+                  rd_audiostore.h\
+                  rd_cart.h\
                   rd_common.h\
-                  copyaudio.h\
-                  deleteaudio.h\
-                  editcart.h\
-                  editcut.h\
-                  export.h\
-                  exportpeaks.h\
-                  import.h\
-                  listcart.h\
-                  listcartschedcodes.h\
-                  listcarts.h\
-                  listcut.h\
-                  listcuts.h\
-                  listgroup.h\
-                  listgroups.h\
-                  listlog.h\
-                  listlogs.h\
-                  listschedcodes.h\
-                  listservices.h\
-                  rdcart.h\
-                  rdcut.h\
-                  rdgroup.h\
-                  rdschedcodes.h\
-                  removecart.h\
-                  removecut.h\
-                  trimaudio.h\
-                  unassignschedcode.h
+                  rd_copyaudio.h\
+                  rd_cut.h\
+                  rd_deleteaudio.h\
+                  rd_editcart.h\
+                  rd_editcut.h\
+                  rd_export.h\
+                  rd_exportpeaks.h\
+                  rd_group.h\
+                  rd_import.h\
+                  rd_listcart.h\
+                  rd_listcartschedcodes.h\
+                  rd_listcarts.h\
+                  rd_listcut.h\
+                  rd_listcuts.h\
+                  rd_listgroup.h\
+                  rd_listgroups.h\
+                  rd_listlog.h\
+                  rd_listlogs.h\
+                  rd_listschedcodes.h\
+                  rd_listservices.h\
+                  rd_schedcodes.h\
+                  rd_removecart.h\
+                  rd_removecut.h\
+                  rd_trimaudio.h\
+                  rd_unassignschedcode.h
 
 CLEANFILES = *~\
              moc_*\

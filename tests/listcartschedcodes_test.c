@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/listcartschedcodes.h>
+#include <rivendell/rd_listcartschedcodes.h>
 
 int main(int argc,char *argv[])
 {

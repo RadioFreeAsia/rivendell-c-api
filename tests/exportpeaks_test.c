@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/exportpeaks.h>
+#include <rivendell/rd_exportpeaks.h>
 
 int main(int argc,char *argv[])
 {

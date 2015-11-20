@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/trimaudio.h>
+#include <rivendell/rd_trimaudio.h>
 
 int main(int argc,char *argv[])
 {

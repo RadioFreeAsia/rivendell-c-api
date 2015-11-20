@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/removecart.h>
+#include <rivendell/rd_removecart.h>
 
 int main(int argc,char *argv[])
 {

@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/assignschedcode.h>
+#include <rivendell/rd_assignschedcode.h>
 
 int main(int argc,char *argv[])
 {

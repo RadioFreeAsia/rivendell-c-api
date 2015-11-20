@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/import.h>
+#include <rivendell/rd_import.h>
 
 int main(int argc,char *argv[])
 {

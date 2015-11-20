@@ -1,0 +1,204 @@
+/* rd_listlogs.c
+ *
+ * Implementation of the ListLogs Rivendell Access Library
+ *
+ * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License version 2 as
+ *   published by the Free Software Foundation.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public
+ *   License along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <stdlib.h>
+#include <string.h>
+
+#include <curl/curl.h>
+#include <expat.h>
+
+#include "rd_common.h"
+#include "rd_listlogs.h"
+
+struct xml_data {
+  unsigned logs_quan;
+  char elem_name[256];
+  char strbuf[1024];
+  struct rd_log *logs;
+};
+
+
+static void XMLCALL __ListLogsElementStart(void *data, const char *el, 
+					     const char **attr)
+{
+  struct xml_data *xml_data=(struct xml_data *)data;
+  if(strcasecmp(el,"log")==0) {    // Allocate a new log entry
+    xml_data->logs=realloc(xml_data->logs,
+			   (xml_data->logs_quan+1)*sizeof(struct rd_log));
+    (xml_data->logs_quan)++;
+  }
+  strncpy(xml_data->elem_name,el,256);
+  memset(xml_data->strbuf,0,1024);
+}
+
+
+static void XMLCALL __ListLogsElementData(void *data,const XML_Char *s,
+					    int len)
+{
+  struct xml_data *xml_data=(struct xml_data *)data;
+
+  memcpy(xml_data->strbuf+strlen(xml_data->strbuf),s,len);
+}
+
+
+static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
+{
+  struct xml_data *xml_data=(struct xml_data *)data;
+  struct rd_log *logs=xml_data->logs+(xml_data->logs_quan-1);
+
+  if(strcasecmp(el,"name")==0) {
+    strncpy(logs->log_name,xml_data->strbuf,10);
+  }
+  if(strcasecmp(el,"serviceName")==0) {
+    strncpy(logs->log_service,xml_data->strbuf,10);
+  }
+  if(strcasecmp(el,"description")==0) {
+    strncpy(logs->log_description,xml_data->strbuf,64);
+  }
+  if(strcasecmp(el,"originUserName")==0) {
+    strncpy(logs->log_origin_username,xml_data->strbuf,255);
+  }
+  if(strcasecmp(el,"originDatetime")==0) {
+    strncpy(logs->log_origin_datetime,xml_data->strbuf,26);
+  }
+  if(strcasecmp(el,"linkDatetime")==0) {
+    strncpy(logs->log_link_datetime,xml_data->strbuf,26);
+  }
+  if(strcasecmp(el,"modifiedDatetime")==0) {
+    strncpy(logs->log_modified_datetime,xml_data->strbuf,26);
+  }
+  if(strcasecmp(el,"autoRefresh")==0) {
+    logs->log_autorefresh=RD_ReadBool(xml_data->strbuf);
+  }
+  if(strcasecmp(el,"startDate")==0) {
+    strncpy(logs->log_startdate,xml_data->strbuf,26);
+  }
+  if(strcasecmp(el,"endDate")==0) {
+    strncpy(logs->log_enddate,xml_data->strbuf,26);
+  }
+  if(strcasecmp(el,"scheduledTracks")==0) {
+    sscanf(xml_data->strbuf,"%d",&logs->log_scheduled_tracks);
+  }
+  if(strcasecmp(el,"completedTracks")==0) {
+    sscanf(xml_data->strbuf,"%d",&logs->log_completed_tracks);
+  }
+  if(strcasecmp(el,"musicLinks")==0) {
+    sscanf(xml_data->strbuf,"%d",&logs->log_music_links);
+  }
+  if(strcasecmp(el,"musicLinked")==0) {
+    logs->log_music_linked=RD_ReadBool(xml_data->strbuf);
+  }
+  if(strcasecmp(el,"trafficLinks")==0) {
+    sscanf(xml_data->strbuf,"%d",&logs->log_traffic_links);
+  }
+  if(strcasecmp(el,"trafficLinked")==0) {
+    logs->log_traffic_linked=RD_ReadBool(xml_data->strbuf);
+  }
+}
+
+
+size_t __ListLogsCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
+{
+  XML_Parser p=(XML_Parser)userdata;
+
+  XML_Parse(p,ptr,size*nmemb,0);
+  
+  return size*nmemb;
+}
+
+
+int RD_ListLogs(struct rd_log *logs[],
+		  	const char hostname[],
+			const char username[],
+			const char passwd[],
+                  	const char servicename[],
+                        const int  trackable,
+			unsigned *numrecs)
+{
+  char post[1500];
+  char url[1500];
+  CURL *curl=NULL;
+  XML_Parser parser;
+  char checked_service[11];
+  char *check_svc = &checked_service[0];
+  int checked_trackable = 0;
+  struct xml_data xml_data;
+  long response_code;
+  int i;
+
+  /*  Set number of recs so if fail already set */
+  *numrecs = 0;
+
+  if (trackable == 1) {
+    checked_trackable = 1;
+  }
+  memset(checked_service,'\0',sizeof(checked_service)); 
+  if ((strlen(servicename) > 0) && 
+      (strlen(servicename) < 11))  {
+    for (i = 0; i<strlen(servicename);i++) {
+      if (servicename[i]>32) {
+        strncpy(check_svc,&servicename[i],1);
+        check_svc++;
+      }
+    }
+  }
+
+    
+   /*
+   * Setup the CURL call
+   */
+  memset(&xml_data,0,sizeof(xml_data));
+  parser=XML_ParserCreate(NULL);
+  XML_SetUserData(parser,&xml_data);
+  XML_SetElementHandler(parser,__ListLogsElementStart,
+			__ListLogsElementEnd);
+  XML_SetCharacterDataHandler(parser,__ListLogsElementData);
+  snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
+  snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&SERVICE_NAME=%s&TRACKABLE=%d",
+	   username,passwd,checked_service,checked_trackable);
+  if((curl=curl_easy_init())==NULL) {
+    return -1;
+  }
+  curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
+  curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListLogsCallback);
+  curl_easy_setopt(curl,CURLOPT_URL,url);
+  curl_easy_setopt(curl,CURLOPT_POST,1);
+  curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
+  curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
+  //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
+  if(curl_easy_perform(curl)!=CURLE_OK) {
+    return -1;
+  }
+
+/* The response OK - so figure out if we got what we wanted.. */
+
+  curl_easy_getinfo(curl,CURLINFO_RESPONSE_CODE,&response_code);
+  curl_easy_cleanup(curl);
+  
+  if (response_code > 199 && response_code < 300) {
+    *logs=xml_data.logs;
+    *numrecs = xml_data.logs_quan;
+    return 0;
+  }
+  else {
+    fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    return (int)response_code;
+  }
+}

@@ -80,3 +80,6 @@
 	* Modified 'rivendell/listgroups.c' to use 'RD_ReadBool()'.
 	* Modified 'rivendell/listlog.c' to use 'RD_ReadBool()'.
 	* Modified 'rivendell/listlogs.c' to use 'RD_ReadBool()'.
+2015-11-20 Fred Gleason <fredg@paravelsystems.com>
+	* Changed the names of the header and implementation files in
+	'rivendell/' to match the names of the respective functions.
