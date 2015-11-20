@@ -56,6 +56,11 @@ case ${host} in
 esac
 
 #
+# Option Switches
+#
+AC_ARG_ENABLE(docbook,[  --disable-docbook       disable building of documentation],[DOCBOOK_DISABLED=yes],[])
+
+#
 # Determine Library API Versioning
 #
 # From http://www.gnu.org/software/libtool/manual.html#Updating-version-info
@@ -112,7 +117,9 @@ AC_CHECK_PROG(FOP_FOUND,fop,[yes])
 if test $XSLTPROC_FOUND ; then
    if test $FOP_FOUND ; then
       if test $DOCBOOK_STYLESHEETS ; then
-        USING_DOCBOOK=yes
+        if test -z $DOCBOOK_DISABLED ; then
+          USING_DOCBOOK=yes
+	fi
       fi
    fi
 fi
