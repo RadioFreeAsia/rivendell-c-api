@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 #include <expat.h>
 
+#include "rd_common.h"
 #include "listlogs.h"
 
 struct xml_data {
@@ -33,17 +34,6 @@ struct xml_data {
   struct rd_log *logs;
 };
 
-
-unsigned __ListLogsReadBool(const char *val)
-{
-  if((strcasecmp(val,"true")==0)||(strcasecmp(val,"yes")==0)||
-     (strcasecmp(val,"on")==0)) {
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
 
 static void XMLCALL __ListLogsElementStart(void *data, const char *el, 
 					     const char **attr)
@@ -95,7 +85,7 @@ static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
     strncpy(logs->log_modified_datetime,xml_data->strbuf,26);
   }
   if(strcasecmp(el,"autoRefresh")==0) {
-    logs->log_autorefresh=__ListLogsReadBool(xml_data->strbuf);
+    logs->log_autorefresh=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"startDate")==0) {
     strncpy(logs->log_startdate,xml_data->strbuf,26);
@@ -113,13 +103,13 @@ static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logs->log_music_links);
   }
   if(strcasecmp(el,"musicLinked")==0) {
-    logs->log_music_linked=__ListLogsReadBool(xml_data->strbuf);
+    logs->log_music_linked=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"trafficLinks")==0) {
     sscanf(xml_data->strbuf,"%d",&logs->log_traffic_links);
   }
   if(strcasecmp(el,"trafficLinked")==0) {
-    logs->log_traffic_linked=__ListLogsReadBool(xml_data->strbuf);
+    logs->log_traffic_linked=RD_ReadBool(xml_data->strbuf);
   }
 }
 

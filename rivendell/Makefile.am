@@ -46,7 +46,8 @@ dist_librivwebcapi_la_SOURCES = listgroups.c listgroups.h \
 				editcut.c editcut.h \
 				import.c import.h \
 				export.c export.h \
-				exportpeaks.c exportpeaks.h
+				exportpeaks.c exportpeaks.h\
+                                rd_common.c rd_common.h
 
 librivwebcapi_la_LDFLAGS = -version-info $(INTERFACE_CURRENT):$(INTERFACE_REVISION):$(INTERFACE_AGE)
 
@@ -56,6 +57,7 @@ include_HEADERS = addcart.h\
                   assignschedcode.h\
                   audioinfo.h\
                   audiostore.h\
+                  rd_common.h\
                   copyaudio.h\
                   deleteaudio.h\
                   editcart.h\

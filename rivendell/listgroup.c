@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 #include <expat.h>
 
+#include "rd_common.h"
 #include "listgroup.h"
 
 struct xml_data {
@@ -32,17 +33,6 @@ struct xml_data {
   struct rd_group *group;
 };
 
-
-unsigned __ListGroupReadBool(const char *val)
-{
-  if((strcasecmp(val,"true")==0)||(strcasecmp(val,"yes")==0)||
-     (strcasecmp(val,"on")==0)) {
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
 
 static void XMLCALL __ListGroupElementStart(void *data, const char *el, 
 					     const char **attr)
@@ -98,13 +88,13 @@ static void XMLCALL __ListGroupElementEnd(void *data, const char *el)
     strncpy(grp->grp_default_title,xml_data->strbuf,255);
   }
   if(strcasecmp(el,"enforcecartrange")==0) {
-    grp->grp_enforce_range=__ListGroupReadBool(xml_data->strbuf);
+    grp->grp_enforce_range=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"reporttfc")==0) {
-    grp->grp_report_tfc=__ListGroupReadBool(xml_data->strbuf);
+    grp->grp_report_tfc=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"reportmus")==0) {
-    grp->grp_report_mus=__ListGroupReadBool(xml_data->strbuf);
+    grp->grp_report_mus=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"color")==0) {
     strncpy(grp->grp_color,xml_data->strbuf,8);

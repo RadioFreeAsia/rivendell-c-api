@@ -65,3 +65,18 @@
 	* Fixed warnings in 'rivendell/editcart.c'.
 	* Fixed warnings in 'rivendell/editcut.c'.
 	* Fixed warnings in 'rivendell/import.c'.
+2015-11-20 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'RD_ReadBool()' function in 'rivendell/rd_common.c'
+	and 'rivendell/rd_common.h'.
+	* Modified 'rivendell/addcart.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/addcut.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/editcart.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/editcut.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listcart.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listcarts.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listcut.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listcuts.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listgroup.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listgroups.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listlog.c' to use 'RD_ReadBool()'.
+	* Modified 'rivendell/listlogs.c' to use 'RD_ReadBool()'.

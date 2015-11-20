@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 #include <expat.h>
 
+#include "rd_common.h"
 #include "addcut.h"
 
 struct xml_data {
@@ -32,17 +33,6 @@ struct xml_data {
   struct rd_cut *cut;
 };
 
-
-unsigned __AddCutReadBool(const char *val)
-{
-  if((strcasecmp(val,"true")==0)||(strcasecmp(val,"yes")==0)||
-     (strcasecmp(val,"on")==0)) {
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
 
 static void XMLCALL __AddCutElementStart(void *data, const char *el, 
 					     const char **attr)
@@ -81,7 +71,7 @@ static void XMLCALL __AddCutElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%u",&cut->cut_cut_number);
   }
   if(strcasecmp(el,"evergreen")==0) {
-    cut->cut_evergreen=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_evergreen=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"description")==0) {
     strncpy(cut->cut_description,xml_data->strbuf,65);
@@ -108,25 +98,25 @@ static void XMLCALL __AddCutElementEnd(void *data, const char *el)
     strncpy(cut->cut_end_datetime,xml_data->strbuf,26);
   }
   if(strcasecmp(el,"sun")==0) {
-    cut->cut_sun=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_sun=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"mon")==0) {
-    cut->cut_mon=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_mon=RD_ReadBool(xml_data->strbuf);
   }
 if(strcasecmp(el,"tue")==0) {
-    cut->cut_tue=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_tue=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"wed")==0) {
-    cut->cut_wed=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_wed=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"thu")==0) {
-    cut->cut_thu=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_thu=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"fri")==0) {
-    cut->cut_fri=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_fri=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"sat")==0) {
-    cut->cut_sat=__AddCutReadBool(xml_data->strbuf);
+    cut->cut_sat=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"startDaypart")==0) {
     strncpy(cut->cut_start_daypart,xml_data->strbuf,15);

@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 #include <expat.h>
 
+#include "rd_common.h"
 #include "listlog.h"
 
 struct xml_data {
@@ -35,17 +36,6 @@ struct xml_data {
   struct rd_logline *logline;
 };
 
-
-unsigned __ListLogReadBool(const char *val)
-{
-  if((strcasecmp(val,"true")==0)||(strcasecmp(val,"yes")==0)||
-     (strcasecmp(val,"on")==0)) {
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
 
 static void XMLCALL __ListLogElementStart(void *data, const char *el, 
 					     const char **attr)
@@ -179,13 +169,13 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logline->logline_usage_code);
   }
   if(strcasecmp(el,"enforceLength")==0) {
-    logline->logline_enforce_length=__ListLogReadBool(xml_data->strbuf);
+    logline->logline_enforce_length=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"forcedLength")==0) {
     strncpy(logline->logline_forced_length,xml_data->strbuf,9);
   }
   if(strcasecmp(el,"evergreen")==0) {
-    logline->logline_evergreen=__ListLogReadBool(xml_data->strbuf);
+    logline->logline_evergreen=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"source")==0) {
     if(strcasecmp(xml_data->strbuf,"Manual")==0) {
@@ -345,7 +335,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
       sscanf(xml_data->strbuf,"%d",&logline->logline_talk_end_point);
   }
   if(strcasecmp(el,"hookMode")==0) {
-    logline->logline_hook_mode=__ListLogReadBool(xml_data->strbuf);
+    logline->logline_hook_mode=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"hookStartPoint")==0) {
       sscanf(xml_data->strbuf,"%d",&logline->logline_hook_start_point);

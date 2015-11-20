@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 #include <expat.h>
 
+#include "rd_common.h"
 #include "listcarts.h"
 
 struct xml_data {
@@ -33,17 +34,6 @@ struct xml_data {
   struct rd_cart *carts;
 };
 
-
-unsigned __ListCartsReadBool(const char *val)
-{
-  if((strcasecmp(val,"true")==0)||(strcasecmp(val,"yes")==0)||
-     (strcasecmp(val,"on")==0)) {
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
 
 static void XMLCALL __ListCartsElementStart(void *data, const char *el, 
 					     const char **attr)
@@ -151,10 +141,10 @@ static void XMLCALL __ListCartsElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%u",&carts->cart_validity);
   }
   if(strcasecmp(el,"enforceLength")==0) {
-    carts->cart_enforce_length=__ListCartsReadBool(xml_data->strbuf);
+    carts->cart_enforce_length=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"asyncronous")==0) {
-    carts->cart_asyncronous=__ListCartsReadBool(xml_data->strbuf);
+    carts->cart_asyncronous=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"owner")==0) {
     strncpy(carts->cart_owner,xml_data->strbuf,66);
