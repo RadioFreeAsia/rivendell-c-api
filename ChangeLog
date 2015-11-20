@@ -54,3 +54,6 @@
 	  within tests directory.
 2015-11-18 Todd Baker <bakert@rfa.org>
 	* Added Environmental Variable Information into README file.
+2015-11-20 Fred Gleason <fredg@paravelsystems.com>
+	* Modified 'Makefile.am' to make building of 'docbook/' conditional
+	upon detection of the DocBook toolchain.

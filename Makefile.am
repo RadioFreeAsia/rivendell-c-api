@@ -20,8 +20,11 @@
 ##   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 ##
 
-SUBDIRS = docbook\
-          rivendell\
+if DOCBOOK_AM
+  DOCBOOK_AM_OPT = docbook
+endif
+
+SUBDIRS = $(DOCBOOK_AM_OPT) rivendell\
           tests
 
 ACLOCAL_AMFLAGS = -I m4
