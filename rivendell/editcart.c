@@ -152,10 +152,10 @@ static void XMLCALL __EditCartElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%u",&cart->cart_validity);
   }
   if(strcasecmp(el,"enforceLength")==0) {
-    cart->cart_enforce_length=__AddCartReadBool(xml_data->strbuf);
+    cart->cart_enforce_length=__EditCartReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"asyncronous")==0) {
-    cart->cart_asyncronous=__AddCartReadBool(xml_data->strbuf);
+    cart->cart_asyncronous=__EditCartReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"owner")==0) {
     strncpy(cart->cart_owner,xml_data->strbuf,64);

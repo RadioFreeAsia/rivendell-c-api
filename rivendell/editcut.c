@@ -81,7 +81,7 @@ static void XMLCALL __EditCutElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%u",&cut->cut_cut_number);
   }
   if(strcasecmp(el,"evergreen")==0) {
-    cut->cut_evergreen=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_evergreen=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"description")==0) {
     strncpy(cut->cut_description,xml_data->strbuf,65);
@@ -105,25 +105,25 @@ static void XMLCALL __EditCutElementEnd(void *data, const char *el)
     strncpy(cut->cut_end_datetime,xml_data->strbuf,26);
   }
   if(strcasecmp(el,"sun")==0) {
-    cut->cut_sun=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_sun=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"mon")==0) {
-    cut->cut_mon=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_mon=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"tue")==0) {
-    cut->cut_tue=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_tue=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"wed")==0) {
-    cut->cut_wed=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_wed=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"thu")==0) {
-    cut->cut_thu=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_thu=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"fri")==0) {
-    cut->cut_fri=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_fri=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"sat")==0) {
-    cut->cut_sat=__ListCutsReadBool(xml_data->strbuf);
+    cut->cut_sat=__EditCutReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"startDaypart")==0) {
     strncpy(cut->cut_start_daypart,xml_data->strbuf,15);

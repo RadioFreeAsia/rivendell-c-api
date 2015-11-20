@@ -128,11 +128,11 @@ int RD_ImportCart( const char hostname[],
                 /*CURLFORM_PTRCONTENTS,passwd,
 		CURLFORM_NAMELENGTH,passwdlen,CURLFORM_END); */
 
-  sprintf(cart_buffer,"%lu",cartnum);
+  sprintf(cart_buffer,"%u",cartnum);
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"CART_NUMBER",
                CURLFORM_COPYCONTENTS, cart_buffer, CURLFORM_END);
 
-  sprintf(cut_buffer,"%lu",cutnum);
+  sprintf(cut_buffer,"%u",cutnum);
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"CUT_NUMBER",
                CURLFORM_COPYCONTENTS, cut_buffer, CURLFORM_END);
 

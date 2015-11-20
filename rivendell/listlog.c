@@ -143,7 +143,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     strncpy(logline->logline_group_name,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"groupColor")==0) {
-    sscanf(xml_data->strbuf,"%s",&logline->logline_group_color);
+    sscanf(xml_data->strbuf,"%s",(char *)&logline->logline_group_color);
   }
   if(strcasecmp(el,"title")==0) {
     strncpy(logline->logline_title,xml_data->strbuf,256);
@@ -249,7 +249,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     strncpy(logline->logline_marker_label,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"originUser")==0) {
-    sscanf(xml_data->strbuf,"%s",&logline->logline_origin_user);
+    sscanf(xml_data->strbuf,"%s",(char *)&logline->logline_origin_user);
   }
   if(strcasecmp(el,"originDateTime")==0) {
     strncpy(logline->logline_origin_datetime,xml_data->strbuf,26);
