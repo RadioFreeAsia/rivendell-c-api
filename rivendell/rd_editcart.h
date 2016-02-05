@@ -20,6 +20,10 @@
 
 #ifndef RD_EDITCART_H
 #define RD_EDITCART_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 #include <rivendell/rd_cart.h>
 
@@ -63,7 +67,7 @@ struct edit_cart_values {
 };                      
 
 int RD_EditCart(struct rd_cart *cart[],
-			struct edit_cart_values edit_cart_values,
+			struct edit_cart_values edit_c_values,
 			const char hostname[],
 			const char username[],
 			const char passwd[],
@@ -71,6 +75,8 @@ int RD_EditCart(struct rd_cart *cart[],
 			unsigned *numrecs);
 
 
-void Build_Post_Cart_Fields(char *post, const struct edit_cart_values edit_cart_values);
+void Build_Post_Cart_Fields(char *post, struct edit_cart_values edit_values);
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_EDITCART_H

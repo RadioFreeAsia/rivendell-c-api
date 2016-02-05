@@ -20,6 +20,9 @@
 
 #ifndef RD_LISTCARTSCHEDCODES_H
 #define RD_LISTCARTSCHEDCODES_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 #include <rivendell/rd_schedcodes.h>
 
@@ -29,5 +32,7 @@ int RD_ListCartSchedCodes(struct rd_schedcodes *schedcodes[],
 			const char passwd[],
 			const unsigned cartnum,
 			unsigned *numrecs);
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_LISTCARTSCHEDCODES_H

@@ -20,12 +20,18 @@
 
 #ifndef RD_DELETEAUDIO_H
 #define RD_DELETEAUDIO_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 int RD_DeleteAudio( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnumber,
 			const unsigned cutnumber);
+
+_MYRIVLIB_FINI_DECL
 
 
 #endif  // RDDELETEAUDIO_H

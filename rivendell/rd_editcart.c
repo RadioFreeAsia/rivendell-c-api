@@ -37,7 +37,6 @@ struct xml_data {
 static void XMLCALL __EditCartElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   if(strcasecmp(el,"cart")==0) {    // Allocate a new cart entry
     xml_data->cart=realloc(xml_data->cart,
@@ -171,7 +170,7 @@ size_t __EditCartCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
 
 
 int RD_EditCart(struct rd_cart *cart[],
-			const struct edit_cart_values edit_cart_values,
+			struct edit_cart_values edit_c_values,
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
@@ -201,7 +200,7 @@ int RD_EditCart(struct rd_cart *cart[],
 	   	username,
 		passwd,
 		cartnum);
-  Build_Post_Cart_Fields(post,edit_cart_values);
+  Build_Post_Cart_Fields(post,edit_c_values);
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);
     

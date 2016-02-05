@@ -18,6 +18,8 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include "rd_common.h"
+
 unsigned RD_ReadBool(const char *val)
 {
   if((strcasecmp(val,"true")==0)||(strcasecmp(val,"yes")==0)||

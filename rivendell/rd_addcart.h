@@ -22,6 +22,9 @@
 #define RD_ADDCART_H
 
 #include <rivendell/rd_cart.h>
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 int RD_AddCart(struct rd_cart *cart[],
 			const char hostname[],
@@ -31,5 +34,7 @@ int RD_AddCart(struct rd_cart *cart[],
 			const char type[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_ADDCART_H

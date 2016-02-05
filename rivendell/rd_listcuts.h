@@ -20,6 +20,10 @@
 
 #ifndef RD_LISTCUTS_H
 #define RD_LISTCUTS_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 #include <rivendell/rd_cut.h>
 
@@ -30,4 +34,5 @@ int RD_ListCuts(struct rd_cut *cuts[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
 
+_MYRIVLIB_FINI_DECL
 #endif  // RD_LISTCUTS_H

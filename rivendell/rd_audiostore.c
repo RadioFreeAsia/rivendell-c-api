@@ -23,7 +23,7 @@
 
 #include <curl/curl.h>
 #include <expat.h>
-
+#include "rd_common.h"
 #include "rd_audiostore.h"
 
 struct xml_data {

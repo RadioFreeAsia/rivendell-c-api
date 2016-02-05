@@ -20,6 +20,9 @@
 
 #ifndef RD_LISTLOGS_H
 #define RD_LISTLOGS_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 struct rd_log {
   char  log_name[11];
@@ -48,5 +51,6 @@ int RD_ListLogs(struct rd_log *logs[],
                         const int  trackable,
 			unsigned *numrecs);
 
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_LISTLOGS_H

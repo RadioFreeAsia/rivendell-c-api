@@ -25,6 +25,7 @@
 #include <expat.h>
 
 #include "rd_listschedcodes.h"
+#include "rd_common.h"
 
 struct xml_data {
   unsigned schedcodes_quan;

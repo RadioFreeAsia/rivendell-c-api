@@ -25,6 +25,7 @@
 #include <expat.h>
 
 #include "rd_removecut.h"
+#include "rd_common.h"
 
 struct xml_data {
   char elem_name[256];
@@ -34,7 +35,6 @@ struct xml_data {
 static void XMLCALL __RemoveCutElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   strncpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);

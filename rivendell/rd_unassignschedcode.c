@@ -25,6 +25,7 @@
 #include <expat.h>
 
 #include "rd_unassignschedcode.h"
+#include "rd_common.h"
 
 struct xml_data {
   char elem_name[256];

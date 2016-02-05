@@ -21,21 +21,27 @@
 #ifndef RD_EXPORT_H
 #define RD_EXPORT_H
 
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 int RD_ExportCart( const char hostname[],
 		 	const char         username[],
-                        const char           passwd[],
+            const char           passwd[],
 			const unsigned        cartnum,
-                        const unsigned         cutnum,
-                        const int              format,
+            const unsigned         cutnum,
+            const int              format,
 			const int	  channels,
-                        const int         sample_rate,
-                        const int            bit_rate,
-                        const int             quality,
-                        const int         start_point,
-                        const int           end_point,
-                        const int normalization_level,
-                        const int     enable_metadata,
-                        const char         filename[]);
+            const int         sample_rate,
+            const int            bit_rate,
+            const int             quality,
+            const int         start_point,
+            const int           end_point,
+            const int normalization_level,
+            const int     enable_metadata,
+            const char         filename[]);
 
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_EXPORT_H

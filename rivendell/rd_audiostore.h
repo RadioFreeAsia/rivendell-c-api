@@ -20,6 +20,10 @@
 
 #ifndef RD_AUDIOSTORE_H
 #define RD_AUDIOSTORE_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 struct rd_audiostore {
   long unsigned freebytes;
@@ -31,5 +35,7 @@ int RD_AudioStore(struct rd_audiostore *audiostore[],
 			const char username[],
 			const char passwd[],
 			unsigned *numrecs);
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_AUDIOSTORE_H

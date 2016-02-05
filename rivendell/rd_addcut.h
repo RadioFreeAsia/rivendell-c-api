@@ -22,6 +22,10 @@
 #define RD_ADDCUT_H
 
 #include <rivendell/rd_cut.h>
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 int RD_AddCut(struct rd_cut *cut[],
 			const char hostname[],
@@ -29,5 +33,7 @@ int RD_AddCut(struct rd_cut *cut[],
 			const char passwd[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_ADDCUT_H

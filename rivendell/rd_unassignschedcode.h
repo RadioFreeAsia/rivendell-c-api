@@ -21,6 +21,9 @@
 #ifndef RD_UNASSIGNSCHEDCODE_H
 #define RD_UNASSIGNSCHEDCODE_H
 
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 int RD_UnassignSchedCode( const char hostname[],
 			const char username[],
@@ -28,5 +31,5 @@ int RD_UnassignSchedCode( const char hostname[],
 			const unsigned cartnum,
 			const char code[]);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_UNASSIGNSCHEDCODE_H

@@ -20,6 +20,10 @@
 
 #ifndef RD_EXPORTPEAKS_H
 #define RD_EXPORTPEAKS_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 int RD_ExportPeaks( const char hostname[],
 		 	const char         username[],
@@ -28,5 +32,6 @@ int RD_ExportPeaks( const char hostname[],
                         const unsigned         cutnum,
                         const char         filename[]);
 
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_EXPORTPEAKS_H

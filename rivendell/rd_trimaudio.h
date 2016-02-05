@@ -28,6 +28,9 @@ struct rd_trimaudio {
   int starttrimpoint;
   int endtrimpoint;
 };
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
 		  	const char hostname[],
@@ -38,5 +41,5 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
 			const int trimlevel,
 			unsigned *numrecs);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_TRIMAUDIO_H

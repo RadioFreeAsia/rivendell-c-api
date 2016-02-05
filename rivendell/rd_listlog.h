@@ -20,6 +20,9 @@
 
 #ifndef RD_LISTLOG_H
 #define RD_LISTLOG_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 struct rd_logline {
   int  logline_line;
@@ -84,5 +87,5 @@ int RD_ListLog(struct rd_logline *logline[],
 			const char logname[],
 			unsigned *numrecs);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_LISTLOG_H

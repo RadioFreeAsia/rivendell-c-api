@@ -21,6 +21,10 @@
 #ifndef RD_IMPORTCART_H
 #define RD_IMPORTCART_H
 
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 int RD_ImportCart( const char hostname[],
 			const char         username[],
 			const char           passwd[],
@@ -32,5 +36,7 @@ int RD_ImportCart( const char hostname[],
                         const int  use_metadata,
                         const char filename[]);
 
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_IMPORTCART_H

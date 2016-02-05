@@ -20,6 +20,9 @@
 
 #ifndef RD_LISTGROUPS_H
 #define RD_LISTGROUPS_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 #include <rivendell/rd_group.h>
 
@@ -29,5 +32,5 @@ int RD_ListGroups(struct rd_group *grps[],
 			const char passwd[],
 			unsigned *numrecs);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_LISTGROUPS_H

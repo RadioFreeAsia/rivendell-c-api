@@ -20,6 +20,10 @@
 
 #ifndef RD_LISTCUT_H
 #define RD_LISTCUT_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 #include <rivendell/rd_cut.h>
 
@@ -31,5 +35,6 @@ int RD_ListCut(struct rd_cut *cuts[],
                         const unsigned cutnumber,
 			unsigned *numrecs);
 
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_LISTCUT_H

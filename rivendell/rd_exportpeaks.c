@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 
 #include "rd_exportpeaks.h"
+#include "rd_common.h"
 
 size_t __ExportPeaks_write_peaks_data( void *ptr, size_t size, size_t nmemb, FILE *stream)
 {

@@ -20,6 +20,10 @@
 
 #ifndef RD_COPYAUDIO_H
 #define RD_COPYAUDIO_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 int RD_CopyAudio( const char hostname[],
 			const char username[],
@@ -29,5 +33,7 @@ int RD_CopyAudio( const char hostname[],
 			const unsigned dest_cartnumber,
 			const unsigned dest_cutnumber);
 
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_COPYAUDIO_H

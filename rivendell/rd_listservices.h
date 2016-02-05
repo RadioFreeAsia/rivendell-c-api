@@ -20,6 +20,9 @@
 
 #ifndef RD_LISTSERVICES_H
 #define RD_LISTSERVICES_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 struct rd_service {
   char service_name [11];
@@ -33,5 +36,6 @@ int RD_ListServices(struct rd_service *services[],
 			const int  trackable,
 			unsigned *numrecs);
 
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_LISTSERVICES_H

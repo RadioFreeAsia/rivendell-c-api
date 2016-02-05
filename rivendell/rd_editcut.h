@@ -21,6 +21,10 @@
 #ifndef RD_EDITCUT_H
 #define RD_EDITCUT_H
 
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 #include <rivendell/rd_cut.h>
 
 struct edit_cut_values {
@@ -106,5 +110,5 @@ int RD_EditCut(struct rd_cut *cut[],
 
 void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_EDITCUT_H

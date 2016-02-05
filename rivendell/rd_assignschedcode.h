@@ -20,6 +20,9 @@
 
 #ifndef RD_ASSIGNSCHEDCODE_H
 #define RD_ASSIGNSCHEDCODE_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 
 int RD_AssignSchedCode( const char hostname[],
@@ -27,5 +30,6 @@ int RD_AssignSchedCode( const char hostname[],
 			const char passwd[],
 			const unsigned cartnum,
 			const char code[]);
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_ASSIGNSCHEDCODE_H

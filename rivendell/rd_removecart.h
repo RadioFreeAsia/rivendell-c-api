@@ -20,11 +20,15 @@
 
 #ifndef RD_REMOVECART_H
 #define RD_REMOVECART_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 int RD_RemoveCart( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnumber);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_REMOVECART_H

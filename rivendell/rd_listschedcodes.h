@@ -20,6 +20,10 @@
 
 #ifndef RD_LISTSCHEDCODES_H
 #define RD_LISTSCHEDCODES_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 
 #include <rivendell/rd_schedcodes.h>
 
@@ -29,5 +33,5 @@ int RD_ListSchedCodes(struct rd_schedcodes *schedcodes[],
 			const char passwd[],
 			unsigned *numrecs);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_LISTSCHEDCODES_H

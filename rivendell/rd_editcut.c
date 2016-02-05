@@ -37,7 +37,6 @@ struct xml_data {
 static void XMLCALL __EditCutElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   if(strcasecmp(el,"cut")==0) {    // Allocate a new cut entry
     xml_data->cut=realloc(xml_data->cut,

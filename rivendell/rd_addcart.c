@@ -36,7 +36,6 @@ struct xml_data {
 static void XMLCALL __AddCartElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   if(strcasecmp(el,"cart")==0) {    // Allocate a new cart entry
     xml_data->cart=realloc(xml_data->cart,

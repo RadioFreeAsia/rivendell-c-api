@@ -21,6 +21,10 @@
 #ifndef RD_LISTCARTS_H
 #define RD_LISTCARTS_H
 
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
+
 #include <rivendell/rd_cart.h>
 
 int RD_ListCarts(struct rd_cart *carts[],
@@ -31,5 +35,7 @@ int RD_ListCarts(struct rd_cart *carts[],
                         const char filter[],
                         const char type[],
 			unsigned *numrecs);
+
+_MYRIVLIB_FINI_DECL
 
 #endif  // RD_LISTCARTS_H

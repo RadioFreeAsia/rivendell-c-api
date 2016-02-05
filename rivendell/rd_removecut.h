@@ -20,6 +20,9 @@
 
 #ifndef RD_REMOVECUT_H
 #define RD_REMOVECUT_H
+#include <rivendell/rd_common.h>
+
+_MYRIVLIB_INIT_DECL
 
 int RD_RemoveCut( const char hostname[],
 			const char username[],
@@ -27,5 +30,5 @@ int RD_RemoveCut( const char hostname[],
 			const unsigned cartnumber,
 			const unsigned cutnumber);
 
-
+_MYRIVLIB_FINI_DECL
 #endif  // RD_REMOVECUT_H

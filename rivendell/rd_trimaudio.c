@@ -25,6 +25,7 @@
 #include <expat.h>
 
 #include "rd_trimaudio.h"
+#include "rd_common.h"
 
 struct xml_data {
   char elem_name[256];
@@ -36,7 +37,6 @@ struct xml_data {
 static void XMLCALL __TrimAudioElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   if(strcasecmp(el,"trimPoint")==0) {    // Allocate a new trimaudio entry
     xml_data->trimaudio=realloc(xml_data->trimaudio,
