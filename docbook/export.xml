@@ -313,6 +313,9 @@
       400          Missing Input Parameter(s).
     </para>
     <para>
+      403          No Source Audio Present.
+    </para>
+    <para>
       404          No Such Cart / Cut.
     </para>
     <para>

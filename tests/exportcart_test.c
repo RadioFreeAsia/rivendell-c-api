@@ -115,6 +115,9 @@ int main(int argc,char *argv[])
        (result != 0))
   {
     switch(result) {
+      case 403:
+        fprintf(stderr,"ERROR:  No Source Audio Exists! \n");
+        break;
       case 404:
         fprintf(stderr,"ERROR:  No Such Cart/Cut Exists! \n");
         break;
