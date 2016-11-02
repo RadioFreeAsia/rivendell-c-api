@@ -12,7 +12,7 @@ BuildRoot: 	/var/tmp/%{name}-@VERSION@
 %package devel
 Summary:        Development components for the Rivendell integration library
 Group:		System Environment/Libraries
-Requires:	rivendell-c-api
+Requires:	rivwebcapi
 
 
 %description
@@ -65,37 +65,38 @@ ldconfig
 
 
 %files devel
-%{_includedir}/rivendell/addcart.h
-%{_includedir}/rivendell/addcut.h
-%{_includedir}/rivendell/assignschedcode.h
-%{_includedir}/rivendell/audioinfo.h
-%{_includedir}/rivendell/audiostore.h
-%{_includedir}/rivendell/copyaudio.h
-%{_includedir}/rivendell/deleteaudio.h
-%{_includedir}/rivendell/editcart.h
-%{_includedir}/rivendell/editcut.h
-%{_includedir}/rivendell/export.h
-%{_includedir}/rivendell/exportpeaks.h
-%{_includedir}/rivendell/import.h
-%{_includedir}/rivendell/listcart.h
-%{_includedir}/rivendell/listcartschedcodes.h
-%{_includedir}/rivendell/listcarts.h
-%{_includedir}/rivendell/listcut.h
-%{_includedir}/rivendell/listcuts.h
-%{_includedir}/rivendell/listgroup.h
-%{_includedir}/rivendell/listgroups.h
-%{_includedir}/rivendell/listlog.h
-%{_includedir}/rivendell/listlogs.h
-%{_includedir}/rivendell/listschedcodes.h
-%{_includedir}/rivendell/listservices.h
-%{_includedir}/rivendell/rdcart.h
-%{_includedir}/rivendell/rdcut.h
-%{_includedir}/rivendell/rdgroup.h
-%{_includedir}/rivendell/rdschedcodes.h
-%{_includedir}/rivendell/removecart.h
-%{_includedir}/rivendell/removecut.h
-%{_includedir}/rivendell/trimaudio.h
-%{_includedir}/rivendell/unassignschedcode.h
+%{_includedir}/rivendell/rd_addcart.h
+%{_includedir}/rivendell/rd_addcut.h
+%{_includedir}/rivendell/rd_assignschedcode.h
+%{_includedir}/rivendell/rd_audioinfo.h
+%{_includedir}/rivendell/rd_audiostore.h
+%{_includedir}/rivendell/rd_copyaudio.h
+%{_includedir}/rivendell/rd_deleteaudio.h
+%{_includedir}/rivendell/rd_editcart.h
+%{_includedir}/rivendell/rd_editcut.h
+%{_includedir}/rivendell/rd_export.h
+%{_includedir}/rivendell/rd_exportpeaks.h
+%{_includedir}/rivendell/rd_import.h
+%{_includedir}/rivendell/rd_listcart.h
+%{_includedir}/rivendell/rd_listcartschedcodes.h
+%{_includedir}/rivendell/rd_listcarts.h
+%{_includedir}/rivendell/rd_listcut.h
+%{_includedir}/rivendell/rd_listcuts.h
+%{_includedir}/rivendell/rd_listgroup.h
+%{_includedir}/rivendell/rd_listgroups.h
+%{_includedir}/rivendell/rd_listlog.h
+%{_includedir}/rivendell/rd_listlogs.h
+%{_includedir}/rivendell/rd_listschedcodes.h
+%{_includedir}/rivendell/rd_listservices.h
+%{_includedir}/rivendell/rd_cart.h
+%{_includedir}/rivendell/rd_common.h
+%{_includedir}/rivendell/rd_cut.h
+%{_includedir}/rivendell/rd_group.h
+%{_includedir}/rivendell/rd_schedcodes.h
+%{_includedir}/rivendell/rd_removecart.h
+%{_includedir}/rivendell/rd_removecut.h
+%{_includedir}/rivendell/rd_trimaudio.h
+%{_includedir}/rivendell/rd_unassignschedcode.h
 %{_libdir}/pkgconfig/rivendell.pc
 %{_libdir}/librivwebcapi.a
 %{_libdir}/librivwebcapi.la
@@ -129,5 +130,7 @@ ldconfig
 
 
 %changelog
+* Wed Nov  2 2016 Fred Gleason <fredg@paravelsystems.com>
+-- Fixed typos in 'devel' file list.
 * Tue Nov 17 2015 Fred Gleason <fredg@paravelsystems.com>
 -- Initial packaging.
