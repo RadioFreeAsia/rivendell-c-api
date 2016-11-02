@@ -12,7 +12,7 @@ BuildRoot: 	/var/tmp/%{name}-@VERSION@
 %package devel
 Summary:        Development components for the Rivendell integration library
 Group:		System Environment/Libraries
-Requires:	rivendell-c-api
+Requires:	rivwebcapi
 
 
 %description
