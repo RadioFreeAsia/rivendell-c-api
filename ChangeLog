@@ -88,3 +88,5 @@
 	* Added an invocation to AR_GCC_TARGET() in 'configure.ac'.
 2016-11-02 Fred Gleason <fredg@paravelsystems.com>
 	* Corrected dependency in 'rivwebcapi.spec.in'.
+2016-11-02 Fred Gleason <fredg@paravelsystems.com>
+	* Added '-lcurl' to the 'libs:' field in 'rivendell.pc.in'.
