@@ -23,6 +23,10 @@
 
 #include <rivendell/rd_cut.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ListCut(struct rd_cut *cuts[],
 		  	const char hostname[],
 			const char username[],
@@ -31,5 +35,9 @@ int RD_ListCut(struct rd_cut *cuts[],
                         const unsigned cutnumber,
 			unsigned *numrecs);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTCUT_H

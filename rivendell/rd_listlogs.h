@@ -21,6 +21,10 @@
 #ifndef RD_LISTLOGS_H
 #define RD_LISTLOGS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_log {
   char  log_name[11];
   char  log_service[11];
@@ -48,5 +52,9 @@ int RD_ListLogs(struct rd_log *logs[],
                         const int  trackable,
 			unsigned *numrecs);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTLOGS_H

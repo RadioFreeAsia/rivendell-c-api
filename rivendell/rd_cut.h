@@ -21,6 +21,10 @@
 #ifndef RD_CUT_H
 #define RD_CUT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_cut {
   char cut_name[11];
   unsigned cut_cart_number;
@@ -66,5 +70,9 @@ struct rd_cut {
   int cut_talk_start_point;
   int cut_talk_end_point;
 };
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_CUT_H

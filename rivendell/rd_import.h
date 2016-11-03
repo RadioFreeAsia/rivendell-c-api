@@ -21,6 +21,10 @@
 #ifndef RD_IMPORTCART_H
 #define RD_IMPORTCART_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ImportCart( const char hostname[],
 			const char         username[],
 			const char           passwd[],
@@ -32,5 +36,9 @@ int RD_ImportCart( const char hostname[],
                         const int  use_metadata,
                         const char filename[]);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_IMPORTCART_H

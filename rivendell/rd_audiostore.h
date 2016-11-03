@@ -21,6 +21,10 @@
 #ifndef RD_AUDIOSTORE_H
 #define RD_AUDIOSTORE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_audiostore {
   long unsigned freebytes;
   long unsigned totalbytes;
@@ -31,5 +35,9 @@ int RD_AudioStore(struct rd_audiostore *audiostore[],
 			const char username[],
 			const char passwd[],
 			unsigned *numrecs);
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_AUDIOSTORE_H

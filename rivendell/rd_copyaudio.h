@@ -21,6 +21,10 @@
 #ifndef RD_COPYAUDIO_H
 #define RD_COPYAUDIO_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_CopyAudio( const char hostname[],
 			const char username[],
 			const char passwd[],
@@ -29,5 +33,8 @@ int RD_CopyAudio( const char hostname[],
 			const unsigned dest_cartnumber,
 			const unsigned dest_cutnumber);
 
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_COPYAUDIO_H

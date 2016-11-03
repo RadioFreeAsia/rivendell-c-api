@@ -23,6 +23,10 @@
 
 #include <rivendell/rd_cart.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct edit_cart_values {
   char cart_grp_name[11];
   int use_cart_grp_name;
@@ -72,5 +76,10 @@ int RD_EditCart(struct rd_cart *cart[],
 
 
 void Build_Post_Cart_Fields(char *post, const struct edit_cart_values edit_cart_values);
+
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_EDITCART_H

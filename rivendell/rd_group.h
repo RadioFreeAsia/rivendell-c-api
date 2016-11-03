@@ -14,6 +14,10 @@
 #ifndef RD_GROUP_H
 #define RD_GROUP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_group {
   char grp_name[11];
   char grp_desc[255];
@@ -30,5 +34,9 @@ struct rd_group {
   char grp_reserved[457];
 };
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif   // RD_GROUP_H

@@ -14,6 +14,10 @@
 #ifndef RD_CART_H
 #define RD_CART_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 enum CART_TYPE {TYPE_ALL,TYPE_AUDIO,TYPE_MACRO};
 
 struct rd_cart {
@@ -45,5 +49,9 @@ struct rd_cart {
   char cart_notes[1024];
   char cart_metadata_datetime [26];
 };                      
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif   //RD_CART_H

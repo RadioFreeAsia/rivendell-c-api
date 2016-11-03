@@ -21,10 +21,18 @@
 #ifndef RD_REMOVECART_H
 #define RD_REMOVECART_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_RemoveCart( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnumber);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_REMOVECART_H

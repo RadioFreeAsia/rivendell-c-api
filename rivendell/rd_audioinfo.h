@@ -21,6 +21,10 @@
 #ifndef RD_AUDIOINFO_H
 #define RD_AUDIOINFO_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_audioinfo {
   unsigned cart_number;
   unsigned cut_number;
@@ -38,5 +42,9 @@ int RD_AudioInfo(struct rd_audioinfo *audioinfo[],
 			const unsigned cartnumber,
                         const unsigned cutnumber,
 			unsigned *numrecs);
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_AUDIOINFO_H

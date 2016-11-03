@@ -23,11 +23,18 @@
 
 #include <rivendell/rd_group.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int RD_ListGroups(struct rd_group *grps[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
 			unsigned *numrecs);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // RD_LISTGROUPS_H

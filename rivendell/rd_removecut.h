@@ -21,11 +21,19 @@
 #ifndef RD_REMOVECUT_H
 #define RD_REMOVECUT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_RemoveCut( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnumber,
 			const unsigned cutnumber);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_REMOVECUT_H
