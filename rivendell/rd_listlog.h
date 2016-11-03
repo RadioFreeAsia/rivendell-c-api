@@ -21,6 +21,10 @@
 #ifndef RD_LISTLOG_H
 #define RD_LISTLOG_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_logline {
   int  logline_line;
   int  logline_id;
@@ -84,5 +88,9 @@ int RD_ListLog(struct rd_logline *logline[],
 			const char logname[],
 			unsigned *numrecs);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTLOG_H

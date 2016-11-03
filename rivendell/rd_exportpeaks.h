@@ -21,6 +21,10 @@
 #ifndef RD_EXPORTPEAKS_H
 #define RD_EXPORTPEAKS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ExportPeaks( const char hostname[],
 		 	const char         username[],
                         const char           passwd[],
@@ -28,5 +32,9 @@ int RD_ExportPeaks( const char hostname[],
                         const unsigned         cutnum,
                         const char         filename[]);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_EXPORTPEAKS_H

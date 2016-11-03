@@ -90,3 +90,5 @@
 	* Corrected dependency in 'rivwebcapi.spec.in'.
 2016-11-02 Fred Gleason <fredg@paravelsystems.com>
 	* Added '-lcurl' to the 'libs:' field in 'rivendell.pc.in'.
+2016-11-03 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'extern "C"' defines to the headers in 'rivendell/'.

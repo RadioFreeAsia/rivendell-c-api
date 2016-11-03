@@ -16,10 +16,18 @@
 #ifndef RD_SCHEDCODES_H
 #define RD_SCHEDCODES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_schedcodes {
   char code[11];
   char description[255];
 };
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  //RD_SCHEDCODES_H

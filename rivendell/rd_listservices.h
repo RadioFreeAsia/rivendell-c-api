@@ -21,6 +21,10 @@
 #ifndef RD_LISTSERVICES_H
 #define RD_LISTSERVICES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct rd_service {
   char service_name [11];
   char service_description[256];
@@ -33,5 +37,9 @@ int RD_ListServices(struct rd_service *services[],
 			const int  trackable,
 			unsigned *numrecs);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTSERVICES_H

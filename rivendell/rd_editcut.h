@@ -23,6 +23,10 @@
 
 #include <rivendell/rd_cut.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 struct edit_cut_values {
   int cut_evergreen;
   int use_cut_evergreen;
@@ -106,5 +110,9 @@ int RD_EditCut(struct rd_cut *cut[],
 
 void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_EDITCUT_H

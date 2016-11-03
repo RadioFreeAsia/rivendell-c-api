@@ -21,11 +21,19 @@
 #ifndef RD_DELETEAUDIO_H
 #define RD_DELETEAUDIO_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_DeleteAudio( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnumber,
 			const unsigned cutnumber);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RDDELETEAUDIO_H

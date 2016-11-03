@@ -23,11 +23,19 @@
 
 #include <rivendell/rd_schedcodes.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ListSchedCodes(struct rd_schedcodes *schedcodes[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
 			unsigned *numrecs);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTSCHEDCODES_H

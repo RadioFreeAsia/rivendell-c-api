@@ -23,6 +23,10 @@
 
 #include <rivendell/rd_group.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ListGroup(struct rd_group *grp[],
 		  	const char hostname[],
 			const char username[],
@@ -30,5 +34,9 @@ int RD_ListGroup(struct rd_group *grp[],
 			const char group[],
 			unsigned *numrecs);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTGROUP_H

@@ -21,11 +21,18 @@
 #ifndef RD_ASSIGNSCHEDCODE_H
 #define RD_ASSIGNSCHEDCODE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
 
 int RD_AssignSchedCode( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnum,
 			const char code[]);
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_ASSIGNSCHEDCODE_H

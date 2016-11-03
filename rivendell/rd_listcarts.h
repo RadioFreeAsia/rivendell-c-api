@@ -23,6 +23,10 @@
 
 #include <rivendell/rd_cart.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ListCarts(struct rd_cart *carts[],
 		  	const char hostname[],
 			const char username[],
@@ -31,5 +35,10 @@ int RD_ListCarts(struct rd_cart *carts[],
                         const char filter[],
                         const char type[],
 			unsigned *numrecs);
+
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_LISTCARTS_H

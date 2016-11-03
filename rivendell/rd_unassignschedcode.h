@@ -21,6 +21,9 @@
 #ifndef RD_UNASSIGNSCHEDCODE_H
 #define RD_UNASSIGNSCHEDCODE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
 
 int RD_UnassignSchedCode( const char hostname[],
 			const char username[],
@@ -28,5 +31,9 @@ int RD_UnassignSchedCode( const char hostname[],
 			const unsigned cartnum,
 			const char code[]);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_UNASSIGNSCHEDCODE_H

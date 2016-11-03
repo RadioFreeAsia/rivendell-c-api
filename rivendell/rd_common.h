@@ -21,7 +21,14 @@
 #ifndef RD_COMMON_H
 #define RD_COMMON_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 extern unsigned RD_ReadBool(const char *val);
 
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_COMMON_H

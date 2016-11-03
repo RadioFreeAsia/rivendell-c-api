@@ -21,6 +21,10 @@
 #ifndef RD_EXPORT_H
 #define RD_EXPORT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_ExportCart( const char hostname[],
 		 	const char         username[],
                         const char           passwd[],
@@ -37,5 +41,9 @@ int RD_ExportCart( const char hostname[],
                         const int     enable_metadata,
                         const char         filename[]);
 
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_EXPORT_H

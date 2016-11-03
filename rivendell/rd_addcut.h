@@ -23,11 +23,19 @@
 
 #include <rivendell/rd_cut.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplug
+
 int RD_AddCut(struct rd_cut *cut[],
 			const char hostname[],
 			const char username[],
 			const char passwd[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
+
+#ifdef __cplusplus
+}
+#endif  // _cplusplus
 
 #endif  // RD_ADDCUT_H
