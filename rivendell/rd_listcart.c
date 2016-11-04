@@ -2,7 +2,7 @@
  *
  * Implementation of the ListCart Rivendell Access Library
  *
- * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+ * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>             
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -178,6 +178,8 @@ int RD_ListCart(struct rd_cart *carts[],
   XML_Parser parser;
   struct xml_data xml_data;
   long response_code;
+  char errbuf[CURL_ERROR_SIZE];
+  CURLcode res;
 
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
@@ -203,8 +205,17 @@ int RD_ListCart(struct rd_cart *carts[],
   curl_easy_setopt(curl,CURLOPT_POST,1);
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
-  //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
-  if(curl_easy_perform(curl)!=CURLE_OK) {
+  curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
+  res = curl_easy_perform(curl);
+  if(res != CURLE_OK) {
+    size_t len = strlen(errbuf);
+    fprintf(stderr, "\nlibcurl error: (%d)", res);
+    if (len)
+        fprintf(stderr, "%s%s", errbuf,
+            ((errbuf[len-1] != '\n') ? "\n" : ""));
+    else
+        fprint(stderr, "%s\n", curl_easy_strerror(res));
+    curl_easy_cleanup(curl);
     return -1;
   }
 

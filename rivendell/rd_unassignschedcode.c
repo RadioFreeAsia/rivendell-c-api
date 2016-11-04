@@ -2,7 +2,7 @@
  *
  * Implementation of the UnassignSchedulCode Rivendell Access Library
  *
- * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+ * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>             
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -81,6 +81,8 @@ int RD_UnassignSchedCode( const char hostname[],
   long response_code;
   int i;
   int code_valid = 1;
+  char errbuf[CURL_ERROR_SIZE];
+  CURLcode res;
 
   /*   Check Code */
   for (i = 0 ; i < strlen(code) ; i++) {
@@ -116,8 +118,18 @@ int RD_UnassignSchedCode( const char hostname[],
   curl_easy_setopt(curl,CURLOPT_POST,1);
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
+  curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
-  if(curl_easy_perform(curl)!=CURLE_OK) {
+  res = curl_easy_perform(curl);
+  if(res != CURLE_OK) {
+    size_t len = strlen(errbuf);
+    fprintf(stderr, "\nlibcurl error: (%d)", res);
+    if (len)
+        fprintf(stderr, "%s%s", errbuf,
+            ((errbuf[len-1] != '\n') ? "\n" : ""));
+    else
+        fprint(stderr, "%s\n", curl_easy_strerror(res));
+    curl_easy_cleanup(curl);
     return -1;
   }
 

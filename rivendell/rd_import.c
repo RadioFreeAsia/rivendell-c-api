@@ -2,7 +2,7 @@
  *
  * Implementation of the Import Cart Rivendell Access Library
  *
- * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+ * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>             
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -96,6 +96,8 @@ int RD_ImportCart( const char hostname[],
   char use_metadata_buffer[50];
   long userlen = strlen(username);
   long passwdlen = strlen(passwd);
+  char errbuf[CURL_ERROR_SIZE];
+  CURLcode res;
 
   /*   Check File name */
   memset(checked_fname,'\0',sizeof(checked_fname)-1);
@@ -182,7 +184,16 @@ int RD_ImportCart( const char hostname[],
   curl_easy_setopt(curl,CURLOPT_URL,url);
   curl_easy_setopt(curl,CURLOPT_HTTPPOST,first);
   curl_easy_setopt(curl,CURLOPT_VERBOSE,0);
-  if(curl_easy_perform(curl)!=CURLE_OK) {
+  curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
+  res = curl_easy_perform(curl);
+  if(res != CURLE_OK) {
+    size_t len = strlen(errbuf);
+    fprintf(stderr, "\nlibcurl error: (%d)", res);
+    if (len)
+        fprintf(stderr, "%s%s", errbuf,
+            ((errbuf[len-1] != '\n') ? "\n" : ""));
+    else
+        fprint(stderr, "%s\n", curl_easy_strerror(res));
     curl_easy_cleanup(curl);
     return -1;
   }
