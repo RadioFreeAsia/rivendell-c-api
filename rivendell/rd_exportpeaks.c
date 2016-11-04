@@ -104,7 +104,7 @@ int RD_ExportPeaks( const char hostname[],
         fprintf(stderr, "%s%s", errbuf,
             ((errbuf[len-1] != '\n') ? "\n" : ""));
     else
-        fprint(stderr, "%s\n", curl_easy_strerror(res));
+        fprintf(stderr, "%s\n", curl_easy_strerror(res));
     curl_easy_cleanup(curl);
     fclose(fp);
     return -1;

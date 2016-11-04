@@ -424,7 +424,7 @@ int RD_ListLog(struct rd_logline *logline[],
         fprintf(stderr, "%s%s", errbuf,
             ((errbuf[len-1] != '\n') ? "\n" : ""));
     else
-        fprint(stderr, "%s\n", curl_easy_strerror(res));
+        fprintf(stderr, "%s\n", curl_easy_strerror(res));
     curl_easy_cleanup(curl);
     return -1;
   }

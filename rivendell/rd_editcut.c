@@ -226,7 +226,7 @@ int RD_EditCut(struct rd_cut *cut[],
         fprintf(stderr, "%s%s", errbuf,
             ((errbuf[len-1] != '\n') ? "\n" : ""));
     else
-        fprint(stderr, "%s\n", curl_easy_strerror(res));
+        fprintf(stderr, "%s\n", curl_easy_strerror(res));
     curl_easy_cleanup(curl);
     return -1;
   }
