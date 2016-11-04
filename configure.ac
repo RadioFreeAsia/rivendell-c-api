@@ -94,6 +94,20 @@ AC_SUBST(INTERFACE_MINOR,$AGE)
 AC_SUBST(INTERFACE_POINT,$REVISION)
 
 #
+# Determine the target architecture
+#
+AR_GCC_TARGET()
+AC_SUBST(VENDOR,$ar_gcc_distro)
+AC_SUBST(ARCH,$ar_gcc_arch)
+if test $ar_gcc_arch = x86_64 ; then
+  LIB_PATH=$PREFIX/lib64
+  AC_SUBST(RD_LIB_PATH,lib64)
+else
+  LIB_PATH=$PREFIX/lib
+  AC_SUBST(RD_LIB_PATH,lib)
+fi
+
+#
 # Determine Distro
 #
 AR_GET_DISTRO()

@@ -6,5 +6,5 @@ includedir=${prefix}/include/rivendell
 Name: Rivendell
 Description: Integration API for the Rivendell Radio Automation System
 Version: @VERSION@
-Libs: -L${libdir} -lrivwebcapi
+Libs: -L${libdir} -lrivwebcapi -lcurl
 Cflags: -I${includedir} -I/usr/include
