@@ -63,7 +63,7 @@ int main(int argc,char *argv[])
 			user,
 			passwd,
 			"",
-			"7777",
+			"",
 			"Audio",
 			&numrecs);
   if(result<0) {
