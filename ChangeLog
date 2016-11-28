@@ -90,3 +90,12 @@
 	* Corrected dependency in 'rivwebcapi.spec.in'.
 2016-11-02 Fred Gleason <fredg@paravelsystems.com>
 	* Added '-lcurl' to the 'libs:' field in 'rivendell.pc.in'.
+2016-11-04 Todd Baker <bakert@rfa.org>
+        * Fixed fprintf typo in all *.c files in Erreor Code Display.
+	  Added CURLOPT_ERRORBUFFER to Error Output for Text version of
+	  Curl Lib errors. Updated Originator.
+2016-11-28 Todd Baker <bakert@rfa.org>
+	* Added New parameters for rd_import.c. This allows for Cart Creation
+          if it doesn't exist. Includes create flag and group name. Updated Docbook entry.
+          Also updated importcart_test to include this functionality. Updated
+	  Originator.
