@@ -41,6 +41,8 @@
       <paramdef>const int <parameter>normalization_level</parameter></paramdef>
       <paramdef>const int <parameter>autotrim_level</parameter></paramdef>
       <paramdef>const int <parameter>use_metadata</parameter></paramdef>
+      <paramdef>const int <parameter>create</parameter></paramdef>
+      <paramdef>const char <parameter>group[]</parameter></paramdef>
       <paramdef>const char <parameter>filename[]</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -148,20 +150,6 @@
         </row>
         <row>
           <entry>
-            format
-          </entry>
-          <entry>
-          integer
-          </entry>
-          <entry>
-            Format
-          </entry>
-          <entry>
-            Mandatory
-          </entry>
-        </row>
-        <row>
-          <entry>
             channels
           </entry>
           <entry>
@@ -214,6 +202,34 @@
           </entry>
           <entry>
             Mandatory
+          </entry>
+        </row>
+        <row>
+          <entry>
+            create
+          </entry>
+          <entry>
+          integer
+          </entry>
+          <entry>
+            Create Cart Flag
+          </entry>
+          <entry>
+            Optional
+          </entry>
+        </row>
+        <row>
+          <entry>
+            group 
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Rivendell Group Name
+          </entry>
+          <entry>
+            Mandatory IF Creating Cart
           </entry>
         </row>
         <row>

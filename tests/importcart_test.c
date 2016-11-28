@@ -2,7 +2,7 @@
  *
  * Test the Impourt Cart/Cut API Library
  *
- * (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+ * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>             
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -31,7 +31,9 @@ int main(int argc,char *argv[])
   char *p;
   long int cartnum=0;
   long int cutnum=0;
+  int create_flag=0;
   char filename[BUFSIZ];
+  char group_name[BUFSIZ]="";
   char *host;
   char *user;
   char *passwd;
@@ -86,9 +88,24 @@ int main(int argc,char *argv[])
   if (fgets(filename,sizeof(filename),stdin) != NULL)
   {
   } 
+  
+  printf("Do you want to Create Cart If Doesn't Exist - (Yes or No) ==> ");
+  if (fgets(buf,sizeof(buf),stdin) != NULL)
+  {
+    if (( buf[0] != '\n') && (buf[0] =='Y'))
+    {
+      create_flag = 1;
+      printf("Please enter the Group Name ==> ");
+      if (fgets(group_name,sizeof(group_name),stdin) != NULL)
+      {
+      }
+    }
+  }
   //
   // Call the function
   //
+fprintf(stderr," Create flag = %d\n",create_flag);
+fprintf(stderr," Group Name= %s\n",group_name);
   
   int result=RD_ImportCart( host,
 		user,
@@ -99,6 +116,8 @@ int main(int argc,char *argv[])
 		0,
 		0,
 		0,
+		create_flag,
+		group_name,
                 filename);
 
   if(result<0) {

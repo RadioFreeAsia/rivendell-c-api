@@ -75,6 +75,8 @@ int RD_ImportCart( const char hostname[],
 			const int normalization_level,
 			const int autotrim_level,
                         const int  use_metadata,
+                        const int  create,
+                        const char group[],
                         const char filename[])
 {
   char post[1500];
@@ -85,7 +87,7 @@ int RD_ImportCart( const char hostname[],
   long response_code;
   struct curl_httppost *first=NULL;
   struct curl_httppost *last=NULL;
-  char *fnameptr;
+  char *arrayptr;
   char checked_fname[BUFSIZ];
   int i;
   char cart_buffer[50];
@@ -94,6 +96,8 @@ int RD_ImportCart( const char hostname[],
   char normalization_buffer[50];
   char autotrim_buffer[50];
   char use_metadata_buffer[50];
+  char create_flag[50];
+  char group_name[50];
   long userlen = strlen(username);
   long passwdlen = strlen(passwd);
   char errbuf[CURL_ERROR_SIZE];
@@ -101,15 +105,25 @@ int RD_ImportCart( const char hostname[],
 
   /*   Check File name */
   memset(checked_fname,'\0',sizeof(checked_fname)-1);
-  fnameptr=&checked_fname[0];
+  arrayptr=&checked_fname[0];
 
   for (i = 0 ; i < strlen(filename) ; i++) {
     if (filename[i]>32) {
-      strncpy(fnameptr,&filename[i],1);
-      fnameptr++;
+      strncpy(arrayptr,&filename[i],1);
+      arrayptr++;
     }
   }
   
+  /*   Check Group Name */
+  memset(group_name,'\0',sizeof(group)-1);
+  arrayptr=&group_name[0];
+
+  for (i = 0 ; i < strlen(group) ; i++) {
+    if (group[i]>32) {
+      strncpy(arrayptr,&group[i],1);
+      arrayptr++;
+    }
+  }
 //
 // Generate POST Data
 //
@@ -122,14 +136,9 @@ int RD_ImportCart( const char hostname[],
 
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"LOGIN_NAME",
                CURLFORM_COPYCONTENTS,username,CURLFORM_END); 
-               /*CURLFORM_COPYCONTENTS,"USER",CURLFORM_END);   This I know works */
-               /*CURLFORM_PTRCONTENTS,username,
-		CURLFORM_NAMELENGTH,userlen,CURLFORM_END);   */
 
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"PASSWORD",
                CURLFORM_COPYCONTENTS,passwd,CURLFORM_END);
-                /*CURLFORM_PTRCONTENTS,passwd,
-		CURLFORM_NAMELENGTH,passwdlen,CURLFORM_END); */
 
   sprintf(cart_buffer,"%u",cartnum);
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"CART_NUMBER",
@@ -154,6 +163,13 @@ int RD_ImportCart( const char hostname[],
   sprintf(use_metadata_buffer,"%d",use_metadata);
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"USE_METADATA",
                CURLFORM_COPYCONTENTS, use_metadata_buffer, CURLFORM_END);
+
+  sprintf(create_flag,"%d",create);
+  curl_formadd(&first,&last,CURLFORM_PTRNAME,"CREATE",
+               CURLFORM_COPYCONTENTS, create_flag, CURLFORM_END);
+
+  curl_formadd(&first,&last,CURLFORM_PTRNAME,"GROUP_NAME",
+               CURLFORM_COPYCONTENTS,group_name, CURLFORM_END);
 
   curl_formadd(&first,&last,CURLFORM_PTRNAME,"FILENAME",
                CURLFORM_FILE,checked_fname, CURLFORM_END);

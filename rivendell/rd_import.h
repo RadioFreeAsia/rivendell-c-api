@@ -34,6 +34,8 @@ int RD_ImportCart( const char hostname[],
 			const int normalization_level,
 			const int autotrim_level,
                         const int  use_metadata,
+                        const int  create,
+                        const char group[],
                         const char filename[]);
 
 
