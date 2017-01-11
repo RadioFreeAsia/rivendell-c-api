@@ -77,7 +77,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logline->logline_id);
   }
   if(strcasecmp(el,"type")==0) {
-    if(strcasecmp(xml_data->strbuf,"Cart")==0) {
+    if(strcasecmp(xml_data->strbuf,"Audio")==0) {
       logline->logline_type=0;
     }
     if(strcasecmp(xml_data->strbuf,"Marker")==0) {
