@@ -386,7 +386,7 @@ int RD_ListLog(struct rd_logline *logline[],
     return 404;        /* Log Name Incorrect */
   }
   memset(real_logname,'\0',sizeof(real_logname));
-  for (i = 0; i<strlen(logname)-1;i++)  {
+  for (i = 0; i<strlen(logname);i++)  {
     if (logname[i]>32) {
       strncpy(real_index,&logname[i],1);
       real_index++;

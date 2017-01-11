@@ -99,3 +99,7 @@
           if it doesn't exist. Includes create flag and group name. Updated Docbook entry.
           Also updated importcart_test to include this functionality. Updated
 	  Originator.
+2017-01-11 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a fencepost error in 'rivendell/rd_listlog.c' that caused
+	the last character of the log name to be truncated when calling
+	rd_listlog().
