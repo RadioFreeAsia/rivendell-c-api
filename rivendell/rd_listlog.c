@@ -77,7 +77,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logline->logline_id);
   }
   if(strcasecmp(el,"type")==0) {
-    if(strcasecmp(xml_data->strbuf,"Cart")==0) {
+    if(strcasecmp(xml_data->strbuf,"Audio")==0) {
       logline->logline_type=0;
     }
     if(strcasecmp(xml_data->strbuf,"Marker")==0) {
@@ -386,7 +386,7 @@ int RD_ListLog(struct rd_logline *logline[],
     return 404;        /* Log Name Incorrect */
   }
   memset(real_logname,'\0',sizeof(real_logname));
-  for (i = 0; i<strlen(logname)-1;i++)  {
+  for (i = 0; i<strlen(logname);i++)  {
     if (logname[i]>32) {
       strncpy(real_index,&logname[i],1);
       real_index++;
