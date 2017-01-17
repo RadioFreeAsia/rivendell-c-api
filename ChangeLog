@@ -112,3 +112,5 @@
 	* Fixed a bug in 'rivendell/rd_listlog.c' that caused the event type
 	to be set to 'Marker' for all hard-timed events when calling
 	rd_listlog().
+2017-01-17 Fred Gleason <fredg@paravelsystems.com>
+	* Cleaned up debugging printf()s from 'rivendell/rd_listlog.c'.
