@@ -106,3 +106,6 @@
 2017-01-11 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in 'rivendell/rd_listlog.c' that used the incorrect
 	keyword for detecting audio carts when calling rd_listlog().
+2017-01-12 Fred Gleason <fredg@paravelsystems.com>
+	* Moved the '-lcurl' invocation to the end of the 'LDADD' entries
+	in 'tests/Makefile.am' to fix linker errors under MingW32.
