@@ -109,3 +109,6 @@
 2017-01-12 Fred Gleason <fredg@paravelsystems.com>
 	* Moved the '-lcurl' invocation to the end of the 'LDADD' entries
 	in 'tests/Makefile.am' to fix linker errors under MingW32.
+	* Fixed a bug in 'rivendell/rd_listlog.c' that caused the event type
+	to be set to 'Marker' for all hard-timed events when calling
+	rd_listlog().
