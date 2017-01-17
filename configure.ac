@@ -106,6 +106,9 @@ else
   LIB_PATH=$PREFIX/lib
   AC_SUBST(RD_LIB_PATH,lib)
 fi
+if test $ar_gcc_os = mingw32 ; then
+  AC_DEFINE(MINGW32,"yes")
+fi
 
 #
 # Determine Distro

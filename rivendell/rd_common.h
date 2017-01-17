@@ -23,12 +23,14 @@
 #ifndef RD_COMMON_H
 #define RD_COMMON_H
 #if ((defined(_WINDLL)) || (defined(_WIN32)))
+#ifndef MINGW32
 #define strcpy_s strcpy
 #define strncpy_s strncpy
 #define strcat_s strcat
 #define snprintf _snprintf
 #define strcasecmp _stricmp
 #define sscanf_s sscanf
+#endif  // MINGW32
 #endif
 
 #if defined(__cplusplus)
