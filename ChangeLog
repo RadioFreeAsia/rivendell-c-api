@@ -112,3 +112,7 @@
 	* Fixed a bug in 'rivendell/rd_listlog.c' that caused the event type
 	to be set to 'Marker' for all hard-timed events when calling
 	rd_listlog().
+2017-01-17 Todd Baker (bakert@rfa.org>
+	* Made changes to the rd_import code.  The successful completion of
+	  import returns the Cart number and Cut Number.
+	  
