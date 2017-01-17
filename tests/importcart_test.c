@@ -27,6 +27,7 @@
 int main(int argc,char *argv[])
 {
 
+  int i;
   char buf[BUFSIZ];
   char *p;
   long int cartnum=0;
@@ -37,6 +38,8 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
+  struct rd_cart *carts=0;
+  unsigned numrecs;
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -107,7 +110,8 @@ int main(int argc,char *argv[])
 fprintf(stderr," Create flag = %d\n",create_flag);
 fprintf(stderr," Group Name= %s\n",group_name);
   
-  int result=RD_ImportCart( host,
+  int result= RD_ImportCart(&carts,
+                host,
 		user,
 		passwd,
 		(unsigned)cartnum,
@@ -118,7 +122,8 @@ fprintf(stderr," Group Name= %s\n",group_name);
 		0,
 		create_flag,
 		group_name,
-                filename);
+                filename,
+		&numrecs);
 
   if(result<0) {
     fprintf(stderr,"Something went wrong! Result Code = %d\n",result);
@@ -142,10 +147,47 @@ fprintf(stderr," Group Name= %s\n",group_name);
   }
 
   //
-  // List the Results
+  // List the results
   //
-    printf(" Cart: %ld  -  Cut: %ld  - Filename: %s was successfully imported!\n",cartnum,cutnum,filename);
+  for(i=0;i<numrecs;i++) {
+    printf("              Cart Number: %d\n",carts[i].cart_number);
+    printf("                Cart Type: %d\n",carts[i].cart_type);
+    printf("               Group Name: %s\n",carts[i].cart_grp_name);
+    printf("               Cart Title: %s\n",carts[i].cart_title);
+    printf("              Cart Artist: %s\n",carts[i].cart_artist);
+    printf("               Cart Album: %s\n",carts[i].cart_album);
+    printf("                Cart Year: %d\n",carts[i].cart_year);
+    printf("               Cart Label: %s\n",carts[i].cart_label);
+    printf("              Cart Client: %s\n",carts[i].cart_client);
+    printf("              Cart Agency: %s\n",carts[i].cart_agency);
+    printf("           Cart Publisher: %s\n",carts[i].cart_publisher);
+    printf("            Cart Composer: %s\n",carts[i].cart_composer);
+    printf("        Cart User Defined: %s\n",carts[i].cart_user_defined);
+    printf("          Cart Usage Code: %d\n",carts[i].cart_usage_code);
+    printf("       Cart Forced Length: %d\n",carts[i].cart_forced_length);
+    printf("      Cart Average Length: %d\n",carts[i].cart_average_length);
+    printf("    Cart Length Deviation: %d\n",carts[i].cart_length_deviation);
+    printf("Cart Average Segue Length: %d\n",carts[i].cart_average_segue_length);
+    printf(" Cart Average Hook Length: %d\n",carts[i].cart_average_hook_length);
+    printf("        Cart Cut Quantity: %u\n",carts[i].cart_cut_quantity);
+    printf("     Cart Last Cut Played: %03u\n",carts[i].cart_last_cut_played);
+    printf("            Cart Validity: %u\n",carts[i].cart_validity);
+    printf("      Cart Enforce Length: %d\n",carts[i].cart_enforce_length);
+    printf("         Cart Asyncronous: %d\n",carts[i].cart_asyncronous);
+    printf("               Cart Owner: %s\n",carts[i].cart_owner);
+    printf("   Cart Metadata Datetime: %s\n",carts[i].cart_metadata_datetime);
     printf("\n");
+    //printf(" Cart: %d  -  Cut: %ld  - Filename: %s was successfully imported!\n",cartnum,cutnum,filename);
+    printf(" Cart: %d  -  Cut: %ld  - Filename: %s was successfully imported!\n",carts[i].cart_number,
+                                (cartnum != 0) ? cutnum : 1,
+                                filename);
+    printf("\n");
+  }
+
+  //
+  // Free the cart list when finished with it
+  //
+  free(carts);
 
   exit(0);
 }

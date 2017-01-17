@@ -25,7 +25,10 @@
 
 _MYRIVLIB_INIT_DECL
 
-int RD_ImportCart( const char hostname[],
+#include <rivendell/rd_cart.h>
+
+int RD_ImportCart(struct rd_cart *carts[],
+                 	const char hostname[],
 			const char         username[],
 			const char           passwd[],
 			const unsigned        cartnum,
@@ -36,7 +39,8 @@ int RD_ImportCart( const char hostname[],
                         const int  use_metadata,
                         const int  create,
                         const char group[],
-                        const char filename[]);
+                        const char filename[],
+			unsigned *numrecs);
 
 
 _MYRIVLIB_FINI_DECL
