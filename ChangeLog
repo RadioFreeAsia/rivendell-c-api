@@ -115,4 +115,5 @@
 2017-01-17 Todd Baker (bakert@rfa.org>
 	* Made changes to the rd_import code.  The successful completion of
 	  import returns the Cart number and Cut Number.
-	  
+2017-01-17 Fred Gleason <fredg@paravelsystems.com>
+	* Cleaned up debugging printf()s from 'rivendell/rd_listlog.c'.

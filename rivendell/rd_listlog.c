@@ -77,48 +77,36 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logline->logline_id);
   }
   if(strcasecmp(el,"type")==0) {
-    printf("logline: %p  ",logline);
     if(strcasecmp(xml_data->strbuf,"Audio")==0) {
       logline->logline_type=0;
-      printf("Audio");
     }
     if(strcasecmp(xml_data->strbuf,"Marker")==0) {
       logline->logline_type=1;
-      printf("Marker");
     }
     if(strcasecmp(xml_data->strbuf,"Macro")==0) {
       logline->logline_type=2;
-      printf("Macro");
     }
     if(strcasecmp(xml_data->strbuf,"OpenBracket")==0) {
       logline->logline_type=3;
-      printf("OpenBracket");
     }
     if(strcasecmp(xml_data->strbuf,"CloseBracket")==0) {
       logline->logline_type=4;
-      printf("CloseBracket");
     }
     if(strcasecmp(xml_data->strbuf,"Chain")==0) {
       logline->logline_type=5;
-      printf("Chain");
     }
     if(strcasecmp(xml_data->strbuf,"Track")==0) {
       logline->logline_type=6;
-      printf("Track");
     }
     if(strcasecmp(xml_data->strbuf,"MusicLink")==0) {
       logline->logline_type=7;
-      printf("MusicLink");
     }
     if(strcasecmp(xml_data->strbuf,"TrafficLink")==0) {
       logline->logline_type=8;
-      printf("TrafficLink");
     }
     if(strcasecmp(xml_data->strbuf,"UnknownType")==0) {
       logline->logline_type=9;
-      printf("UnknownType");
     }
-    printf("[%d]\n",logline->logline_type);
   }
   if(strcasecmp(el,"cartType")==0) {
     if(strcasecmp(xml_data->strbuf,"Audio")==0) {
