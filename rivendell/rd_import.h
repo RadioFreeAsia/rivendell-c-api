@@ -25,9 +25,14 @@
 
 _MYRIVLIB_INIT_DECL
 
-#include <rivendell/rd_cart.h>
+struct rd_cartimport{
+  int   response_code;
+  char error_string[256]; 
+  unsigned cart_number;
+  unsigned cut_number;
+};
 
-int RD_ImportCart(struct rd_cart *carts[],
+int RD_ImportCart(struct rd_cartimport *cartimport[],
                  	const char hostname[],
 			const char         username[],
 			const char           passwd[],
