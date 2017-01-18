@@ -36,6 +36,7 @@
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
+      <paramdef>const char <parameter>logname[]</parameter></paramdef>
       <paramdef>const char <parameter>servicename[]</parameter></paramdef>
       <paramdef>const int  <parameter>trackable</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
@@ -148,6 +149,20 @@
         </row>
         <row>
           <entry>
+            logname
+          </entry>
+          <entry>
+          character array
+          </entry>
+          <entry>
+            Log Name
+          </entry>
+          <entry>
+            Optional
+          </entry>
+        </row>
+        <row>
+          <entry>
             trackable
           </entry>
           <entry>
@@ -189,6 +204,7 @@
   		char  log_description[65];
   		char  log_origin_username[256];
   		char  log_origin_datetime[26];
+		char  log_purge_date[26];
   		char  log_link_datetime[26];
   		char  log_modified_datetime[26];
   		int   log_autorefresh;

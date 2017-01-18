@@ -121,3 +121,11 @@
 	* Added a test in 'configure.ac' for MingW32.
 	* Added a test in 'rivendell/rd_common.h' to avoid breaking the
 	build under MingW32.
+2017-01-18 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'logname' call parameter to rd_listlogs().
+	* Added a 'log_purge_date' field to the 'rd_log' struct in
+	'rivendell\rd_listlogs.h'.
+	* Fixed bugs in 'rivendell/rd_listlogs.c' where uninitialized variables
+	could introduce garbage into the Web API call.
+	* Applied URL encoding to the string parameters for the ListLogs
+	Web API call.

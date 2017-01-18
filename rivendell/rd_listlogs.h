@@ -30,6 +30,7 @@ struct rd_log {
   char  log_description[65];
   char  log_origin_username[256];
   char  log_origin_datetime[26];
+  char  log_purge_date[26];
   char  log_link_datetime[26];
   char  log_modified_datetime[26];
   int   log_autorefresh;
@@ -48,6 +49,7 @@ int RD_ListLogs(struct rd_log *logs[],
 			const char username[],
 			const char passwd[],
 			const char servicename[],
+			const char logname[],
                         const int  trackable,
 			unsigned *numrecs);
 

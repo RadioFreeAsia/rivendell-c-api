@@ -78,6 +78,9 @@ static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
   if(strcasecmp(el,"originDatetime")==0) {
     strncpy(logs->log_origin_datetime,xml_data->strbuf,26);
   }
+  if(strcasecmp(el,"purgeDate")==0) {
+    strncpy(logs->log_purge_date,xml_data->strbuf,26);
+  }
   if(strcasecmp(el,"linkDatetime")==0) {
     strncpy(logs->log_link_datetime,xml_data->strbuf,26);
   }
@@ -129,6 +132,7 @@ int RD_ListLogs(struct rd_log *logs[],
 			const char username[],
 			const char passwd[],
                   	const char servicename[],
+                  	const char logname[],
                         const int  trackable,
 			unsigned *numrecs)
 {
@@ -136,8 +140,10 @@ int RD_ListLogs(struct rd_log *logs[],
   char url[1500];
   CURL *curl=NULL;
   XML_Parser parser;
-  char checked_service[11];
+  char checked_service[11]={0};
   char *check_svc = &checked_service[0];
+  char checked_logname[65]={0};
+  char *check_logname = &checked_logname[0];
   int checked_trackable = 0;
   struct xml_data xml_data;
   long response_code;
@@ -161,6 +167,15 @@ int RD_ListLogs(struct rd_log *logs[],
       }
     }
   }
+  if ((strlen(logname) > 0) && 
+      (strlen(logname) < 65))  {
+    for (i = 0; i<strlen(logname);i++) {
+      if (logname[i]>32) {
+        strncpy(check_logname,&logname[i],1);
+        check_logname++;
+      }
+    }
+  }
 
     
    /*
@@ -172,12 +187,16 @@ int RD_ListLogs(struct rd_log *logs[],
   XML_SetElementHandler(parser,__ListLogsElementStart,
 			__ListLogsElementEnd);
   XML_SetCharacterDataHandler(parser,__ListLogsElementData);
-  snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&SERVICE_NAME=%s&TRACKABLE=%d",
-	   username,passwd,checked_service,checked_trackable);
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }
+  snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
+  snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&SERVICE_NAME=%s&LOG_NAME=%s&TRACKABLE=%d",
+	   curl_easy_escape(curl,username,strlen(username)),
+	   curl_easy_escape(curl,passwd,strlen(passwd)),
+	   curl_easy_escape(curl,checked_service,strlen(checked_service)),
+	   curl_easy_escape(curl,checked_logname,strlen(checked_logname)),
+	   checked_trackable);
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListLogsCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);
