@@ -129,3 +129,7 @@
 	could introduce garbage into the Web API call.
 	* Applied URL encoding to the string parameters for the ListLogs
 	Web API call.
+2017-01-19 Todd Baker <bakert@rfa.org>
+	* Added URL String Encoding to all Rivendell function calls
+	* Renamed all docbook files to the correct name in Make files. Also
+	  made changes to the xml to reflect correct names and fix typos.
