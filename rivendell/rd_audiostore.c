@@ -109,7 +109,8 @@ int RD_AudioStore(struct rd_audiostore *audiosto[],
   XML_SetCharacterDataHandler(parser,__AudioStoreElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=23&LOGIN_NAME=%s&PASSWORD=%s",
-	   username,passwd);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0));
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }

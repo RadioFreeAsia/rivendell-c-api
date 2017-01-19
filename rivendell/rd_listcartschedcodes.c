@@ -111,7 +111,9 @@ int RD_ListCartSchedCodes(struct rd_schedcodes *scodes[],
   XML_SetCharacterDataHandler(parser,__ListCartSchedCodesElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=27&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u",
-	   username,passwd,cartnum);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	cartnum);
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }

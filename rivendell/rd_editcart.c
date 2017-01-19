@@ -199,8 +199,8 @@ int RD_EditCart(struct rd_cart *cart[],
   XML_SetCharacterDataHandler(parser,__EditCartElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,3350,"COMMAND=14&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u",
-	   	username,
-		passwd,
+	   	curl_easy_escape(curl,username,0),
+		curl_easy_escape(curl,passwd,0),
 		cartnum);
   Build_Post_Cart_Fields(post,edit_c_values);
   if((curl=curl_easy_init())==NULL) {

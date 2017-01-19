@@ -142,50 +142,108 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 //
 // We have to use multipart here because we have a file to send.
 //
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"COMMAND",
-               CURLFORM_COPYCONTENTS,
-               "2",
-               CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"COMMAND",
+        CURLFORM_COPYCONTENTS,
+        "2",
+        CURLFORM_END);
 
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"LOGIN_NAME",
-               CURLFORM_COPYCONTENTS,username,CURLFORM_END); 
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"LOGIN_NAME",
+	CURLFORM_COPYCONTENTS,
+	curl_easy_escape(curl,username,0),
+	CURLFORM_END); 
 
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"PASSWORD",
-               CURLFORM_COPYCONTENTS,passwd,CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"PASSWORD",
+        CURLFORM_COPYCONTENTS,
+	curl_easy_escape(curl,passwd,0),
+	CURLFORM_END);
 
   sprintf(cart_buffer,"%u",cartnum);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"CART_NUMBER",
-               CURLFORM_COPYCONTENTS, cart_buffer, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"CART_NUMBER",
+        CURLFORM_COPYCONTENTS, 
+	cart_buffer,
+	CURLFORM_END);
 
   sprintf(cut_buffer,"%u",cutnum);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"CUT_NUMBER",
-               CURLFORM_COPYCONTENTS, cut_buffer, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"CUT_NUMBER",
+        CURLFORM_COPYCONTENTS,
+	cut_buffer,
+	CURLFORM_END);
 
   sprintf(channels_buffer,"%u",channels);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"CHANNELS",
-               CURLFORM_COPYCONTENTS, channels_buffer, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"CHANNELS",
+        CURLFORM_COPYCONTENTS, 
+	channels_buffer,
+	CURLFORM_END);
 
   sprintf(normalization_buffer,"%d",normalization_level);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"NORMALIZATION_LEVEL",
-               CURLFORM_COPYCONTENTS, normalization_buffer, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"NORMALIZATION_LEVEL",
+        CURLFORM_COPYCONTENTS, 
+	normalization_buffer, 
+	CURLFORM_END);
 
   sprintf(autotrim_buffer,"%d",autotrim_level);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"AUTOTRIM_LEVEL",
-               CURLFORM_COPYCONTENTS,  autotrim_buffer,CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"AUTOTRIM_LEVEL",
+        CURLFORM_COPYCONTENTS,  
+	autotrim_buffer,
+	CURLFORM_END);
 
   sprintf(use_metadata_buffer,"%d",use_metadata);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"USE_METADATA",
-               CURLFORM_COPYCONTENTS, use_metadata_buffer, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"USE_METADATA",
+        CURLFORM_COPYCONTENTS, 
+	use_metadata_buffer, 
+	CURLFORM_END);
 
   sprintf(create_flag,"%d",create);
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"CREATE",
-               CURLFORM_COPYCONTENTS, create_flag, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"CREATE",
+        CURLFORM_COPYCONTENTS, 
+	create_flag, 
+	CURLFORM_END);
 
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"GROUP_NAME",
-               CURLFORM_COPYCONTENTS,group_name, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"GROUP_NAME",
+        CURLFORM_COPYCONTENTS,
+	curl_easy_escape(curl,group_name,0),
+	CURLFORM_END);
 
-  curl_formadd(&first,&last,CURLFORM_PTRNAME,"FILENAME",
-               CURLFORM_FILE,checked_fname, CURLFORM_END);
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"FILENAME",
+        CURLFORM_FILE,
+	curl_easy_escape(curl,checked_fname,0),
+	CURLFORM_END);
 
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);

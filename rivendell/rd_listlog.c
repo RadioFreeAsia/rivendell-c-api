@@ -404,7 +404,9 @@ int RD_ListLog(struct rd_logline *logline[],
   XML_SetCharacterDataHandler(parser,__ListLogElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=22&LOGIN_NAME=%s&PASSWORD=%s&NAME=%s",
-	   username,passwd,real_logname);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,real_logname,0));
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }

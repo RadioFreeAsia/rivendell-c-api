@@ -93,7 +93,12 @@ int RD_CopyAudio( const char hostname[],
   XML_SetCharacterDataHandler(parser,__CopyAudioElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=18&LOGIN_NAME=%s&PASSWORD=%s&SOURCE_CART_NUMBER=%u&SOURCE_CUT_NUMBER=%u&DESTINATION_CART_NUMBER=%u&DESTINATION_CUT_NUMBER=%u",
-	   username,passwd,src_cartnumber,src_cutnumber,dest_cartnumber,dest_cutnumber);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	src_cartnumber,
+	src_cutnumber,
+	dest_cartnumber,
+	dest_cutnumber);
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);
     

@@ -192,10 +192,10 @@ int RD_ListLogs(struct rd_log *logs[],
   }
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&SERVICE_NAME=%s&LOG_NAME=%s&TRACKABLE=%d",
-	   curl_easy_escape(curl,username,strlen(username)),
-	   curl_easy_escape(curl,passwd,strlen(passwd)),
-	   curl_easy_escape(curl,checked_service,strlen(checked_service)),
-	   curl_easy_escape(curl,checked_logname,strlen(checked_logname)),
+	   curl_easy_escape(curl,username,0),
+	   curl_easy_escape(curl,passwd,0),
+	   curl_easy_escape(curl,checked_service,0),
+	   curl_easy_escape(curl,checked_logname,0),
 	   checked_trackable);
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListLogsCallback);

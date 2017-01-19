@@ -78,10 +78,19 @@ int RD_ExportCart( const char hostname[],
 
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=1&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u&FORMAT=%d&CHANNELS=%d&SAMPLE_RATE=%d&BIT_RATE=%d&QUALITY=%d&START_POINT=%d&END_POINT=%d&NORMALIZATION_LEVEL=%d&ENABLE_METADATA=%d",
-	        username, passwd, cartnum, cutnum,
-		format, channels, sample_rate, bit_rate,
-		quality, start_point, end_point,normalization_level,
-		enable_metadata);
+        curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	cartnum, 
+	cutnum,
+	format,
+	channels, 
+	sample_rate, 
+	bit_rate,
+	quality, 
+	start_point, 
+	end_point,
+	normalization_level,
+	enable_metadata);
 
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);

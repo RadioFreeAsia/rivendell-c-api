@@ -203,7 +203,10 @@ int RD_EditCut(struct rd_cut *cut[],
   XML_SetCharacterDataHandler(parser,__EditCutElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=15&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
-	   		username, passwd, cartnum, cutnum);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	cartnum, 
+	cutnum);
   Build_Post_Cut_Fields(post,edit_cut_values);
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);

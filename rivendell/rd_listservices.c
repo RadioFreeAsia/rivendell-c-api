@@ -112,7 +112,9 @@ int RD_ListServices(struct rd_service *services[],
   XML_SetCharacterDataHandler(parser,__ListServicesElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=21&LOGIN_NAME=%s&PASSWORD=%s&TRACKABLE=%d",
-	   username,passwd,trackable);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	trackable);
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }

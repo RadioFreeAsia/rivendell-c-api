@@ -121,7 +121,11 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
   XML_SetCharacterDataHandler(parser,__TrimAudioElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=17&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u&TRIM_LEVEL=%d",
-	   username,passwd,cartnumber,cutnumber,trimlevel);
+	curl_easy_escape(curl,username,0),
+	curl_easy_escape(curl,passwd,0),
+	cartnumber,
+	cutnumber,
+	trimlevel);
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }
