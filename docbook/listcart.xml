@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>listcart</refname>
+    <refname>rd_listcart</refname>
     <refpurpose>Rivendell List Cart C Library Function</refpurpose>
   </refnamediv>
   <info>
@@ -29,7 +29,7 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;lib/listcart.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_listcart.h&gt;</funcsynopsisinfo>
     <funcprototype>
     <funcdef>int <function>RD_ListCart</function></funcdef>
       <paramdef> struct rd_cart * <parameter>cart[]</parameter></paramdef>

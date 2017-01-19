@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>listcut</refname>
+    <refname>rd_listcut</refname>
     <refpurpose>Rivendell List Cut C Library Function</refpurpose>
   </refnamediv>
   <info>
@@ -29,7 +29,7 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;lib/listcut.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_listcut.h&gt;</funcsynopsisinfo>
     <funcprototype>
     <funcdef>int <function>RD_ListCut</function></funcdef>
       <paramdef> struct rd_cut * <parameter>cut[]</parameter></paramdef>

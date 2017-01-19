@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>listgroups</refname>
+    <refname>rd_listgroups</refname>
     <refpurpose>Rivendell List Groups C Library Function</refpurpose>
   </refnamediv>
   <info>
@@ -29,7 +29,7 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;lib/listgroup.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_listgroups.h&gt;</funcsynopsisinfo>
     <funcprototype>
     <funcdef>int <function>RD_ListGroups</function></funcdef>
       <paramdef> struct rd_group * <parameter>group[]</parameter></paramdef>

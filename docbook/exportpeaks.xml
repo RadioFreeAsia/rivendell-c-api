@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>exportpeaks</refname>
+    <refname>rd_exportpeaks</refname>
     <refpurpose>Rivendell ExportPeaks Audio C Library Function</refpurpose>
   </refnamediv>
   <info>
@@ -29,7 +29,7 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;lib/exportpeaks.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_exportpeaks.h&gt;</funcsynopsisinfo>
     <funcprototype>
     <funcdef>int <function>RD_ExportPeaks</function></funcdef>
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>

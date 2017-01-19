@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>listservices</refname>
+    <refname>rd_listservices</refname>
     <refpurpose>Rivendell List Services C Library Function</refpurpose>
   </refnamediv>
   <info>
@@ -29,7 +29,7 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;lib/listlog.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_listservices.h&gt;</funcsynopsisinfo>
     <funcprototype>
     <funcdef>int <function>RD_ListServices</function></funcdef>
       <paramdef> struct rd_logline * <parameter>logline[]</parameter></paramdef>

@@ -10,7 +10,7 @@
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>audioinfo</refname>
+    <refname>rd_audioinfo</refname>
     <refpurpose>Rivendell Audio Info C Library Function</refpurpose>
   </refnamediv>
   <info>
@@ -29,7 +29,7 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;lib/audioinfo.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_audioinfo.h&gt;</funcsynopsisinfo>
     <funcprototype>
     <funcdef>int <function>RD_AudioInfo</function></funcdef>
       <paramdef> struct rd_audioinfo * <parameter>audioinfo[]</parameter></paramdef>
