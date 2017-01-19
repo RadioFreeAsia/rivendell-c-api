@@ -30,7 +30,8 @@ int main(int argc,char *argv[])
   struct rd_log *logs=0;
   char buf[BUFSIZ];
   char *p;
-  char svcname[11];
+  char svcname[11]={0};
+  char logname[65]={0};
   long int trackable=0;
   unsigned numrecs;
   char *host;
@@ -65,6 +66,12 @@ int main(int argc,char *argv[])
     strncpy(svcname,buf,10);
   } 
   fflush(stdin);
+  printf("Please enter the Log Name (default is All) ==> ");
+  if(fgets(buf,sizeof(buf),stdin) != NULL)
+  {
+    strncpy(logname,buf,64);
+  } 
+  fflush(stdin);
   printf("Please enter 1 if you want trackable logs ==>");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
   {
@@ -87,6 +94,7 @@ int main(int argc,char *argv[])
 		user,
 		passwd,
 		&svcname[0],
+		&logname[0],
 		(int)trackable,
 		&numrecs); 
 
@@ -105,6 +113,7 @@ int main(int argc,char *argv[])
     printf("            Log Description: %s\n",logs[i].log_description);
     printf("       Log Origin User Name: %s\n",logs[i].log_origin_username);
     printf("        Log Origin DateTime: %s\n",logs[i].log_origin_datetime);
+    printf("             Log Purge Date: %s\n",logs[i].log_purge_date);
     printf("          Log Link DateTime: %s\n",logs[i].log_link_datetime);
     printf("      Log Modified DateTime: %s\n",logs[i].log_modified_datetime);
     printf("            Log AutoRefresh: %d\n",logs[i].log_autorefresh);
