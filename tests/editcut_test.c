@@ -93,11 +93,6 @@ int main(int argc,char *argv[])
   edit_cut.use_cut_weight=1;
   edit_cut.cut_weight = 2;
 
-  edit_cut.use_cut_start_datetime=1;
-  strcpy(edit_cut.cut_start_datetime,"2015-07-28T22:12:01Z");
-
-  edit_cut.use_cut_end_datetime=1;
-  strcpy(edit_cut.cut_end_datetime,"2016-07-28T22:12:01Z");
   //
   // Call the function
   //
@@ -142,9 +137,33 @@ int main(int argc,char *argv[])
     printf("                 Cut ISRC: %s\n",cuts[i].cut_isrc);
     printf("                 Cut ISCI: %s\n",cuts[i].cut_isci);
     printf("               Cut Length: %u\n",cuts[i].cut_length);
-    printf("     Cut Origin Date Time: %s\n",cuts[i].cut_origin_datetime);
-    printf("      Cut Start Date Time: %s\n",cuts[i].cut_start_datetime);
-    printf("        Cut End Date Time: %s\n",cuts[i].cut_end_datetime);
+    printf("     Cut Origin Date Time\n");
+    printf("Cut Origin year value    : %d\n",cuts[i].cut_origin_datetime.tm_year);
+    printf("Cut Origin month value   : %d\n",cuts[i].cut_origin_datetime.tm_mon);
+    printf("Cut Origin day value     : %d\n",cuts[i].cut_origin_datetime.tm_mday);
+    printf("Cut Origin wday value    : %d\n",cuts[i].cut_origin_datetime.tm_wday);
+    printf("Cut Origin hour value    : %d\n",cuts[i].cut_origin_datetime.tm_hour);
+    printf("Cut Origin min value     : %d\n",cuts[i].cut_origin_datetime.tm_min);
+    printf("Cut Origin sec value     : %d\n",cuts[i].cut_origin_datetime.tm_sec);
+    printf("Cut Origin isdst value   : %d\n",cuts[i].cut_origin_datetime.tm_isdst);
+    printf("      Cut Start Date Time\n");
+    printf("Cut Start year value     : %d\n",cuts[i].cut_start_datetime.tm_year);
+    printf("Cut Start month value    : %d\n",cuts[i].cut_start_datetime.tm_mon);
+    printf("Cut Start day value      : %d\n",cuts[i].cut_start_datetime.tm_mday);
+    printf("Cut Start wday value     : %d\n",cuts[i].cut_start_datetime.tm_wday);
+    printf("Cut Start hour value     : %d\n",cuts[i].cut_start_datetime.tm_hour);
+    printf("Cut Start min value      : %d\n",cuts[i].cut_start_datetime.tm_min);
+    printf("Cut Start sec value      : %d\n",cuts[i].cut_start_datetime.tm_sec);
+    printf("Cut Start isdst value    : %d\n",cuts[i].cut_start_datetime.tm_isdst);
+    printf("        Cut End Date Time\n");
+    printf("Cut End year value       : %d\n",cuts[i].cut_end_datetime.tm_year);
+    printf("Cut End month value      : %d\n",cuts[i].cut_end_datetime.tm_mon);
+    printf("Cut End day value        : %d\n",cuts[i].cut_end_datetime.tm_mday);
+    printf("Cut End wday value       : %d\n",cuts[i].cut_end_datetime.tm_wday);
+    printf("Cut End hour value       : %d\n",cuts[i].cut_end_datetime.tm_hour);
+    printf("Cut End min value        : %d\n",cuts[i].cut_end_datetime.tm_min);
+    printf("Cut End sec value        : %d\n",cuts[i].cut_end_datetime.tm_sec);
+    printf("Cut End isdst value      : %d\n",cuts[i].cut_end_datetime.tm_isdst);
     printf("                  Cut Sun: %d\n",cuts[i].cut_sun);
     printf("                  Cut Mon: %d\n",cuts[i].cut_mon);
     printf("                  Cut Tue: %d\n",cuts[i].cut_tue);
@@ -156,7 +175,15 @@ int main(int argc,char *argv[])
     printf("          Cut End Daypart: %s\n",cuts[i].cut_end_daypart);
     printf("          Cut Origin Name: %s\n",cuts[i].cut_origin_name);
     printf("               Cut Weight: %u\n",cuts[i].cut_weight);
-    printf("  Cut Last Play Date Time: %s\n",cuts[i].cut_last_play_datetime);
+    printf("  Cut Last Play Date Time\n");
+    printf("Cut LastPlay year value  : %d\n",cuts[i].cut_last_play_datetime.tm_year);
+    printf("Cut LastPlay month value : %d\n",cuts[i].cut_last_play_datetime.tm_mon);
+    printf("Cut LastPlay day value   : %d\n",cuts[i].cut_last_play_datetime.tm_mday);
+    printf("Cut LastPlay wday value  : %d\n",cuts[i].cut_last_play_datetime.tm_wday);
+    printf("Cut LastPlay hour value  : %d\n",cuts[i].cut_last_play_datetime.tm_hour);
+    printf("Cut LastPlay min value   : %d\n",cuts[i].cut_last_play_datetime.tm_min);
+    printf("Cut LastPlay sec value   : %d\n",cuts[i].cut_last_play_datetime.tm_sec);
+    printf("Cut LastPlay isdst value : %d\n",cuts[i].cut_last_play_datetime.tm_isdst);
     printf("         Cut Play Counter: %u\n",cuts[i].cut_play_counter);
     printf("        Cut Local Counter: %u\n",cuts[i].cut_local_counter);
     printf("             Cut Validity: %u\n",cuts[i].cut_validity);

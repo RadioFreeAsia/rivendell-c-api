@@ -91,13 +91,13 @@
 2016-11-02 Fred Gleason <fredg@paravelsystems.com>
 	* Added '-lcurl' to the 'libs:' field in 'rivendell.pc.in'.
 2016-11-04 Todd Baker <bakert@rfa.org>
-        * Fixed fprintf typo in all *.c files in Erreor Code Display.
+	* Fixed fprintf typo in all *.c files in Erreor Code Display.
 	  Added CURLOPT_ERRORBUFFER to Error Output for Text version of
 	  Curl Lib errors. Updated Originator.
 2016-11-28 Todd Baker <bakert@rfa.org>
 	* Added New parameters for rd_import.c. This allows for Cart Creation
-          if it doesn't exist. Includes create flag and group name. Updated Docbook entry.
-          Also updated importcart_test to include this functionality. Updated
+	  if it doesn't exist. Includes create flag and group name. Updated Docbook entry.
+	  Also updated importcart_test to include this functionality. Updated
 	  Originator.
 2017-01-11 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a fencepost error in 'rivendell/rd_listlog.c' that caused
@@ -133,3 +133,8 @@
 	* Added URL String Encoding to all Rivendell function calls
 	* Renamed all docbook files to the correct name in Make files. Also
 	  made changes to the xml to reflect correct names and fix typos.
+2017-01-27 Todd Baker <bakert@rfa.org>
+	* Created common functions strlcpy and RD_DateTimeConvert. strlcpy
+	  copies strings and null terminates automatically. RD_DateTimeConvert
+	  takes a DateTimeString and Converts to local time or GMT based on input.
+	* Modified rivendell programs and test programs to use the above functions.

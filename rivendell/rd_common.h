@@ -17,7 +17,9 @@
  *   License along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #ifndef RD_COMMON_H
@@ -43,4 +45,6 @@
 
 extern unsigned RD_ReadBool(const char *val);
 
+extern struct tm RD_DateTimeConvert( const char *datein);
+extern size_t strlcpy(char * dest, const char* src, size_t bufsize);
 #endif  // RD_COMMON_H

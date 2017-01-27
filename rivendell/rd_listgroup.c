@@ -42,7 +42,7 @@ static void XMLCALL __ListGroupElementStart(void *data, const char *el,
   if(strcasecmp(el,"group")==0) {    // Allocate a new group entry
     xml_data->group=realloc(xml_data->group, sizeof(struct rd_group));
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -62,10 +62,10 @@ static void XMLCALL __ListGroupElementEnd(void *data, const char *el)
   struct rd_group *grp=xml_data->group;
 
   if(strcasecmp(el,"name")==0) {
-    strncpy(grp->grp_name,xml_data->strbuf,10);
+    strlcpy(grp->grp_name,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"description")==0) {
-    strncpy(grp->grp_desc,xml_data->strbuf,255);
+    strlcpy(grp->grp_desc,xml_data->strbuf,255);
   }
   if(strcasecmp(el,"defaultcarttype")==0) {
     if(strcasecmp(xml_data->strbuf,"audio")==0) {
@@ -85,7 +85,7 @@ static void XMLCALL __ListGroupElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&grp->grp_shelf_life);
   }
   if(strcasecmp(el,"defaulttitle")==0) {
-    strncpy(grp->grp_default_title,xml_data->strbuf,255);
+    strlcpy(grp->grp_default_title,xml_data->strbuf,255);
   }
   if(strcasecmp(el,"enforcecartrange")==0) {
     grp->grp_enforce_range=RD_ReadBool(xml_data->strbuf);
@@ -97,7 +97,7 @@ static void XMLCALL __ListGroupElementEnd(void *data, const char *el)
     grp->grp_report_mus=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"color")==0) {
-    strncpy(grp->grp_color,xml_data->strbuf,8);
+    strlcpy(grp->grp_color,xml_data->strbuf,8);
   }
 }
 

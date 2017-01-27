@@ -62,7 +62,7 @@ struct edit_cart_values {
   int use_cart_owner;
   char cart_notes[1024];
   int use_cart_notes;
-  char cart_metadata_datetime [26];
+  struct tm cart_metadata_datetime;
   int use_cart_metadata_datetime;
 };                      
 

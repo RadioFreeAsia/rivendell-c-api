@@ -37,7 +37,7 @@ static void XMLCALL __UnAssignSchedCodeElementStart(void *data, const char *el,
 					     const char **attr)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 

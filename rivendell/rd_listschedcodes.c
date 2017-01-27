@@ -44,7 +44,7 @@ static void XMLCALL __ListSchedCodesElementStart(void *data, const char *el,
 			   (xml_data->schedcodes_quan+1)*sizeof(struct rd_schedcodes));
     (xml_data->schedcodes_quan)++;
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -63,10 +63,10 @@ static void XMLCALL __ListSchedCodesElementEnd(void *data, const char *el)
   struct rd_schedcodes *schedcodes=xml_data->schedcodes+(xml_data->schedcodes_quan-1);
 
   if(strcasecmp(el,"code")==0) {
-    strncpy(schedcodes->code,xml_data->strbuf,10);
+    strlcpy(schedcodes->code,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"description")==0){
-    strncpy(schedcodes->description,xml_data->strbuf,256);
+    strlcpy(schedcodes->description,xml_data->strbuf,256);
   }
 }
 

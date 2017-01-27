@@ -20,6 +20,7 @@
 
 #ifndef RD_CUT_H
 #define RD_CUT_H
+#include <time.h>
 
 struct rd_cut {
   char cut_name[11];
@@ -31,9 +32,9 @@ struct rd_cut {
   char cut_isrc[13];
   char cut_isci[33];
   unsigned  cut_length;
-  char cut_origin_datetime[26];
-  char cut_start_datetime[26];
-  char cut_end_datetime[26];
+  struct tm cut_origin_datetime;
+  struct tm cut_start_datetime;
+  struct tm cut_end_datetime;
   int cut_sun;
   int cut_mon;
   int cut_tue;
@@ -45,7 +46,7 @@ struct rd_cut {
   char cut_end_daypart[15];
   char cut_origin_name[65];
   unsigned cut_weight;
-  char cut_last_play_datetime[26];
+  struct tm cut_last_play_datetime;
   unsigned cut_play_counter;
   unsigned cut_local_counter;
   unsigned cut_validity;

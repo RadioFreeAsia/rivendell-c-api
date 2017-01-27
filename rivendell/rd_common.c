@@ -30,3 +30,104 @@ unsigned RD_ReadBool(const char *val)
     return 0;
   }
 }
+
+/****************************************************************
+ *   RD_DateTimeConvert
+ *     Take a DateTime String and converts to a tm struct.
+ *     Assumes a Z means Zulu (GMT) otherwise returns localtime
+ *     in tm struct pointer. Returns ZERO on invalid date
+*****************************************************************/
+
+struct tm RD_DateTimeConvert( const char *datein)
+{
+    struct tm datetimetm = {0};
+    struct tm *tmptr;
+    time_t rawtime;
+    time_t newrawtime;
+    char theyear[5];
+    char themonth[3];
+    char theday[3];
+    char thehr[3];
+    char themin[3];
+    char thesec[3];
+    char plusminusz[2];
+    char offsethr[3];
+    char offsetmin[3];
+    int offhr = 0;
+    int offmin = 0;
+    int val;
+
+    tmptr = &datetimetm;
+
+    if ((strlen(datein) < 19)  ||   // INVALID DATE
+        (strlen(datein) > 26) )  
+        return datetimetm;
+
+    strlcpy(theyear,datein,4);
+    strlcpy(themonth,datein+5,2);
+    strlcpy(theday,datein+8,2);
+    strlcpy(thehr,datein+11,2);
+    strlcpy(themin,datein+14,2);
+    strlcpy(thesec,datein+17,2);
+
+    if (strlen(datein) > 19)  
+    {
+        strlcpy(plusminusz,datein+19,1);
+        if ( (( strcmp(plusminusz,"+"))==0) ||
+             (( strcmp(plusminusz,"-"))==0)  )
+        {
+    	    strlcpy(offsethr,datein+20,2);
+    	    strlcpy(offsetmin,datein+23,2);
+        }
+    }
+    val = atoi(theyear) - 1900;
+    tmptr->tm_year = val;
+    val = atoi(themonth) - 1;
+    tmptr->tm_mon  = val;
+    tmptr->tm_mday = atoi(theday);
+    tmptr->tm_hour = atoi(thehr);
+    tmptr->tm_min  = atoi(themin);
+    tmptr->tm_sec  = atoi(thesec);
+    if (strlen(datein)==25)
+    {
+        offhr = atoi(offsethr);
+        offmin = atoi(offsetmin);
+    }
+    rawtime = mktime (tmptr);  
+    newrawtime = rawtime; 
+    if ((strcmp(plusminusz,"+"))== 0)
+    {
+        newrawtime = rawtime + ((offhr * 3600) +
+            (offmin * 60));
+    }
+    else 
+    {
+        newrawtime = rawtime - ((offhr * 3600) -
+            (offmin * 60));
+    }
+
+    if ((strcmp(plusminusz,"Z"))==0)
+        gmtime_r(&newrawtime,tmptr);
+    else
+        localtime_r(&newrawtime,tmptr);
+
+    return datetimetm;
+}
+    
+/****************************************************************
+ *   strlcpy
+ *     Copies a strng buffer into a string buffer with size bufsiz
+ *     Returns size_t length copied. Null Terminates Automatically
+*****************************************************************/
+size_t strlcpy(char * dest, const char* src, size_t bufsize)
+{
+    size_t srclen = strlen(src);
+    size_t len;
+    if (bufsize == 0)
+        return bufsize;
+    len = (bufsize < srclen) ? bufsize : srclen;
+    memcpy(dest,src,len);
+    dest[len]='\0';
+    return len;
+}
+

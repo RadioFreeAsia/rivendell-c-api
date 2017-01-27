@@ -41,7 +41,7 @@ static void XMLCALL __AddCartElementStart(void *data, const char *el,
     xml_data->cart=realloc(xml_data->cart,
 			   sizeof(struct rd_cart));
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -58,6 +58,7 @@ static void XMLCALL __AddCartElementEnd(void *data, const char *el)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
   struct rd_cart *cart=xml_data->cart;
+  char hold_datetime[25];
 
   if(strcasecmp(el,"number")==0) {
     sscanf(xml_data->strbuf,"%u",&cart->cart_number);
@@ -79,37 +80,37 @@ static void XMLCALL __AddCartElementEnd(void *data, const char *el)
   }
 
   if(strcasecmp(el,"groupName")==0) {
-    strncpy(cart->cart_grp_name,xml_data->strbuf,11);
+    strlcpy(cart->cart_grp_name,xml_data->strbuf,11);
   }
   if(strcasecmp(el,"title")==0) {
-    strncpy(cart->cart_title,xml_data->strbuf,256);
+    strlcpy(cart->cart_title,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"artist")==0) {
-    strncpy(cart->cart_artist,xml_data->strbuf,256);
+    strlcpy(cart->cart_artist,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"album")==0) {
-    strncpy(cart->cart_album,xml_data->strbuf,256);
+    strlcpy(cart->cart_album,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"year")==0) {
     sscanf(xml_data->strbuf,"%d",&cart->cart_year);
   }
   if(strcasecmp(el,"label")==0) {
-    strncpy(cart->cart_label,xml_data->strbuf,65);
+    strlcpy(cart->cart_label,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"client")==0) {
-    strncpy(cart->cart_client,xml_data->strbuf,65);
+    strlcpy(cart->cart_client,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"agency")==0) {
-    strncpy(cart->cart_agency,xml_data->strbuf,65);
+    strlcpy(cart->cart_agency,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"publisher")==0) {
-    strncpy(cart->cart_publisher,xml_data->strbuf,65);
+    strlcpy(cart->cart_publisher,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"composer")==0) {
-    strncpy(cart->cart_composer,xml_data->strbuf,65);
+    strlcpy(cart->cart_composer,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"userDefined")==0) {
-    strncpy(cart->cart_user_defined,xml_data->strbuf,256);
+    strlcpy(cart->cart_user_defined,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"usageCode")==0) {
     sscanf(xml_data->strbuf,"%d",&cart->cart_usage_code);
@@ -145,10 +146,11 @@ static void XMLCALL __AddCartElementEnd(void *data, const char *el)
     cart->cart_asyncronous=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"owner")==0) {
-    strncpy(cart->cart_owner,xml_data->strbuf,66);
+    strlcpy(cart->cart_owner,xml_data->strbuf,66);
   }
   if(strcasecmp(el,"metadataDatetime")==0) {
-    strncpy(cart->cart_metadata_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    cart->cart_metadata_datetime = RD_DateTimeConvert(hold_datetime);
   }
 }
 

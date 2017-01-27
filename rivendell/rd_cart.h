@@ -13,6 +13,7 @@
                                                                     */
 #ifndef RD_CART_H
 #define RD_CART_H
+#include <time.h>
 
 enum CART_TYPE {TYPE_ALL,TYPE_AUDIO,TYPE_MACRO};
 
@@ -43,7 +44,7 @@ struct rd_cart {
   int cart_asyncronous;
   char cart_owner[65];  
   char cart_notes[1024];
-  char cart_metadata_datetime [26];
+  struct tm cart_metadata_datetime;
 };                      
 
 #endif   //RD_CART_H

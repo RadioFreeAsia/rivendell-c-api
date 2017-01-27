@@ -43,7 +43,7 @@ static void XMLCALL __AudioInfoElementStart(void *data, const char *el,
     xml_data->audioinfo=realloc(xml_data->audioinfo,
 			   sizeof(struct rd_audioinfo));
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 

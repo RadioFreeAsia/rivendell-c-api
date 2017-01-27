@@ -44,7 +44,7 @@ static void XMLCALL __ListLogsElementStart(void *data, const char *el,
 			   (xml_data->logs_quan+1)*sizeof(struct rd_log));
     (xml_data->logs_quan)++;
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -62,39 +62,46 @@ static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
   struct rd_log *logs=xml_data->logs+(xml_data->logs_quan-1);
+  char hold_datetime[25];
 
   if(strcasecmp(el,"name")==0) {
-    strncpy(logs->log_name,xml_data->strbuf,10);
+    strlcpy(logs->log_name,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"serviceName")==0) {
-    strncpy(logs->log_service,xml_data->strbuf,10);
+    strlcpy(logs->log_service,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"description")==0) {
-    strncpy(logs->log_description,xml_data->strbuf,64);
+    strlcpy(logs->log_description,xml_data->strbuf,64);
   }
   if(strcasecmp(el,"originUserName")==0) {
-    strncpy(logs->log_origin_username,xml_data->strbuf,255);
+    strlcpy(logs->log_origin_username,xml_data->strbuf,255);
   }
   if(strcasecmp(el,"originDatetime")==0) {
-    strncpy(logs->log_origin_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logs->log_origin_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"purgeDate")==0) {
-    strncpy(logs->log_purge_date,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logs->log_purge_date = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"linkDatetime")==0) {
-    strncpy(logs->log_link_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logs->log_link_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"modifiedDatetime")==0) {
-    strncpy(logs->log_modified_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logs->log_modified_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"autoRefresh")==0) {
     logs->log_autorefresh=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"startDate")==0) {
-    strncpy(logs->log_startdate,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logs->log_startdate = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"endDate")==0) {
-    strncpy(logs->log_enddate,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logs->log_enddate = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"scheduledTracks")==0) {
     sscanf(xml_data->strbuf,"%d",&logs->log_scheduled_tracks);

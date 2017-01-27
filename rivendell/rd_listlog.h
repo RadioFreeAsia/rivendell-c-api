@@ -56,7 +56,7 @@ struct rd_logline {
   char logline_marker_comment[256];
   char logline_marker_label[65];
   char logline_origin_user[256];
-  char logline_origin_datetime[26];
+  struct tm logline_origin_datetime;
   int  logline_start_point_cart;
   int  logline_start_point_log;
   int  logline_end_point_cart;

@@ -140,7 +140,16 @@ int main(int argc,char *argv[])
     printf("      Cart Enforce Length: %d\n",cart->cart_enforce_length);
     printf("         Cart Asyncronous: %d\n",cart->cart_asyncronous);
     printf("               Cart Owner: %s\n",cart->cart_owner);
-    printf("   Cart Metadata Datetime: %s\n",cart->cart_metadata_datetime);
+    printf("Cart Metadata year value = %d\n",cart->cart_metadata_datetime.tm_year);
+    printf("Cart Metadata month value = %d\n",cart->cart_metadata_datetime.tm_mon);
+    printf("Cart Metadata day value = %d\n",cart->cart_metadata_datetime.tm_mday);
+    printf("Cart Metadata wday value = %d\n",cart->cart_metadata_datetime.tm_wday);
+    printf("Cart Metadata hour value = %d\n",cart->cart_metadata_datetime.tm_hour);
+    printf("Cart Metadata min value = %d\n",cart->cart_metadata_datetime.tm_min);
+    printf("Cart Metadata sec value = %d\n",cart->cart_metadata_datetime.tm_sec);
+    printf("Cart Metadata isdst value = %d\n",cart->cart_metadata_datetime.tm_isdst);
+
+    //printf("   Cart Metadata Datetime: %s\n",cart->cart_metadata_datetime);
     printf("\n");
 
   free(cart);

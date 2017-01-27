@@ -42,7 +42,7 @@ static void XMLCALL __TrimAudioElementStart(void *data, const char *el,
     xml_data->trimaudio=realloc(xml_data->trimaudio,
 			   sizeof(struct rd_trimaudio));
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 

@@ -38,9 +38,9 @@ struct edit_cut_values {
   int use_cut_isrc;
   char cut_isci[33];
   int use_cut_isci;
-  char cut_start_datetime[26];
+  struct tm cut_start_datetime;
   int use_cut_start_datetime;
-  char cut_end_datetime[26];
+  struct tm cut_end_datetime;
   int use_cut_end_datetime;
   int cut_sun;
   int use_cut_sun;

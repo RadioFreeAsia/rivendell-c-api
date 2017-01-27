@@ -42,7 +42,7 @@ static void XMLCALL __AudioStoreElementStart(void *data, const char *el,
     xml_data->audiostore=realloc(xml_data->audiostore,
 			   sizeof(struct rd_audiostore));
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 

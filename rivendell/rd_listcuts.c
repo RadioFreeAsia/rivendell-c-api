@@ -45,7 +45,7 @@ static void XMLCALL __ListCutsElementStart(void *data, const char *el,
 			   (xml_data->cuts_quan+1)*sizeof(struct rd_cut));
     (xml_data->cuts_quan)++;
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -63,9 +63,10 @@ static void XMLCALL __ListCutsElementEnd(void *data, const char *el)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
   struct rd_cut *cuts=xml_data->cuts+(xml_data->cuts_quan-1);
+  char hold_datetime[26];
 
   if(strcasecmp(el,"cutName")==0) {
-    strncpy(cuts->cut_name,xml_data->strbuf,11);
+    strlcpy(cuts->cut_name,xml_data->strbuf,11);
   }
   if(strcasecmp(el,"cartNumber")==0) {
     sscanf(xml_data->strbuf,"%u",&cuts->cut_cart_number);
@@ -77,28 +78,31 @@ static void XMLCALL __ListCutsElementEnd(void *data, const char *el)
     cuts->cut_evergreen=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"description")==0) {
-    strncpy(cuts->cut_description,xml_data->strbuf,65);
+    strlcpy(cuts->cut_description,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"outcue")==0) {
-    strncpy(cuts->cut_outcue,xml_data->strbuf,65);
+    strlcpy(cuts->cut_outcue,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"isrc")==0) {
-    strncpy(cuts->cut_isrc,xml_data->strbuf,13);
+    strlcpy(cuts->cut_isrc,xml_data->strbuf,13);
   }
   if(strcasecmp(el,"isci")==0) {
-    strncpy(cuts->cut_isci,xml_data->strbuf,33);
+    strlcpy(cuts->cut_isci,xml_data->strbuf,33);
   }
   if(strcasecmp(el,"length")==0){
     sscanf(xml_data->strbuf,"%u",&cuts->cut_length);
   }
   if(strcasecmp(el,"originDatetime")==0) {
-    strncpy(cuts->cut_origin_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    cuts->cut_origin_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"startDatetime")==0) {
-    strncpy(cuts->cut_start_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    cuts->cut_start_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"endDatetime")==0) {
-    strncpy(cuts->cut_end_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    cuts->cut_end_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"sun")==0) {
     cuts->cut_sun=RD_ReadBool(xml_data->strbuf);
@@ -122,19 +126,20 @@ static void XMLCALL __ListCutsElementEnd(void *data, const char *el)
     cuts->cut_sat=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"startDaypart")==0) {
-    strncpy(cuts->cut_start_daypart,xml_data->strbuf,10);
+    strlcpy(cuts->cut_start_daypart,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"endDaypart")==0) {
-    strncpy(cuts->cut_end_daypart,xml_data->strbuf,10);
+    strlcpy(cuts->cut_end_daypart,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"originName")==0) {
-    strncpy(cuts->cut_origin_name,xml_data->strbuf,65);
+    strlcpy(cuts->cut_origin_name,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"weight")==0) {
     sscanf(xml_data->strbuf,"%u",&cuts->cut_weight);
   }
   if(strcasecmp(el,"lastPlayDatetime")==0) {
-    strncpy(cuts->cut_last_play_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    cuts->cut_last_play_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"playCounter")==0) {
     sscanf(xml_data->strbuf,"%u",&cuts->cut_play_counter);

@@ -44,7 +44,7 @@ static void XMLCALL __ListServicesElementStart(void *data, const char *el,
 			   (xml_data->services_quan+1)*sizeof(struct rd_service));
     (xml_data->services_quan)++;
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -64,10 +64,10 @@ static void XMLCALL __ListServicesElementEnd(void *data, const char *el)
   struct rd_service *services=xml_data->services+(xml_data->services_quan-1);
 
   if(strcasecmp(el,"name")==0) {
-    strncpy(services->service_name,xml_data->strbuf,11);
+    strlcpy(services->service_name,xml_data->strbuf,11);
   }
   if(strcasecmp(el,"description")==0) {
-    strncpy(services->service_description,xml_data->strbuf,256);
+    strlcpy(services->service_description,xml_data->strbuf,256);
   }
 }
 

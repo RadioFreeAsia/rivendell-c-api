@@ -51,7 +51,7 @@ static void XMLCALL __ListLogElementStart(void *data, const char *el,
     strcpy(xml_data->attribute,attr[0]);
     strcpy(xml_data->attribute_value,attr[1]);
   }
-  strncpy(xml_data->elem_name,el,256);
+  strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
@@ -69,6 +69,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
   struct rd_logline *logline=xml_data->logline+(xml_data->logline_quan-1);
+  char hold_datetime[26];
 
   if(strcasecmp(el,"line")==0) {
     sscanf(xml_data->strbuf,"%d",&logline->logline_line);
@@ -130,40 +131,40 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logline->logline_cut_number);
   }
   if(strcasecmp(el,"groupName")==0) {
-    strncpy(logline->logline_group_name,xml_data->strbuf,10);
+    strlcpy(logline->logline_group_name,xml_data->strbuf,10);
   }
   if(strcasecmp(el,"groupColor")==0) {
     sscanf(xml_data->strbuf,"%s",(char *)&logline->logline_group_color);
   }
   if(strcasecmp(el,"title")==0) {
-    strncpy(logline->logline_title,xml_data->strbuf,256);
+    strlcpy(logline->logline_title,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"artist")==0) {
-    strncpy(logline->logline_artist,xml_data->strbuf,256);
+    strlcpy(logline->logline_artist,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"publisher")==0) {
-    strncpy(logline->logline_publisher,xml_data->strbuf,65);
+    strlcpy(logline->logline_publisher,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"composer")==0) {
-    strncpy(logline->logline_composer,xml_data->strbuf,65);
+    strlcpy(logline->logline_composer,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"album")==0) {
-    strncpy(logline->logline_album,xml_data->strbuf,256);
+    strlcpy(logline->logline_album,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"label")==0) {
-    strncpy(logline->logline_label,xml_data->strbuf,65);
+    strlcpy(logline->logline_label,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"year")==0) {
     sscanf(xml_data->strbuf,"%d",&logline->logline_year);
   }
   if(strcasecmp(el,"client")==0) {
-    strncpy(logline->logline_client,xml_data->strbuf,65);
+    strlcpy(logline->logline_client,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"agency")==0) {
-    strncpy(logline->logline_agency,xml_data->strbuf,65);
+    strlcpy(logline->logline_agency,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"userDefined")==0) {
-    strncpy(logline->logline_user_defined,xml_data->strbuf,256);
+    strlcpy(logline->logline_user_defined,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"usageCode")==0) {
     sscanf(xml_data->strbuf,"%d",&logline->logline_usage_code);
@@ -172,7 +173,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     logline->logline_enforce_length=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"forcedLength")==0) {
-    strncpy(logline->logline_forced_length,xml_data->strbuf,9);
+    strlcpy(logline->logline_forced_length,xml_data->strbuf,9);
   }
   if(strcasecmp(el,"evergreen")==0) {
     logline->logline_evergreen=RD_ReadBool(xml_data->strbuf);
@@ -206,7 +207,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     }
   }
   if(strcasecmp(el,"startTime")==0) {
-    strncpy(logline->logline_starttime,xml_data->strbuf,12);
+    strlcpy(logline->logline_starttime,xml_data->strbuf,12);
   }
   if(strcasecmp(el,"transitionType")==0) {
     if(strcasecmp(xml_data->strbuf,"PLAY")==0) {
@@ -233,16 +234,17 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&logline->logline_last_cut_played);
   }
   if(strcasecmp(el,"markerComment")==0) {
-    strncpy(logline->logline_marker_comment,xml_data->strbuf,256);
+    strlcpy(logline->logline_marker_comment,xml_data->strbuf,256);
   }
   if(strcasecmp(el,"markerLabel")==0) {
-    strncpy(logline->logline_marker_label,xml_data->strbuf,65);
+    strlcpy(logline->logline_marker_label,xml_data->strbuf,65);
   }
   if(strcasecmp(el,"originUser")==0) {
     sscanf(xml_data->strbuf,"%s",(char *)&logline->logline_origin_user);
   }
   if(strcasecmp(el,"originDateTime")==0) {
-    strncpy(logline->logline_origin_datetime,xml_data->strbuf,26);
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    logline->logline_origin_datetime = RD_DateTimeConvert(hold_datetime);
   }
   if(strcasecmp(el,"startPoint")==0) {
     if(strcasecmp(xml_data->attribute,"src")==0) {
