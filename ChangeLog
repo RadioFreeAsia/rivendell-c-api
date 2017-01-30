@@ -143,3 +143,8 @@
 	  to localtime.  
 	* Fixed tests/listlog_test.c and tests/listlogs.c to use tm_struct for
 	  DateTimes.
+2017-01-30 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'RD_AddLog()' call.
+	* Added 'RD_DeleteLog()' call.
+	* Added common i/o functions for tests in 'tests/common.c' and
+	'tests/common.h'.
