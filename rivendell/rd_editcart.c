@@ -150,10 +150,6 @@ static void XMLCALL __EditCartElementEnd(void *data, const char *el)
   if(strcasecmp(el,"owner")==0) {
     strlcpy(cart->cart_owner,xml_data->strbuf,64);
   }
-  if(strcasecmp(el,"metadataDatetime")==0) {
-    strlcpy(hold_datetime,xml_data->strbuf,26);
-    cart->cart_metadata_datetime = RD_DateTimeConvert(hold_datetime);
-  }
   if(strcasecmp(el,"notes")==0 ){
     /* handle multiple NOTE Lines */
     strlcpy(cart->cart_notes,xml_data->strbuf,1024);

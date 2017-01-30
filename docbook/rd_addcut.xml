@@ -178,9 +178,9 @@
           char cut_isrc[13];			/* Default is: NULL */
           char cut_isci[33];			/* Default is: NULL */
           unsigned  cut_length;			/* Default is: 0 */
-          char cut_origin_datetime[26];		/* Default is: NULL */
-          char cut_start_datetime[26];		/* Default is: NULL */
-          char cut_end_datetime[26];		/* Default is: NULL */
+          struct tm cut_origin_datetime;	/* Default is: NULL */
+          struct tm cut_start_datetime;		/* Default is: NULL */
+          struct tm cut_end_datetime;		/* Default is: NULL */
           int cut_sun;				/* Default is: true */
           int cut_mon;				/* Default is: true */
           int cut_tue;				/* Default is: true */
@@ -192,7 +192,7 @@
           char cut_end_daypart[14];		/* Default is: NULL */
           char cut_origin_name[65];		/* Default is: NULL */
           unsigned cut_weight;			/* Default is: 1 */
-          char cut_last_play_datetime[26]; 	/* Default is: NULL */
+          struct tm cut_last_play_datetime; 	/* Default is: NULL */
           unsigned cut_play_counter;		/* Default is: 0 */
           unsigned cut_local_counter;		/* Default is: 0 */
           unsigned cut_validity;		/* Default is: 0 */

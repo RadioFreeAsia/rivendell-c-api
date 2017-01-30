@@ -224,7 +224,7 @@
   	  int cart_enforce_length;             /* Enforce Length Flag */
   	  int cart_asyncronous;                /* Asyncronous Flag */
   	  char cart_owner[65];                 /* Owner */
-  	  char cart_metadata_datetime [26];    /* Metadata Datetime */
+  	  struct tm cart_metadata_datetime;    /* Metadata Datetime */
   	  char cart_notes[1024];               /* Notes */
     };
 
@@ -283,7 +283,7 @@
       
       The cart_owner is 64 characters. Default is NULL.
       
-      The cart_metadata_datetime Default is NULL.
+      The cart_metadata_datetime is in tm struct format. Default is NULL.
       
       The cart_user_notes is a character array up to 1024 characters. Default is NULL
       
