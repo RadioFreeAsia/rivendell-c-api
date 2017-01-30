@@ -138,3 +138,8 @@
 	  copies strings and null terminates automatically. RD_DateTimeConvert
 	  takes a DateTimeString and Converts to local time or GMT based on input.
 	* Modified rivendell programs and test programs to use the above functions.
+2017-01-30 Todd Baker <bakert@rfa.org>
+        * Fixed bug in rivendell/rd_common.c to Convert DateTimes
+	  to localtime.  
+	* Fixed tests/listlog_test.c and tests/listlogs.c to use tm_struct for
+	  DateTimes.
