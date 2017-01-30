@@ -224,8 +224,6 @@
       int use_cart_owner;
       char cart_notes[1024];
       int use_cart_notes;
-      char cart_metadata_datetime [26];
-      int use_cart_metadata_datetime;
     };
   </programlisting> 
   <para>
@@ -259,7 +257,6 @@
   	  int cart_enforce_length;             /* Enforce Length Flag */
   	  int cart_asyncronous;                /* Asyncronous Flag */
   	  char cart_owner[65];                 /* Owner */
-  	  char cart_metadata_datetime [26];    /* Metatdata Datetime */
   	  char cart_notes[1024];               /* Notes */
     };
 
@@ -317,8 +314,6 @@
       The cart_asyncronous is True(1) or False(0).
       
       The cart_owner is 64 characters.
-      
-      The cart_metadata_datetime is 26 characters.
       
       The cart_user_notes is a character array up to 1024 characters.
       

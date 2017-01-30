@@ -132,14 +132,22 @@
 2017-01-19 Todd Baker <bakert@rfa.org>
 	* Added URL String Encoding to all Rivendell function calls
 	* Renamed all docbook files to the correct name in Make files. Also
-	  made changes to the xml to reflect correct names and fix typos.
+	made changes to the xml to reflect correct names and fix typos.
 2017-01-27 Todd Baker <bakert@rfa.org>
 	* Created common functions strlcpy and RD_DateTimeConvert. strlcpy
-	  copies strings and null terminates automatically. RD_DateTimeConvert
-	  takes a DateTimeString and Converts to local time or GMT based on input.
+	copies strings and null terminates automatically. RD_DateTimeConvert
+	takes a DateTimeString and Converts to local time or GMT based on input.
 	* Modified rivendell programs and test programs to use the above functions.
 2017-01-30 Todd Baker <bakert@rfa.org>
-        * Fixed bug in rivendell/rd_common.c to Convert DateTimes
-	  to localtime.  
+	* Fixed bug in rivendell/rd_common.c to Convert DateTimes
+	to localtime.  
 	* Fixed tests/listlog_test.c and tests/listlogs.c to use tm_struct for
-	  DateTimes.
+	DateTimes.
+2017-01-30 Todd Baker <bakert@rfa.org>
+	* Modified docbook/rd_addcart.xml, docbook/rd_addcut.xml,docbook/rd_addcut.xml
+	docbook/rd_editcart.xml, docbook/rd_editcut.xml, docbook/rd_listcart.xml,
+	docbook/rd_listcarts.xml, docbook/rd_listcut.xml, docbook/rd_listcuts.xml, 
+	docbook/rd_listlog.xml, docbook/rd_listlogs.xml 
+	to show datetime values as tm structs.
+	* Fixed rivendell/rd_editcart.c, and rivendell/rd_editcart.h to NOT include
+	metadata_datetime because this is not actually returned.
