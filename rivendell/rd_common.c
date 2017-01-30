@@ -34,8 +34,8 @@ unsigned RD_ReadBool(const char *val)
 /****************************************************************
  *   RD_DateTimeConvert
  *     Take a DateTime String and converts to a tm struct.
- *     Assumes a Z means Zulu (GMT) otherwise returns localtime
- *     in tm struct pointer. Returns ZERO on invalid date
+ *     Assumes a Z means Zulu (GMT) Always returns localtime
+ *     in tm struct pointer. Returns null tm on invalid date
 *****************************************************************/
 
 struct tm RD_DateTimeConvert( const char *datein)
@@ -69,7 +69,6 @@ struct tm RD_DateTimeConvert( const char *datein)
     strlcpy(thehr,datein+11,2);
     strlcpy(themin,datein+14,2);
     strlcpy(thesec,datein+17,2);
-
     if (strlen(datein) > 19)  
     {
         strlcpy(plusminusz,datein+19,1);
@@ -88,29 +87,39 @@ struct tm RD_DateTimeConvert( const char *datein)
     tmptr->tm_hour = atoi(thehr);
     tmptr->tm_min  = atoi(themin);
     tmptr->tm_sec  = atoi(thesec);
-    if (strlen(datein)==25)
-    {
-        offhr = atoi(offsethr);
-        offmin = atoi(offsetmin);
-    }
     rawtime = mktime (tmptr);  
     newrawtime = rawtime; 
-    if ((strcmp(plusminusz,"+"))== 0)
+    if ((strcmp(plusminusz,"Z")) != 0)
     {
-        newrawtime = rawtime + ((offhr * 3600) +
-            (offmin * 60));
+        if (strlen(datein)==25)
+        {
+            offhr = atoi(offsethr);
+            offmin = atoi(offsetmin);
+        }
+        if ((strcmp(plusminusz,"-"))== 0)
+        {
+            newrawtime = rawtime + ((offhr * 3600) +
+                (offmin * 60));
+        }
+        else 
+        {
+            newrawtime = rawtime - ((offhr * 3600) -
+                (offmin * 60));
+        }
     }
-    else 
-    {
-        newrawtime = rawtime - ((offhr * 3600) -
-            (offmin * 60));
-    }
-
-    if ((strcmp(plusminusz,"Z"))==0)
-        gmtime_r(&newrawtime,tmptr);
-    else
-        localtime_r(&newrawtime,tmptr);
-
+//    Get the local offset from UTC
+    time_t currtime;
+    struct tm * timeinfo;
+    time( &currtime );
+    timeinfo = gmtime (&currtime);
+    time_t utc = mktime (timeinfo);
+    timeinfo = localtime(&currtime);
+    time_t local = mktime(timeinfo);
+    double offsetfromutc = difftime(utc,local);
+    if (timeinfo->tm_isdst)
+        offsetfromutc -= 3600;
+    newrawtime += offsetfromutc;
+    localtime_r(&newrawtime,tmptr);
     return datetimetm;
 }
     

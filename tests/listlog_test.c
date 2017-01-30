@@ -124,7 +124,15 @@ int main(int argc,char *argv[])
     printf("         LogLine Marker Comment: %s\n",logline[i].logline_marker_comment);
     printf("           LogLine Marker Label: %s\n",logline[i].logline_marker_label);
     printf("            LogLine Origin User: %s\n",logline[i].logline_origin_user);
-    printf("        LogLine Origin DateTime: %s\n",logline[i].logline_origin_datetime);
+    printf("        LogLine Origin DateTime\n");
+    printf("LogLine OriginDateTime  year value : %d\n",logline[i].logline_origin_datetime.tm_year);
+    printf("LogLine OriginDateTime  mon value  : %d\n",logline[i].logline_origin_datetime.tm_mon);
+    printf("LogLine OriginDateTime mday value  : %d\n",logline[i].logline_origin_datetime.tm_mday);
+    printf("LogLine OriginDateTime   day value : %d\n",logline[i].logline_origin_datetime.tm_wday);
+    printf("LogLine OriginDateTime  hour value : %d\n",logline[i].logline_origin_datetime.tm_hour);
+    printf("LogLine OriginDateTime  min value  : %d\n",logline[i].logline_origin_datetime.tm_min);
+    printf("LogLine OriginDateTime  sec value  : %d\n",logline[i].logline_origin_datetime.tm_sec);
+    printf("LogLine OriginDateTime  isdst      : %d\n",logline[i].logline_origin_datetime.tm_isdst);
     printf("       LogLine Start Point Cart: %d\n",logline[i].logline_start_point_cart);
     printf("         LogLineStart Point Log: %d\n",logline[i].logline_start_point_log);
     printf("         LogLine End Point Cart: %d\n",logline[i].logline_end_point_cart);
