@@ -22,12 +22,14 @@ AM_CFLAGS = -I$(top_srcdir)
 lib_LTLIBRARIES = librivwebcapi.la 
 dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
 				rd_addcut.c rd_addcut.h \
+                                rd_addlog.c rd_addlog.h \
 				rd_assignschedcode.c rd_assignschedcode.h\
 				rd_audioinfo.c rd_audioinfo.h \
 				rd_audiostore.c rd_audiostore.h \
                                 rd_common.c rd_common.h\
 				rd_copyaudio.c rd_copyaudio.h \
 				rd_deleteaudio.c rd_deleteaudio.h \
+				rd_deletelog.c rd_deletelog.h \
 				rd_editcart.c rd_editcart.h \
 				rd_editcut.c rd_editcut.h \
 				rd_export.c rd_export.h \
@@ -54,6 +56,7 @@ librivwebcapi_la_LDFLAGS = -version-info $(INTERFACE_CURRENT):$(INTERFACE_REVISI
 includedir = $(prefix)/include/rivendell
 include_HEADERS = rd_addcart.h\
                   rd_addcut.h\
+                  rd_addlog.h\
                   rd_assignschedcode.h\
                   rd_audioinfo.h\
                   rd_audiostore.h\
@@ -62,6 +65,7 @@ include_HEADERS = rd_addcart.h\
                   rd_copyaudio.h\
                   rd_cut.h\
                   rd_deleteaudio.h\
+                  rd_deletelog.h\
                   rd_editcart.h\
                   rd_editcut.h\
                   rd_export.h\

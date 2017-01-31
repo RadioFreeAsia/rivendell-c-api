@@ -31,11 +31,13 @@ Makefile.in
 missing
 tests/addcart_test
 tests/addcut_test
+tests/addlog_test
 tests/assignschedcode_test
 tests/audioinfo_test
 tests/audiostore_test
 tests/copyaudio_test
 tests/deleteaudio_test
+tests/deletelog_test
 tests/editcart_test
 tests/editcut_test
 tests/exportcart_test

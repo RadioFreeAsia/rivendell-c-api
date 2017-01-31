@@ -39,6 +39,8 @@ noinst_PROGRAMS = listgroups_test \
 		trimaudio_test \
                 listlogs_test \
                 listservices_test \
+                addlog_test \
+                deletelog_test \
                 listlog_test \
 		editcart_test \
 		editcut_test \
@@ -59,6 +61,10 @@ dist_assignschedcode_test_SOURCES = assignschedcode_test.c
 dist_unassignschedcode_test_SOURCES = unassignschedcode_test.c 
 dist_addcart_test_SOURCES = addcart_test.c 
 dist_addcut_test_SOURCES = addcut_test.c 
+dist_addlog_test_SOURCES = addlog_test.c\
+                           common.c common.h 
+dist_deletelog_test_SOURCES = deletelog_test.c\
+                              common.c common.h 
 dist_removecart_test_SOURCES = removecart_test.c 
 dist_removecut_test_SOURCES = removecut_test.c 
 dist_audioinfo_test_SOURCES = audioinfo_test.c 
@@ -87,6 +93,8 @@ listcartschedcodes_test_LDADD =  -lrivwebcapi -lexpat -lcurl
 unassignschedcode_test_LDADD =  -lrivwebcapi -lexpat -lcurl
 addcart_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
 addcut_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
+addlog_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
+deletelog_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
 removecart_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
 removecut_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
 audioinfo_test_LDADD  =  -lrivwebcapi -lexpat -lcurl
