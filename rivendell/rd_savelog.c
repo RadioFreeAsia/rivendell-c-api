@@ -1,0 +1,211 @@
+/* rd_savelog.c
+ *
+ * Header for the Save Log Rivendell Access Library
+ *
+ * (C) Copyright 2017 Todd Baker  <bakert@rfa.org>
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License version 2 as
+ *   published by the Free Software Foundation.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public
+ *   License along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <curl/curl.h>
+
+#include "rd_savelog.h"
+
+char *AppendString(char *str,const char *added_str)
+{
+  str=realloc(str,strlen(str)+strlen(added_str)+1);
+  strcat(str,added_str);
+  return str;
+}
+
+
+int RD_SaveLog(struct save_loghdr_values *hdrvals,
+	       struct save_logline_values *linevals,
+               unsigned linevals_quan,
+	       const char hostname[],
+	       const char username[],
+	       const char passwd[],
+	       const char logname[])
+{
+  char url[1500];
+  char str[1024];
+  char *post=malloc(1);
+  CURL *curl=NULL;
+  CURLcode res;
+  char errbuf[CURL_ERROR_SIZE];
+  long response_code;
+  unsigned i=0;
+  post[0]=0;
+
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
+  //
+  // Log Header
+  //
+  post=AppendString(post,"COMMAND=28&");
+
+  snprintf(str,1024,"LOGIN_NAME=%s&",curl_easy_escape(curl,username,0));
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"PASSWORD=%s&",curl_easy_escape(curl,passwd,0));
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"LOG_NAME=%s&",curl_easy_escape(curl,logname,0));
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"SERVICE_NAME=%s&",curl_easy_escape(curl,hdrvals->loghdr_service,0));
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"DESCRIPTION=%s&",curl_easy_escape(curl,hdrvals->loghdr_description,0));
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"AUTO_REFRESH=%d&",hdrvals->loghdr_autorefresh);
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"PURGE_DATE=&");
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"START_DATE=&");
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"END_DATE=&");
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"LINE_QUANTITY=%d",linevals_quan);
+  post=AppendString(post,str);
+
+  //
+  // Log Lines
+  //
+  for(i=0;i<linevals_quan;i++) {
+    snprintf(str,1024,"&LINE%u_ID=%u",i,linevals[i].logline_id);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_TYPE=%u",i,linevals[i].logline_type);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_CART_NUMBER=%u",i,
+	     linevals[i].logline_cart_number);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_START_TIME=%u",i,linevals[i].logline_starttime);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_ID=%u",i,linevals[i].logline_gracetime);
+    post=AppendString(post,str);
+
+    if(linevals[i].logline_time_type==1) {
+      snprintf(str,1024,"&LINE%u_TIME_TYPE=Hard",i);
+    }
+    else {
+      snprintf(str,1024,"&LINE%u_TIME_TYPE=Relative",i);
+    }
+    post=AppendString(post,str);
+
+    switch(linevals[i].logline_transition_type) {
+    case 0:
+      snprintf(str,1024,"&LINE%u_TRANS_TYPE=PLAY",i);
+      break;
+
+    case 1:
+      snprintf(str,1024,"&LINE%u_TRANS_TYPE=SEGUE",i);
+      break;
+
+    case 2:
+      snprintf(str,1024,"&LINE%u_TRANS_TYPE=STOP",i);
+      break;
+    }
+
+    snprintf(str,1024,"&LINE%u_START_POINT=%u",i,
+	     linevals[i].logline_start_point_log);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_END_POINT=%u",i,
+	     linevals[i].logline_end_point_log);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_SEGUE_START_POINT=%u",i,
+	     linevals[i].logline_segue_start_point_log);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_SEGUE_END_POINT=%u",i,
+	     linevals[i].logline_segue_end_point_log);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_FADEUP_POINT=%u",i,
+	     linevals[i].logline_fadeup_point_log);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_FADEDOWN_POINT=%u",i,
+	     linevals[i].logline_fadedown_point_log);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_DUCK_UP_GAIN=%u",i,
+	     linevals[i].logline_duckup_gain);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_DUCK_DOWN_GAIN=%u",i,
+	     linevals[i].logline_duckdown_gain);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&COMMENT=%s",
+	     curl_easy_escape(curl,linevals->logline_marker_comment,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LABEL=%s",
+	     curl_easy_escape(curl,linevals->logline_marker_label,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&ORIGIN_USER=%s",
+	     curl_easy_escape(curl,linevals->logline_origin_user,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&ORIGIN_DATETIME=%s",
+	     curl_easy_escape(curl,linevals->logline_origin_user,0));
+    post=AppendString(post,str);
+
+  }
+
+  snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
+  curl_easy_setopt(curl,CURLOPT_URL,url);
+  curl_easy_setopt(curl,CURLOPT_POST,1);
+  curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
+  curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
+  curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
+  //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
+  res = curl_easy_perform(curl);
+  if(res != CURLE_OK) {
+    size_t len = strlen(errbuf);
+    fprintf(stderr, "\nlibcurl error: (%d)", res);
+    if (len)
+        fprintf(stderr, "%s%s", errbuf,
+            ((errbuf[len-1] != '\n') ? "\n" : ""));
+    else
+        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+/* The response OK - so figure out if we got what we wanted.. */
+
+  curl_easy_getinfo(curl,CURLINFO_RESPONSE_CODE,&response_code);
+  curl_easy_cleanup(curl);
+  
+  if (response_code > 199 && response_code < 300) {  //Success
+    return 0;
+  }
+  return (int)response_code;
+}
