@@ -153,3 +153,8 @@
 2017-02-01 Todd Baker <bakert@rfa.org>
 	* Modified rivendell/rd_common.c to fix Daylight Saving Time adjustment.
 	metadata_datetime because this is not actually returned.
+2017-01-30 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'RD_AddLog()' call.
+	* Added 'RD_DeleteLog()' call.
+	* Added common i/o functions for tests in 'tests/common.c' and
+	'tests/common.h'.

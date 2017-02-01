@@ -37,6 +37,9 @@ all-local:	rd_addcart.html\
                 rd_addcut.html\
                 rd_addcut.pdf\
                 rd_addcut.xml\
+                rd_addlog.html\
+                rd_addlog.pdf\
+                rd_addlog.xml\
                 rd_assignschedcode.html\
                 rd_assignschedcode.pdf\
                 rd_assignschedcode.xml\
@@ -55,6 +58,9 @@ all-local:	rd_addcart.html\
                 rd_deleteaudio.html\
                 rd_deleteaudio.pdf\
                 rd_deleteaudio.xml\
+                rd_deletelog.html\
+                rd_deletelog.pdf\
+                rd_deletelog.xml\
                 rd_editcart.html\
                 rd_editcart.pdf\
                 rd_editcart.xml\
@@ -118,11 +124,13 @@ all-local:	rd_addcart.html\
 
 man_MANS = rd_addcart.7\
            rd_addcut.7\
+           rd_addlog.7\
            rd_assignschedcode.7\
            rd_audioinfo.7\
            rd_audiostore.7\
            rd_copyaudio.7\
            rd_deleteaudio.7\
+           rd_deletelog.7\
            rd_editcart.7\
            rd_editcut.7\
            rd_exportpeaks.7\
@@ -152,6 +160,10 @@ EXTRA_DIST = rd_addcart.7\
              rd_addcut.html\
              rd_addcut.pdf\
              rd_addcut.xml\
+             rd_addlog.7\
+             rd_addlog.html\
+             rd_addlog.pdf\
+             rd_addlog.xml\
              rd_assignschedcode.7\
              rd_assignschedcode.html\
              rd_assignschedcode.pdf\
@@ -175,6 +187,10 @@ EXTRA_DIST = rd_addcart.7\
              rd_deleteaudio.html\
              rd_deleteaudio.pdf\
              rd_deleteaudio.xml\
+             rd_deletelog.7\
+             rd_deletelog.html\
+             rd_deletelog.pdf\
+             rd_deletelog.xml\
              rd_editcart.7\
              rd_editcart.html\
              rd_editcart.pdf\
