@@ -150,11 +150,12 @@
 	docbook/rd_listlog.xml, docbook/rd_listlogs.xml 
 	to show datetime values as tm structs.
 	* Fixed rivendell/rd_editcart.c, and rivendell/rd_editcart.h to NOT include
-	metadata_datetime because this is not actually returned.
 2017-01-30 Fred Gleason <fredg@paravelsystems.com>
 	* Added 'RD_AddLog()' call.
 	* Added 'RD_DeleteLog()' call.
 	* Added common i/o functions for tests in 'tests/common.c' and
 	'tests/common.h'.
+2017-02-01 Todd Baker <bakert@rfa.org>
+	* Modified rivendell/rd_common.c to fix Daylight Saving Time adjustment.
 2017-01-31 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'RD_SaveLog()' call.

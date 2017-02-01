@@ -116,8 +116,8 @@ struct tm RD_DateTimeConvert( const char *datein)
     timeinfo = localtime(&currtime);
     time_t local = mktime(timeinfo);
     double offsetfromutc = difftime(local,utc);
-    if (timeinfo->tm_isdst)
-        offsetfromutc += 3600;
+    //if (timeinfo->tm_isdst)
+        //offsetfromutc += 3600;
     newrawtime += offsetfromutc;
     localtime_r(&newrawtime,tmptr);
     return datetimetm;
