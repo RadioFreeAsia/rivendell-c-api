@@ -150,4 +150,6 @@
 	docbook/rd_listlog.xml, docbook/rd_listlogs.xml 
 	to show datetime values as tm structs.
 	* Fixed rivendell/rd_editcart.c, and rivendell/rd_editcart.h to NOT include
+2017-02-01 Todd Baker <bakert@rfa.org>
+	* Modified rivendell/rd_common.c to fix Daylight Saving Time adjustment.
 	metadata_datetime because this is not actually returned.
