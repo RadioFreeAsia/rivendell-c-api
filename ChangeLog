@@ -159,3 +159,5 @@
 	* Modified rivendell/rd_common.c to fix Daylight Saving Time adjustment.
 2017-01-31 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'RD_SaveLog()' call.
+2017-02-01 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'link' and 'ext' fields to the 'RD_ListLog()' call.

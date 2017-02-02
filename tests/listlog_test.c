@@ -154,6 +154,21 @@ int main(int argc,char *argv[])
     printf("              LogLine Hook Mode: %d\n",logline[i].logline_hook_mode);
     printf("       LogLine Hook Start Point: %d\n",logline[i].logline_hook_start_point);
     printf("         LogLine Hook End Point: %d\n",logline[i].logline_hook_end_point);
+
+    printf("           LogLine Event Length: %d\n",logline[i].logline_event_length);
+    printf("        LogLine Link Event Name: %s\n",logline[i].logline_link_event_name);
+    printf("        LogLine Link Start Time: %s\n",logline[i].logline_link_starttime);
+    printf("        LogLine Link Start Slop: %d\n",logline[i].logline_link_start_slop);
+    printf("          LogLine Link End Slop: %d\n",logline[i].logline_link_end_slop);
+    printf("                LogLine Link Id: %d\n",logline[i].logline_link_id);
+    printf("          LogLine Link Embedded: %d\n",logline[i].logline_link_embedded);
+    printf("         LogLine Ext Start Time: %s\n",logline[i].logline_ext_starttime);
+    printf("             LogLine Ext Length: %d\n",logline[i].logline_ext_length);
+    printf("         LogLine Ext Cart Name: %s\n",logline[i].logline_ext_cart_name);
+    printf("         LogLine Ext Data: %s\n",logline[i].logline_ext_data);
+    printf("         LogLine Ext Event Id: %s\n",logline[i].logline_ext_event_id);
+    printf("         LogLine Ext Annc Type: %s\n",logline[i].logline_ext_annc_type);
+
     printf("\n");
   }
 

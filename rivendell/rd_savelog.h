@@ -56,6 +56,20 @@ struct save_logline_values {
   char logline_marker_label[65];
   char logline_origin_user[256];
   struct tm logline_origin_datetime;
+
+  int  logline_event_length;
+  char logline_link_event_name[65];
+  char logline_link_starttime[13];
+  int  logline_link_start_slop;
+  int  logline_link_end_slop;
+  int  logline_link_id;
+  int  logline_link_embedded;
+  char logline_ext_starttime[13];
+  int  logline_ext_length;
+  char logline_ext_cart_name[33];
+  char logline_ext_data[33];
+  char logline_ext_event_id[33];
+  char logline_ext_annc_type[9];
 };
 
 int RD_SaveLog(struct save_loghdr_values *hdrvals,

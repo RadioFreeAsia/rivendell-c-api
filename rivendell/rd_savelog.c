@@ -162,22 +162,73 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	     linevals[i].logline_duckdown_gain);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&COMMENT=%s",
+    snprintf(str,1024,"&LINE%u_COMMENT=%s",i,
 	     curl_easy_escape(curl,linevals->logline_marker_comment,0));
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LABEL=%s",
+    snprintf(str,1024,"&LINE%u_LABEL=%s",i,
 	     curl_easy_escape(curl,linevals->logline_marker_label,0));
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&ORIGIN_USER=%s",
+    snprintf(str,1024,"&LINE%u_ORIGIN_USER=%s",i,
 	     curl_easy_escape(curl,linevals->logline_origin_user,0));
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&ORIGIN_DATETIME=%s",
+    snprintf(str,1024,"&LINE%u_ORIGIN_DATETIME=%s",i,
 	     curl_easy_escape(curl,linevals->logline_origin_user,0));
     post=AppendString(post,str);
 
+    snprintf(str,1024,"&LINE%u_EVENT_LENGTH=%u",i,
+	     linevals[i].logline_event_length);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_LINK_EVENT_NAME=%s",i,
+	     curl_easy_escape(curl,linevals->logline_link_event_name,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_LINK_START_TIME=%u",i,
+	     linevals[i].logline_link_starttime);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_LINK_START_SLOT=%u",i,
+	     linevals[i].logline_link_start_slop);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_LINK_END_SLOT=%u",i,
+	     linevals[i].logline_link_end_slop);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_LINK_ID=%u",i,
+	     linevals[i].logline_link_id);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_LINK_EMBEDDED=%u",i,
+	     linevals[i].logline_link_embedded);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_EXT_START_TIME=%u",i,
+	     linevals[i].logline_ext_starttime);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_EXT_LENGTH=%u",i,
+	     linevals[i].logline_ext_length);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_EXT_CART_NAME=%s",i,
+	     curl_easy_escape(curl,linevals->logline_ext_cart_name,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_EXT_DATA=%s",i,
+	     curl_easy_escape(curl,linevals->logline_ext_data,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_EXT_EVENT_ID=%s",i,
+	     curl_easy_escape(curl,linevals->logline_ext_event_id,0));
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_EXT_ANNC_TYPE=%s",i,
+	     curl_easy_escape(curl,linevals->logline_ext_annc_type,0));
+    post=AppendString(post,str);
   }
 
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
