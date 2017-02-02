@@ -93,6 +93,25 @@ int main(int argc,char *argv[])
   edit_cut.use_cut_weight=1;
   edit_cut.cut_weight = 2;
 
+// start_date = "2017-06-21 08:14;55
+  edit_cut.cut_start_datetime.tm_year = 117;
+  edit_cut.cut_start_datetime.tm_mon = 5;
+  edit_cut.cut_start_datetime.tm_mday = 21;
+  edit_cut.cut_start_datetime.tm_hour = 8;
+  edit_cut.cut_start_datetime.tm_min = 14;
+  edit_cut.cut_start_datetime.tm_sec = 55;
+  edit_cut.use_cut_start_datetime=1;
+
+
+// end = "2017-09-01 05:00:00
+  edit_cut.cut_end_datetime.tm_year = 117;
+  edit_cut.cut_end_datetime.tm_mon = 8;
+  edit_cut.cut_end_datetime.tm_mday = 1;
+  edit_cut.cut_end_datetime.tm_hour = 5;
+  edit_cut.cut_end_datetime.tm_min = 0;
+  edit_cut.cut_end_datetime.tm_sec = 0;
+  edit_cut.use_cut_end_datetime=1;
+
   //
   // Call the function
   //

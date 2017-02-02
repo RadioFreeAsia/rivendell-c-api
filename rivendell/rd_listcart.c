@@ -152,7 +152,7 @@ static void XMLCALL __ListCartElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"metadataDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    carts->cart_metadata_datetime = RD_DateTimeConvert(hold_datetime);
+    carts->cart_metadata_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
 }
 

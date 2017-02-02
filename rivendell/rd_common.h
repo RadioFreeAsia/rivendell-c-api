@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #ifndef RD_COMMON_H
 #define RD_COMMON_H
@@ -45,6 +46,14 @@
 
 extern unsigned RD_ReadBool(const char *val);
 
-extern struct tm RD_DateTimeConvert( const char *datein);
+extern struct tm RD_Cnv_DTString_to_tm( const char *datein);
+
+extern size_t RD_Cnv_tm_to_DTString(struct tm *tmptr,char * dest);
+
 extern size_t strlcpy(char * dest, const char* src, size_t bufsize);
+
+extern double get_local_offset();
+
+extern int validate_tm (struct tm *tmptr);
+
 #endif  // RD_COMMON_H

@@ -157,7 +157,18 @@
 	'tests/common.h'.
 2017-02-01 Todd Baker <bakert@rfa.org>
 	* Modified rivendell/rd_common.c to fix Daylight Saving Time adjustment.
-2017-01-31 Fred Gleason <fredg@paravelsystems.com>
+2017-02-02 Todd Baker <bakert@rfa.org>
+	* Added new Date conversion functions in rd_common.c
+	and rd_common.h
+	* Modified rivendell/rd_addcart.c, rivendell/rd_addcut.c
+	rivendell/rd_addcut.c, rivendell/rd_editcut.c, 
+	rivendell/rd_listcart.c, rivendell/rd_listcarts.c,
+	rivendell/rd_listcut.c, rivendell/rd_listcuts.c, 
+	rivendell/rd_listlog.c,rivendell/rd_listlogs.c
+	test/editcuts.c to use the new functions. 
+	*  Updated Makefile so that the tests would find 
+	math library. Updated rivendell.pc.in as well.
+2017-02-02 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'RD_SaveLog()' call.
-2017-02-01 Fred Gleason <fredg@paravelsystems.com>
+2017-02-02 Fred Gleason <fredg@paravelsystems.com>
 	* Added 'link' and 'ext' fields to the 'RD_ListLog()' call.

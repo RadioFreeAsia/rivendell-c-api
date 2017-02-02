@@ -78,30 +78,30 @@ static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"originDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logs->log_origin_datetime = RD_DateTimeConvert(hold_datetime);
+    logs->log_origin_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"purgeDate")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logs->log_purge_date = RD_DateTimeConvert(hold_datetime);
+    logs->log_purge_date = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"linkDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logs->log_link_datetime = RD_DateTimeConvert(hold_datetime);
+    logs->log_link_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"modifiedDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logs->log_modified_datetime = RD_DateTimeConvert(hold_datetime);
+    logs->log_modified_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"autoRefresh")==0) {
     logs->log_autorefresh=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"startDate")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logs->log_startdate = RD_DateTimeConvert(hold_datetime);
+    logs->log_startdate = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"endDate")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logs->log_enddate = RD_DateTimeConvert(hold_datetime);
+    logs->log_enddate = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"scheduledTracks")==0) {
     sscanf(xml_data->strbuf,"%d",&logs->log_scheduled_tracks);
