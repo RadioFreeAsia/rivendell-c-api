@@ -87,15 +87,15 @@ static void XMLCALL __EditCutElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"originDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cut->cut_origin_datetime = RD_DateTimeConvert(hold_datetime);
+    cut->cut_origin_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"startDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cut->cut_start_datetime = RD_DateTimeConvert(hold_datetime);
+    cut->cut_start_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"endDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cut->cut_end_datetime = RD_DateTimeConvert(hold_datetime);
+    cut->cut_end_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"sun")==0) {
     cut->cut_sun=RD_ReadBool(xml_data->strbuf);
@@ -257,6 +257,9 @@ void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values)
 { 
 
   char buffer[1024];
+  char hold_datetime[34];  // take URL Encoding into account
+  int  retlen=0;
+
   /*  Copy all of the applicable values into the post string */
 
   if (edit_values.use_cut_evergreen)
@@ -291,14 +294,22 @@ void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values)
 
   if (edit_values.use_cut_start_datetime)
   {
-    snprintf(buffer,1024,"&START_DATETIME=%s",edit_values.cut_start_datetime);
-    strcat(post,buffer);
+    retlen = RD_Cnv_tm_to_DTString( &edit_values.cut_start_datetime,hold_datetime);
+    if (retlen > 0) 
+    {
+        snprintf(buffer,1024,"&START_DATETIME=%s",hold_datetime);
+        strcat(post,buffer);
+    }
   }
 
   if (edit_values.use_cut_end_datetime)
   {
-    snprintf(buffer,1024,"&END_DATETIME=%s",edit_values.cut_end_datetime);
-    strcat(post,buffer);
+    retlen = RD_Cnv_tm_to_DTString( &edit_values.cut_end_datetime,hold_datetime);
+    if (retlen > 0) 
+    {
+        snprintf(buffer,1024,"&END_DATETIME=%s",hold_datetime);
+        strcat(post,buffer);
+    }
   }
 
   if (edit_values.use_cut_sun)

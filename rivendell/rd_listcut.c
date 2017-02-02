@@ -92,15 +92,15 @@ static void XMLCALL __ListCutElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"originDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cuts->cut_origin_datetime = RD_DateTimeConvert(hold_datetime);
+    cuts->cut_origin_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"startDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cuts->cut_start_datetime = RD_DateTimeConvert(hold_datetime);
+    cuts->cut_start_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"endDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cuts->cut_end_datetime = RD_DateTimeConvert(hold_datetime);
+    cuts->cut_end_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"sun")==0) {
     cuts->cut_sun=RD_ReadBool(xml_data->strbuf);
@@ -137,7 +137,7 @@ static void XMLCALL __ListCutElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"lastPlayDatetime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    cuts->cut_last_play_datetime = RD_DateTimeConvert(hold_datetime);
+    cuts->cut_last_play_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"playCounter")==0) {
     sscanf(xml_data->strbuf,"%u",&cuts->cut_play_counter);

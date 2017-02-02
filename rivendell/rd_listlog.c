@@ -244,7 +244,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"originDateTime")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);
-    logline->logline_origin_datetime = RD_DateTimeConvert(hold_datetime);
+    logline->logline_origin_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
   if(strcasecmp(el,"startPoint")==0) {
     if(strcasecmp(xml_data->attribute,"src")==0) {
