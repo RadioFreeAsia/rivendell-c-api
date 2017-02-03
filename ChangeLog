@@ -176,3 +176,6 @@
 	* Modified the 'rd_logline.logline_starttime' field in
 	'rivendell/rd_listlog.h' to be an int.
 	* Added 'link' and 'ext' fields to the 'RD_ListLog()' call.
+2017-02-03 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'RD_Cnv_tm_to_DTString()' in 'rivendell/rd_common.c'
+	that caused a segfault when passed a null 'struct tm' value.

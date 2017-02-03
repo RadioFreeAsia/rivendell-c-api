@@ -158,7 +158,7 @@ size_t RD_Cnv_tm_to_DTString(struct tm *tmptr,char * dest)
      
     if (!validate_tm(tmptr))
     {
-        strcpy(dest,'\0');
+        dest[0]=0;
         return 0;
     }
     offsetfromutc = get_local_offset();
