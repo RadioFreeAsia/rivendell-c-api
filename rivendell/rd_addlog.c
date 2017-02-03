@@ -1,6 +1,6 @@
-/* rd_addcart.c
+/* rd_addlog.c
  *
- * Header for the AddLog  Rivendell Access Library
+ * Implementation of the AddLog Rivendell Access Library
  *
  * (C) Copyright 2017 Todd Baker  <bakert@rfa.org>
  *

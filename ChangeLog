@@ -176,3 +176,6 @@
 	* Modified the 'rd_logline.logline_starttime' field in
 	'rivendell/rd_listlog.h' to be an int.
 	* Added 'link' and 'ext' fields to the 'RD_ListLog()' call.
+2017-02-03 Todd Baker <bakert@rfa.org>
+	* Updated comments in rivendell/rd_common.c, rivendell/rd_addcart.c 
+	and rivendell/rd_addcart.h.

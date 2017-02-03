@@ -1,4 +1,4 @@
-/* rd_addcart.h
+/* rd_addlog.h
  *
  * Header for the AddLog  Rivendell Access Library
  *
