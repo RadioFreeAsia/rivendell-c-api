@@ -207,7 +207,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     }
   }
   if(strcasecmp(el,"startTime")==0) {
-    strlcpy(logline->logline_starttime,xml_data->strbuf,12);
+    logline->logline_starttime=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"transitionType")==0) {
     if(strcasecmp(xml_data->strbuf,"PLAY")==0) {
@@ -344,6 +344,52 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
   }
   if(strcasecmp(el,"hookEndPoint")==0) {
       sscanf(xml_data->strbuf,"%d",&logline->logline_hook_end_point);
+  }
+
+
+  if(strcasecmp(el,"eventLength")==0) {
+      sscanf(xml_data->strbuf,"%d",&logline->logline_event_length);
+  }
+  if(strcasecmp(el,"linkEventName")==0) {
+    strlcpy(logline->logline_link_event_name,xml_data->strbuf,64);
+  }
+  if(strcasecmp(el,"linkStartTime")==0) {
+    logline->logline_link_starttime=RD_Cnv_TString_to_msec(xml_data->strbuf);
+  }
+  if(strcasecmp(el,"linkStartSlop")==0) {
+      sscanf(xml_data->strbuf,"%d",&logline->logline_link_start_slop);
+  }
+  if(strcasecmp(el,"linkEndSlop")==0) {
+      sscanf(xml_data->strbuf,"%d",&logline->logline_link_end_slop);
+  }
+  if(strcasecmp(el,"linkId")==0) {
+      sscanf(xml_data->strbuf,"%d",&logline->logline_link_id);
+  }
+  if(strcasecmp(el,"linkEmbedded")==0) {
+    if(strcasecmp(xml_data->strbuf,"true")==0) {
+      logline->logline_link_embedded=1;
+    }
+    else {
+      logline->logline_link_embedded=0;
+    }
+  }
+  if(strcasecmp(el,"extStartTime")==0) {
+    logline->logline_ext_starttime=RD_Cnv_TString_to_msec(xml_data->strbuf);
+  }
+  if(strcasecmp(el,"extLength")==0) {
+      sscanf(xml_data->strbuf,"%d",&logline->logline_ext_length);
+  }
+  if(strcasecmp(el,"extCartName")==0) {
+    strlcpy(logline->logline_ext_cart_name,xml_data->strbuf,32);
+  }
+  if(strcasecmp(el,"extData")==0) {
+    strlcpy(logline->logline_ext_data,xml_data->strbuf,32);
+  }
+  if(strcasecmp(el,"extEventId")==0) {
+    strlcpy(logline->logline_ext_event_id,xml_data->strbuf,32);
+  }
+  if(strcasecmp(el,"extAnncType")==0) {
+    strlcpy(logline->logline_ext_annc_type,xml_data->strbuf,8);
   }
 }
 

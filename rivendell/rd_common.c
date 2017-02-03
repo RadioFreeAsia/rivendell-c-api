@@ -261,3 +261,76 @@ double get_local_offset()
     double offsetfromutc = difftime(local,utc);
     return offsetfromutc;
 }
+
+
+/****************************************************************
+ *   RD_Cnv_TString_to_msec
+ *     Converts a relative-to-midnight start time string ("HH:MM:SS.ZZZ")
+ *     and returns it as milliseconds after midnight, or -1 if
+ *     the conversion fails.
+*****************************************************************/
+int RD_Cnv_TString_to_msec(const char *str)
+{
+  int hour;
+  int minute;
+  int second;
+  int tenth;
+
+  if(strlen(str)<10) {
+    return -1;
+  }
+  if(sscanf(str,"%02d",&hour)!=1) {
+    return -1;
+  }
+  if((hour<0)||(hour>23)) {
+    return -1;
+  }
+  if(sscanf(str+3,"%02d",&minute)!=1) {
+    return -1;
+  }
+  if((minute<0)||(minute>59)) {
+    return -1;
+  }
+  if(sscanf(str+6,"%02d",&second)!=1) {
+    return -1;
+  }
+  if((second<0)||(second>59)) {
+    return -1;
+  }
+  if(sscanf(str+9,"%1d",&tenth)!=1) {
+    return -1;
+  }
+  if((tenth<0)||(tenth>9)) {
+    return -1;
+  }
+
+  return 3600000*hour+60000*minute+1000*second+100*tenth;
+}
+
+
+/****************************************************************
+ *   RD_Cnv_msec_to_TString
+ *     Converts a milliseconds after midnight integer to
+ *     time string ("HH:MM:SS.ZZZ"), returning the length
+ *     of the string.
+*****************************************************************/
+size_t RD_Cnv_msec_to_TString(char *str, size_t len,int msec)
+{
+  int hour;
+  int minute;
+  int second;
+  int tenth;
+
+  if(msec<0) {
+    str[len]=0;
+    return 0;
+  }
+  hour=msec/3600000;
+  minute=(msec-3600000*hour)/60000;
+  second=(msec-3600000*hour-60000*minute)/1000;
+  tenth=(msec-3600000*hour-60000*minute-1000*second)/100;
+
+  snprintf(str,len,"%02d:%02d:%02d.%1d",hour,minute,second,tenth);
+
+  return strlen(str);
+}

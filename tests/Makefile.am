@@ -42,6 +42,7 @@ noinst_PROGRAMS = listgroups_test \
                 addlog_test \
                 deletelog_test \
                 listlog_test \
+                savelog_test \
 		editcart_test \
 		editcut_test \
 		importcart_test \
@@ -72,6 +73,8 @@ dist_audiostore_test_SOURCES = audiostore_test.c
 dist_trimaudio_test_SOURCES = trimaudio_test.c 
 dist_listlog_test_SOURCES = listlog_test.c 
 dist_listlogs_test_SOURCES = listlogs_test.c 
+dist_savelog_test_SOURCES = savelog_test.c \
+                            common.c common.h
 dist_listservices_test_SOURCES = listservices_test.c 
 dist_editcart_test_SOURCES = editcart_test.c 
 dist_editcut_test_SOURCES = editcut_test.c 
@@ -102,6 +105,7 @@ audiostore_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 trimaudio_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 listlog_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 listlogs_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
+savelog_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 listservices_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 editcart_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 editcut_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm

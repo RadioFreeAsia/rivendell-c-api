@@ -48,6 +48,7 @@ dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
 				rd_listschedcodes.c rd_listschedcodes.h\
 				rd_removecart.c rd_removecart.h \
 				rd_removecut.c rd_removecut.h \
+                                rd_savelog.c rd_savelog.h \
 				rd_trimaudio.c rd_trimaudio.h \
 				rd_unassignschedcode.c rd_unassignschedcode.h
 
@@ -83,6 +84,7 @@ include_HEADERS = rd_addcart.h\
                   rd_listlogs.h\
                   rd_listschedcodes.h\
                   rd_listservices.h\
+                  rd_savelog.h\
                   rd_schedcodes.h\
                   rd_removecart.h\
                   rd_removecut.h\

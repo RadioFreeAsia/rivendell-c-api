@@ -56,5 +56,6 @@ tests/listschedcodes_test
 tests/listservices_test
 tests/removecart_test
 tests/removecut_test
+tests/savelog_test
 tests/trimaudio_test
 tests/unassignschedcode_test
