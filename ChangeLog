@@ -170,5 +170,9 @@
 	math library. Updated rivendell.pc.in as well.
 2017-02-02 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'RD_SaveLog()' call.
-2017-02-02 Fred Gleason <fredg@paravelsystems.com>
+2017-02-03 Fred Gleason <fredg@paravelsystems.com>
+	* Added RD_Cnv_TString_to_msec() and RD_Cnv_msec_to_TString()
+	functions in 'rivendell/rd_common.c' and 'rivendell/rd_common.h'.
+	* Modified the 'rd_logline.logline_starttime' field in
+	'rivendell/rd_listlog.h' to be an int.
 	* Added 'link' and 'ext' fields to the 'RD_ListLog()' call.

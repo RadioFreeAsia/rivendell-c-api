@@ -56,4 +56,8 @@ extern double get_local_offset();
 
 extern int validate_tm (struct tm *tmptr);
 
+extern int RD_Cnv_TString_to_msec(const char *str);
+
+extern size_t RD_Cnv_msec_to_TString(char *str, size_t len,int msec);
+
 #endif  // RD_COMMON_H

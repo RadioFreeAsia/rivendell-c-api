@@ -33,6 +33,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
+  char starttime_buf[15];
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -117,7 +118,14 @@ int main(int argc,char *argv[])
     printf("              LogLine Evergreen: %d\n",logline[i].logline_evergreen);
     printf("                 LogLine Source: %d\n",logline[i].logline_source);
     printf("              LogLine Time Type: %d\n",logline[i].logline_time_type);
-    printf("             LogLine Start Time: %s\n",logline[i].logline_starttime);
+    if(RD_Cnv_msec_to_TString(starttime_buf,14,logline[i].logline_starttime)==0) {
+      printf("             LogLine Start Time: %d\n",
+	     logline[i].logline_starttime);
+    }
+    else {
+      printf("             LogLine Start Time: %d [%s]\n",
+	     logline[i].logline_starttime,starttime_buf);
+    }
     printf("        LogLine Transition Type: %d\n",logline[i].logline_transition_type);
     printf("           LogLine Cut Quantity: %d\n",logline[i].logline_cut_quantity);
     printf("        LogLine Last Cut Played: %d\n",logline[i].logline_last_cut_played);
@@ -157,17 +165,17 @@ int main(int argc,char *argv[])
 
     printf("           LogLine Event Length: %d\n",logline[i].logline_event_length);
     printf("        LogLine Link Event Name: %s\n",logline[i].logline_link_event_name);
-    printf("        LogLine Link Start Time: %s\n",logline[i].logline_link_starttime);
+    printf("        LogLine Link Start Time: %d\n",logline[i].logline_link_starttime);
     printf("        LogLine Link Start Slop: %d\n",logline[i].logline_link_start_slop);
     printf("          LogLine Link End Slop: %d\n",logline[i].logline_link_end_slop);
     printf("                LogLine Link Id: %d\n",logline[i].logline_link_id);
     printf("          LogLine Link Embedded: %d\n",logline[i].logline_link_embedded);
-    printf("         LogLine Ext Start Time: %s\n",logline[i].logline_ext_starttime);
+    printf("         LogLine Ext Start Time: %d\n",logline[i].logline_ext_starttime);
     printf("             LogLine Ext Length: %d\n",logline[i].logline_ext_length);
-    printf("         LogLine Ext Cart Name: %s\n",logline[i].logline_ext_cart_name);
-    printf("         LogLine Ext Data: %s\n",logline[i].logline_ext_data);
-    printf("         LogLine Ext Event Id: %s\n",logline[i].logline_ext_event_id);
-    printf("         LogLine Ext Annc Type: %s\n",logline[i].logline_ext_annc_type);
+    printf("          LogLine Ext Cart Name: %s\n",logline[i].logline_ext_cart_name);
+    printf("               LogLine Ext Data: %s\n",logline[i].logline_ext_data);
+    printf("           LogLine Ext Event Id: %s\n",logline[i].logline_ext_event_id);
+    printf("          LogLine Ext Annc Type: %s\n",logline[i].logline_ext_annc_type);
 
     printf("\n");
   }

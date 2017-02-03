@@ -49,7 +49,7 @@ struct rd_logline {
   int  logline_evergreen;
   int  logline_source;
   int  logline_time_type;
-  char logline_starttime[13];
+  int  logline_starttime;
   int  logline_transition_type;
   int  logline_cut_quantity;
   int  logline_last_cut_played;
@@ -80,12 +80,12 @@ struct rd_logline {
   int  logline_hook_end_point;
   int  logline_event_length;
   char logline_link_event_name[65];
-  char logline_link_starttime[13];
+  int  logline_link_starttime;
   int  logline_link_start_slop;
   int  logline_link_end_slop;
   int  logline_link_id;
   int  logline_link_embedded;
-  char logline_ext_starttime[13];
+  int  logline_ext_starttime;
   int  logline_ext_length;
   char logline_ext_cart_name[33];
   char logline_ext_data[33];

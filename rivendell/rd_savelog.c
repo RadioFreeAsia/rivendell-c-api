@@ -40,6 +40,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 {
   char url[1500];
   char str[1024];
+  char dtstr[256];
   char *post=malloc(1);
   CURL *curl=NULL;
   CURLcode res;
@@ -76,13 +77,16 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
   snprintf(str,1024,"AUTO_REFRESH=%d&",hdrvals->loghdr_autorefresh);
   post=AppendString(post,str);
 
-  snprintf(str,1024,"PURGE_DATE=&");
+  RD_Cnv_tm_to_DTString(&hdrvals->loghdr_purge_date,dtstr);
+  snprintf(str,1024,"PURGE_DATE=%s&",dtstr);
   post=AppendString(post,str);
 
-  snprintf(str,1024,"START_DATE=&");
+  RD_Cnv_tm_to_DTString(&hdrvals->loghdr_start_date,dtstr);
+  snprintf(str,1024,"START_DATE=%s&",dtstr);
   post=AppendString(post,str);
 
-  snprintf(str,1024,"END_DATE=&");
+  RD_Cnv_tm_to_DTString(&hdrvals->loghdr_end_date,dtstr);
+  snprintf(str,1024,"END_DATE=%s&",dtstr);
   post=AppendString(post,str);
 
   snprintf(str,1024,"LINE_QUANTITY=%d",linevals_quan);
@@ -174,7 +178,11 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	     curl_easy_escape(curl,linevals->logline_origin_user,0));
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_ORIGIN_DATETIME=%s",i,
+    RD_Cnv_tm_to_DTString(&linevals->logline_origin_datetime,dtstr);
+    snprintf(str,1024,"&LINE%u_ORIGIN_DATETIME=%s",i,dtstr);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_ORIGIN_USER=%s",i,
 	     curl_easy_escape(curl,linevals->logline_origin_user,0));
     post=AppendString(post,str);
 

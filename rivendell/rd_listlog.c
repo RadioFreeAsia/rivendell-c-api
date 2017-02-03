@@ -207,7 +207,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     }
   }
   if(strcasecmp(el,"startTime")==0) {
-    strlcpy(logline->logline_starttime,xml_data->strbuf,12);
+    logline->logline_starttime=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"transitionType")==0) {
     if(strcasecmp(xml_data->strbuf,"PLAY")==0) {
@@ -354,7 +354,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     strlcpy(logline->logline_link_event_name,xml_data->strbuf,64);
   }
   if(strcasecmp(el,"linkStartTime")==0) {
-    strlcpy(logline->logline_link_starttime,xml_data->strbuf,12);
+    logline->logline_link_starttime=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"linkStartSlop")==0) {
       sscanf(xml_data->strbuf,"%d",&logline->logline_link_start_slop);
@@ -374,7 +374,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     }
   }
   if(strcasecmp(el,"extStartTime")==0) {
-    strlcpy(logline->logline_ext_starttime,xml_data->strbuf,12);
+    logline->logline_ext_starttime=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"extLength")==0) {
       sscanf(xml_data->strbuf,"%d",&logline->logline_ext_length);
