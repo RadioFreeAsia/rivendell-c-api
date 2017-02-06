@@ -179,3 +179,6 @@
 2017-02-03 Todd Baker <bakert@rfa.org>
 	* Updated comments in rivendell/rd_common.c, rivendell/rd_addcart.c 
 	and rivendell/rd_addcart.h.
+2017-02-03 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'RD_Cnv_tm_to_DTString()' in 'rivendell/rd_common.c'
+	that caused a segfault when passed a null 'struct tm' value.
