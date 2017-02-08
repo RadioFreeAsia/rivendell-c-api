@@ -60,6 +60,7 @@ struct save_logline_values {
   int  logline_event_length;
   char logline_link_event_name[65];
   char logline_link_starttime[13];
+  int  logline_link_length;
   int  logline_link_start_slop;
   int  logline_link_end_slop;
   int  logline_link_id;

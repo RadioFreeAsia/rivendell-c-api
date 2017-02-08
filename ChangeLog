@@ -182,3 +182,10 @@
 2017-02-03 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in 'RD_Cnv_tm_to_DTString()' in 'rivendell/rd_common.c'
 	that caused a segfault when passed a null 'struct tm' value.
+2017-02-08 Fred Gleason <fredg@paravelsystems.com>
+	* Added the 'logline_gracetime' field to the
+	'save_logline_values' struct in 'rivendell/rd_savelog.h'.
+	* Added the 'logline_link_length' field to the
+	'save_logline_values' struct in 'rivendell/rd_savelog.h'.
+	* Fixed typos in 'rivendell/rd_savelog.c' that broke the
+	RD_SaveLog() call.

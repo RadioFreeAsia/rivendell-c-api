@@ -109,6 +109,9 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     snprintf(str,1024,"&LINE%u_START_TIME=%u",i,linevals[i].logline_starttime);
     post=AppendString(post,str);
 
+    snprintf(str,1024,"&LINE%u_GRACE_TIME=%u",i,linevals[i].logline_gracetime);
+    post=AppendString(post,str);
+
     snprintf(str,1024,"&LINE%u_ID=%u",i,linevals[i].logline_gracetime);
     post=AppendString(post,str);
 
@@ -133,6 +136,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
       snprintf(str,1024,"&LINE%u_TRANS_TYPE=STOP",i);
       break;
     }
+    post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_START_POINT=%u",i,
 	     linevals[i].logline_start_point_log);
@@ -194,15 +198,19 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	     curl_easy_escape(curl,linevals->logline_link_event_name,0));
     post=AppendString(post,str);
 
+    snprintf(str,1024,"&LINE%u_LINK_LENGTH=%u",i,
+	     linevals[i].logline_link_length);
+    post=AppendString(post,str);
+
     snprintf(str,1024,"&LINE%u_LINK_START_TIME=%u",i,
 	     linevals[i].logline_link_starttime);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_LINK_START_SLOT=%u",i,
+    snprintf(str,1024,"&LINE%u_LINK_START_SLOP=%u",i,
 	     linevals[i].logline_link_start_slop);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_LINK_END_SLOT=%u",i,
+    snprintf(str,1024,"&LINE%u_LINK_END_SLOP=%u",i,
 	     linevals[i].logline_link_end_slop);
     post=AppendString(post,str);
 
