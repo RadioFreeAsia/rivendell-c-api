@@ -115,6 +115,9 @@ all-local:	rd_addcart.html\
                 rd_removecut.html\
                 rd_removecut.pdf\
                 rd_removecut.xml\
+                rd_savelog.html\
+                rd_savelog.pdf\
+                rd_savelog.xml\
                 rd_trimaudio.html\
                 rd_trimaudio.pdf\
                 rd_trimaudio.xml\
@@ -149,6 +152,7 @@ man_MANS = rd_addcart.7\
            rd_listservices.7\
            rd_removecart.7\
            rd_removecut.7\
+           rd_savelog.7\
            rd_trimaudio.7\
            rd_unassignschedcode.7
 
@@ -263,6 +267,10 @@ EXTRA_DIST = rd_addcart.7\
              rd_removecut.html\
              rd_removecut.pdf\
              rd_removecut.xml\
+             rd_savelog.7\
+             rd_savelog.html\
+             rd_savelog.pdf\
+             rd_savelog.xml\
              rd_trimaudio.7\
              rd_trimaudio.html\
              rd_trimaudio.pdf\

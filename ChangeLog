@@ -189,3 +189,7 @@
 	'save_logline_values' struct in 'rivendell/rd_savelog.h'.
 	* Fixed typos in 'rivendell/rd_savelog.c' that broke the
 	RD_SaveLog() call.
+	* Altered the 'logline_link_starttime' and 'logline_ext_starttime'
+	fields of 'struct save_logline_values' to be 'struct tm' instead
+	of 'char []'.
+	* Added an rd_savelog(7) man page.

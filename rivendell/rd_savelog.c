@@ -202,8 +202,8 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	     linevals[i].logline_link_length);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_LINK_START_TIME=%u",i,
-	     linevals[i].logline_link_starttime);
+    RD_Cnv_tm_to_DTString(&linevals[i].logline_link_starttime,dtstr);
+    snprintf(str,1024,"&LINE%u_LINK_START_TIME=%s",i,dtstr);
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_LINK_START_SLOP=%u",i,
@@ -222,8 +222,8 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	     linevals[i].logline_link_embedded);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_EXT_START_TIME=%u",i,
-	     linevals[i].logline_ext_starttime);
+    RD_Cnv_tm_to_DTString(&linevals[i].logline_ext_starttime,dtstr);
+    snprintf(str,1024,"&LINE%u_EXT_START_TIME=%s",i,dtstr);
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_EXT_LENGTH=%u",i,
