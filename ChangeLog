@@ -193,3 +193,5 @@
 	fields of 'struct save_logline_values' to be 'struct tm' instead
 	of 'char []'.
 	* Added an rd_savelog(7) man page.
+2017-02-08 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'logline_conductor' field to the 'rd_logline' struct.

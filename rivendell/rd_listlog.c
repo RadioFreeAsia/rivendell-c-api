@@ -163,6 +163,9 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
   if(strcasecmp(el,"agency")==0) {
     strlcpy(logline->logline_agency,xml_data->strbuf,65);
   }
+  if(strcasecmp(el,"conductor")==0) {
+    strlcpy(logline->logline_conductor,xml_data->strbuf,65);
+  }
   if(strcasecmp(el,"userDefined")==0) {
     strlcpy(logline->logline_user_defined,xml_data->strbuf,256);
   }
