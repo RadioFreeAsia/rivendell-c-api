@@ -48,6 +48,8 @@ struct edit_cart_values {
   int use_cart_publisher;
   char cart_composer[65];
   int use_cart_composer;
+  char cart_conductor[65];
+  int use_cart_conductor;
   char cart_user_defined[256];
   int use_cart_user_defined;
   int  cart_usage_code;

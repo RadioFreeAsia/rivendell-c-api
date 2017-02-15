@@ -115,6 +115,7 @@ int main(int argc,char *argv[])
     printf("              Cart Agency: %s\n",carts[i].cart_agency);
     printf("           Cart Publisher: %s\n",carts[i].cart_publisher);
     printf("            Cart Composer: %s\n",carts[i].cart_composer);
+    printf("           Cart Conductor: %s\n",carts[i].cart_conductor);
     printf("        Cart User Defined: %s\n",carts[i].cart_user_defined);
     printf("          Cart Usage Code: %d\n",carts[i].cart_usage_code);
     printf("       Cart Forced Length: %d\n",carts[i].cart_forced_length);

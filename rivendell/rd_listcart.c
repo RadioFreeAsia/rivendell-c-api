@@ -111,6 +111,9 @@ static void XMLCALL __ListCartElementEnd(void *data, const char *el)
   if(strcasecmp(el,"composer")==0) {
     strlcpy(carts->cart_composer,xml_data->strbuf,64);
   }
+  if(strcasecmp(el,"conductor")==0) {
+    strlcpy(carts->cart_conductor,xml_data->strbuf,64);
+  }
   if(strcasecmp(el,"userDefined")==0) {
     strlcpy(carts->cart_user_defined,xml_data->strbuf,255);
   }

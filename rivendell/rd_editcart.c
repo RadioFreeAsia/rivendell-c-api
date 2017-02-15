@@ -111,6 +111,9 @@ static void XMLCALL __EditCartElementEnd(void *data, const char *el)
   if(strcasecmp(el,"composer")==0) {
     strlcpy(cart->cart_composer,xml_data->strbuf,64);
   }
+  if(strcasecmp(el,"conductor")==0) {
+    strlcpy(cart->cart_conductor,xml_data->strbuf,64);
+  }
   if(strcasecmp(el,"userDefined")==0) {
     strlcpy(cart->cart_user_defined,xml_data->strbuf,255);
   }
@@ -295,6 +298,11 @@ void Build_Post_Cart_Fields(char *post, struct edit_cart_values edit_values)
   if (edit_values.use_cart_composer)
   {
     snprintf(buffer,1024,"&COMPOSER=%s",edit_values.cart_composer);
+    strcat(post,buffer);
+  }
+  if (edit_values.use_cart_conductor)
+  {
+    snprintf(buffer,1024,"&CONDUCTOR=%s",edit_values.cart_conductor);
     strcat(post,buffer);
   }
   if (edit_values.use_cart_user_defined)
