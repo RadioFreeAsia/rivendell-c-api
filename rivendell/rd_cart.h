@@ -30,6 +30,7 @@ struct rd_cart {
   char cart_agency[65];
   char cart_publisher[65];
   char cart_composer[65];
+  char cart_conductor[65];
   char cart_user_defined[256];
   int  cart_usage_code;
   int  cart_forced_length;

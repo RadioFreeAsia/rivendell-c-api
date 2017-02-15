@@ -198,3 +198,7 @@
 2017-02-15 Fred Gleason <fredg@paravelsystems.com>
 	* Changed the type of the 'logline_forced_length' field of the
 	'rd_logline' struct to return milliseconds.
+2017-02-15 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'cart_conductor' field to the 'rd_cart' struct.
+	* Added 'cart_composer' and 'use_cart_composer' fields to the
+	'rd_cart_values' struct.

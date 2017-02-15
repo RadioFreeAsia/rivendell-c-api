@@ -210,6 +210,8 @@
       int use_cart_publisher;
       char cart_composer[65];
       int use_cart_composer;
+      char cart_conductor[65];
+      int use_cart_conductor;
       char cart_user_defined[256];
       int use_cart_user_defined;
       int  cart_usage_code;
@@ -244,6 +246,7 @@
   	  char cart_agency[65];                /* Agency */
   	  char cart_publisher[65];             /* Publisher */
   	  char cart_composer[65];              /* Composer */
+  	  char cart_conductor[65];              /* Conductor */
   	  char cart_user_defined[256];         /* User Defined */
   	  int  cart_usage_code;                /* Usage Code */
   	  int cart_forced_length;              /* Forced Length */
@@ -285,6 +288,8 @@
       The cart_publisher is 64 characters.
 
       The cart_composer is 64 characters.
+
+      The cart_conductor is 64 characters.
 
       The cart_user_defined is 255 characters.
       
