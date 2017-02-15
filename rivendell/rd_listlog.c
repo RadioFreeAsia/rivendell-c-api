@@ -176,7 +176,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     logline->logline_enforce_length=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"forcedLength")==0) {
-    strlcpy(logline->logline_forced_length,xml_data->strbuf,9);
+    logline->logline_forced_length=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"evergreen")==0) {
     logline->logline_evergreen=RD_ReadBool(xml_data->strbuf);

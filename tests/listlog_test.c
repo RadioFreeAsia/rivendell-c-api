@@ -111,10 +111,11 @@ int main(int argc,char *argv[])
     printf("                 LogLine Agency: %s\n",logline[i].logline_agency);
     printf("              LogLine Publisher: %s\n",logline[i].logline_publisher);
     printf("               LogLine Composer: %s\n",logline[i].logline_composer);
+    printf("              LogLine Conductor: %s\n",logline[i].logline_conductor);
     printf("           LogLine User Defined: %s\n",logline[i].logline_user_defined);
     printf("             LogLine Usage Code: %d\n",logline[i].logline_usage_code);
     printf("         LogLine Enforce Length: %d\n",logline[i].logline_enforce_length);
-    printf("          LogLine Forced Length: %s\n",logline[i].logline_forced_length);
+    printf("          LogLine Forced Length: %d\n",logline[i].logline_forced_length);
     printf("              LogLine Evergreen: %d\n",logline[i].logline_evergreen);
     printf("                 LogLine Source: %d\n",logline[i].logline_source);
     printf("              LogLine Time Type: %d\n",logline[i].logline_time_type);
