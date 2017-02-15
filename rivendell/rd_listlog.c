@@ -163,6 +163,9 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
   if(strcasecmp(el,"agency")==0) {
     strlcpy(logline->logline_agency,xml_data->strbuf,65);
   }
+  if(strcasecmp(el,"conductor")==0) {
+    strlcpy(logline->logline_conductor,xml_data->strbuf,65);
+  }
   if(strcasecmp(el,"userDefined")==0) {
     strlcpy(logline->logline_user_defined,xml_data->strbuf,256);
   }
@@ -173,7 +176,7 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
     logline->logline_enforce_length=RD_ReadBool(xml_data->strbuf);
   }
   if(strcasecmp(el,"forcedLength")==0) {
-    strlcpy(logline->logline_forced_length,xml_data->strbuf,9);
+    logline->logline_forced_length=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"evergreen")==0) {
     logline->logline_evergreen=RD_ReadBool(xml_data->strbuf);

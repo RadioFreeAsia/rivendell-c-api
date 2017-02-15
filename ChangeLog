@@ -193,3 +193,8 @@
 	fields of 'struct save_logline_values' to be 'struct tm' instead
 	of 'char []'.
 	* Added an rd_savelog(7) man page.
+2017-02-10 Fred Gleason <fredg@paravelsystems.com>
+	* Added an 'logline_conductor' field to the 'rd_logline' struct.
+2017-02-15 Fred Gleason <fredg@paravelsystems.com>
+	* Changed the type of the 'logline_forced_length' field of the
+	'rd_logline' struct to return milliseconds.

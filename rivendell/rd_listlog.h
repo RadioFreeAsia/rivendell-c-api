@@ -42,10 +42,12 @@ struct rd_logline {
   char logline_agency[65];
   char logline_publisher[65];
   char logline_composer[65];
+  char logline_conductor[65];
   char logline_user_defined[256];
   int  logline_usage_code;
   int  logline_enforce_length;
-  char logline_forced_length[10];
+  //  char logline_forced_length[10];
+  int  logline_forced_length;
   int  logline_evergreen;
   int  logline_source;
   int  logline_time_type;
