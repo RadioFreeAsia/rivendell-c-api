@@ -121,19 +121,19 @@ static void XMLCALL __ListCartElementEnd(void *data, const char *el)
     sscanf(xml_data->strbuf,"%d",&carts->cart_usage_code);
   }
   if(strcasecmp(el,"forcedLength")==0) {
-    sscanf(xml_data->strbuf,"%d",&carts->cart_forced_length);
+    carts->cart_forced_length=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"averageLength")==0) {
-    sscanf(xml_data->strbuf,"%d",&carts->cart_average_length);
+    carts->cart_average_length=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"lengthDeviation")==0) {
-    sscanf(xml_data->strbuf,"%d",&carts->cart_length_deviation);
+    carts->cart_length_deviation=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"averageSegueLength")==0) {
-    sscanf(xml_data->strbuf,"%d",&carts->cart_average_segue_length);
+    carts->cart_average_segue_length=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"averageHookLength")==0) {
-    sscanf(xml_data->strbuf,"%d",&carts->cart_average_hook_length);
+    carts->cart_average_hook_length=RD_Cnv_TString_to_msec(xml_data->strbuf);
   }
   if(strcasecmp(el,"cutQuantity")==0) {
     sscanf(xml_data->strbuf,"%u",&carts->cart_cut_quantity);
