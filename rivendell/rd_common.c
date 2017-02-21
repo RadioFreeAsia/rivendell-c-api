@@ -147,7 +147,7 @@ size_t RD_Cnv_tm_to_DTString(struct tm *tmptr,char * dest)
     char thesec[3];
     char plusminus[3];
     char minus[2] = "-";
-    char colon_sep[3] = "%3a";
+    char colon_sep[4] = "%3a";
     char T_sep[2] = "T";
     char offsethr[3];
     char offsetmin[3];
