@@ -210,3 +210,6 @@
 2017-02-21 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a buffer overflow bug in RD_Cnv_tm_to_DTString() in
 	'rivendell/rd_common.c'.
+2017-02-22 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'rivendell/rd_savelog.c' that broke multi-line
+	log saves.
