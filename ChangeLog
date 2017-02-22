@@ -207,3 +207,6 @@
 	'rivendell/rd_listcart.c' that caused the 'cart_forced_length',
 	'cart_average_length', 'cart_length_deviation' and
 	'cart_average_segue_length' fields to always be returned as '0'.
+2017-02-21 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a buffer overflow bug in RD_Cnv_tm_to_DTString() in
+	'rivendell/rd_common.c'.
