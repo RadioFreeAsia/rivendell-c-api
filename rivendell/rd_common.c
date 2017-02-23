@@ -110,7 +110,11 @@ struct tm RD_Cnv_DTString_to_tm( const char *datein)
 //    Get the local offset from UTC
     offsetfromutc = get_local_offset();
     newrawtime += offsetfromutc;
+#ifdef _WIN32
+    localtime(&newrawtime);
+#else
     localtime_r(&newrawtime,tmptr);
+#endif  // _WIN32
     return datetimetm;
 }
     
