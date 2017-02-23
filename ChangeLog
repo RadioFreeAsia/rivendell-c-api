@@ -213,3 +213,6 @@
 2017-02-22 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in 'rivendell/rd_savelog.c' that broke multi-line
 	log saves.
+2017-02-23 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'rivendell/rd_savelog.c' that caused the value of
+	certain logline fields to be used for every line.
