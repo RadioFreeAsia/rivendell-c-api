@@ -168,23 +168,23 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_COMMENT=%s",i,
-	     curl_easy_escape(curl,linevals->logline_marker_comment,0));
+	     curl_easy_escape(curl,linevals[i].logline_marker_comment,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_LABEL=%s",i,
-	     curl_easy_escape(curl,linevals->logline_marker_label,0));
+	     curl_easy_escape(curl,linevals[i].logline_marker_label,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_ORIGIN_USER=%s",i,
-	     curl_easy_escape(curl,linevals->logline_origin_user,0));
+	     curl_easy_escape(curl,linevals[i].logline_origin_user,0));
     post=AppendString(post,str);
 
-    RD_Cnv_tm_to_DTString(&linevals->logline_origin_datetime,dtstr);
+    RD_Cnv_tm_to_DTString(&linevals[i].logline_origin_datetime,dtstr);
     snprintf(str,1024,"&LINE%u_ORIGIN_DATETIME=%s",i,dtstr);
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_ORIGIN_USER=%s",i,
-	     curl_easy_escape(curl,linevals->logline_origin_user,0));
+	     curl_easy_escape(curl,linevals[i].logline_origin_user,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_EVENT_LENGTH=%u",i,
@@ -192,7 +192,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_LINK_EVENT_NAME=%s",i,
-	     curl_easy_escape(curl,linevals->logline_link_event_name,0));
+	     curl_easy_escape(curl,linevals[i].logline_link_event_name,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_LINK_LENGTH=%u",i,
@@ -228,19 +228,19 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_EXT_CART_NAME=%s",i,
-	     curl_easy_escape(curl,linevals->logline_ext_cart_name,0));
+	     curl_easy_escape(curl,linevals[i].logline_ext_cart_name,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_EXT_DATA=%s",i,
-	     curl_easy_escape(curl,linevals->logline_ext_data,0));
+	     curl_easy_escape(curl,linevals[i].logline_ext_data,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_EXT_EVENT_ID=%s",i,
-	     curl_easy_escape(curl,linevals->logline_ext_event_id,0));
+	     curl_easy_escape(curl,linevals[i].logline_ext_event_id,0));
     post=AppendString(post,str);
 
     snprintf(str,1024,"&LINE%u_EXT_ANNC_TYPE=%s",i,
-	     curl_easy_escape(curl,linevals->logline_ext_annc_type,0));
+	     curl_easy_escape(curl,linevals[i].logline_ext_annc_type,0));
     post=AppendString(post,str);
   }
 
