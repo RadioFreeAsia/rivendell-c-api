@@ -216,3 +216,6 @@
 2017-02-23 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in 'rivendell/rd_savelog.c' that caused the value of
 	certain logline fields to be used for every line.
+2017-02-24 Todd Baker <bakert@rfa.org>
+	* Added a conditional compile in 'rivendell/rd_common.c' to
+	avoid the use of localtime_r() on MingW32.
