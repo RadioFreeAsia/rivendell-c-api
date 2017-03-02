@@ -12,7 +12,7 @@ before they will work correctly.  Information on getting these libraries is belo
 
   The first library required is the EXPAT XMP Parser Library written in C which 
   is available on the internet at:
-        http://sourceforge.new/projects/expat.
+        http://sourceforge.net/projects/expat.
 
   This second library also required is the LIBCURL Library which is a free 
   open source client that can be used to get documents to and from servers using 

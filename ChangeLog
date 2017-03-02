@@ -219,3 +219,5 @@
 2017-02-24 Todd Baker <bakert@rfa.org>
 	* Added a conditional compile in 'rivendell/rd_common.c' to
 	avoid the use of localtime_r() on MingW32.
+2017-03-02 Todd Baker <bakert@rfa.org>
+        * Fixed Typo in README for Expat Library.
