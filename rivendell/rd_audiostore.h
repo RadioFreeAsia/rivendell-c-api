@@ -34,6 +34,7 @@ int RD_AudioStore(struct rd_audiostore *audiostore[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

@@ -25,6 +25,7 @@
 int RD_AddLog(const char hostname[],
 	      const char username[],
 	      const char passwd[],
+	      const char ticket[],
 	      const char logname[],
 	      const char servicename[])
 {
@@ -39,9 +40,10 @@ int RD_AddLog(const char hostname[],
    * Setup the CURL call
    */
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=29&LOGIN_NAME=%s&PASSWORD=%s&LOG_NAME=%s&SERVICE_NAME=%s",
+  snprintf(post,1500,"COMMAND=29&LOGIN_NAME=%s&PASSWORD=%s&ticket=%s&LOG_NAME=%s&SERVICE_NAME=%s",
 	   curl_easy_escape(curl,username,0),
 	   curl_easy_escape(curl,passwd,0),
+	   curl_easy_escape(curl,ticket,0),
 	   curl_easy_escape(curl,logname,0),
 	   curl_easy_escape(curl,servicename,0));
   if((curl=curl_easy_init())==NULL) {

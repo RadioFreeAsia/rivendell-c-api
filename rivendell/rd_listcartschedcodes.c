@@ -85,6 +85,7 @@ int RD_ListCartSchedCodes(struct rd_schedcodes *scodes[],
 		  	const char hostname[],
                   	const char username[],
                   	const char passwd[],
+			const char ticket[],
 			const unsigned cartnum,
                   	unsigned *numrecs)
 {
@@ -110,9 +111,10 @@ int RD_ListCartSchedCodes(struct rd_schedcodes *scodes[],
 			__ListCartSchedCodesElementEnd);
   XML_SetCharacterDataHandler(parser,__ListCartSchedCodesElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=27&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=27&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	cartnum);
   if((curl=curl_easy_init())==NULL) {
     return -1;

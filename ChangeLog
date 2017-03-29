@@ -221,3 +221,11 @@
 	avoid the use of localtime_r() on MingW32.
 2017-03-02 Todd Baker <bakert@rfa.org>
         * Fixed Typo in README for Expat Library.
+2017-03-29 Todd Baker <bakert@rfa.org>
+	* Added ticket field to all of the Rivendell Web Libary calls.  
+	When provided - the ticket will be used for authentification
+	instead of user/password.
+        * Added rd_create_ticked.c and rd_create_ticket.h for creating
+	an authentification ticket via the Rivendell Web API.
+	* Added createticket_test.c test harness for testing of 
+	creation of authentification tickets.

@@ -33,6 +33,7 @@ int RD_ListServices(struct rd_service *services[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const int  trackable,
 			unsigned *numrecs);
 

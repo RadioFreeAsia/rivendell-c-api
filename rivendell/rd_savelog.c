@@ -36,6 +36,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	       const char hostname[],
 	       const char username[],
 	       const char passwd[],
+	       const char ticket[],
 	       const char logname[])
 {
   char url[1500];
@@ -63,6 +64,9 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
   post=AppendString(post,str);
 
   snprintf(str,1024,"PASSWORD=%s&",curl_easy_escape(curl,passwd,0));
+  post=AppendString(post,str);
+
+  snprintf(str,1024,"TICKET=%s&",curl_easy_escape(curl,ticket,0));
   post=AppendString(post,str);
 
   snprintf(str,1024,"LOG_NAME=%s&",curl_easy_escape(curl,logname,0));

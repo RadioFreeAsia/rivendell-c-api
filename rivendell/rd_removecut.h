@@ -27,6 +27,7 @@ _MYRIVLIB_INIT_DECL
 int RD_RemoveCut( const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned cartnumber,
 			const unsigned cutnumber);
 

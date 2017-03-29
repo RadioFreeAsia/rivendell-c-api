@@ -1,8 +1,8 @@
-/* rd_trimaudio.h
+/* rd_createticket.h
  *
- * Header for the Trim Audio  Rivendell Access Library
+ * Header for the Create Ticket Rivendell Access Library
  *
- * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>
+ * (C) Copyright 2017 Todd Baker  <bakert@rfa.org>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -18,29 +18,24 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef RD_TRIMAUDIO_H
-#define RD_TRIMAUDIO_H
+#ifndef RD_CREATETICKET_H
+#define RD_CREATETICKET_H
 
-struct rd_trimaudio {
-  unsigned cart_number;
-  unsigned cut_number;
-  int trimlevel;
-  int starttrimpoint;
-  int endtrimpoint;
-};
 #include <rivendell/rd_common.h>
 
 _MYRIVLIB_INIT_DECL
 
-int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
-		  	const char hostname[],
+struct rd_ticketinfo {
+  char ticket[40];
+  struct tm tkt_expiration_datetime;
+};
+
+int RD_CreateTicket(struct rd_ticketinfo *ticketinfo[],
+                        const char hostname[],
 			const char username[],
 			const char passwd[],
-			const char ticket[],
-			const unsigned cartnumber,
-                        const unsigned cutnumber,
-			const int trimlevel,
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL
-#endif  // RD_TRIMAUDIO_H
+
+#endif  // RD_CREATETICKET_H

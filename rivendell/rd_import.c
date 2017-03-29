@@ -81,6 +81,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
                         const char hostname[],
 			const char         username[],
 			const char           passwd[],
+			const char           ticket[],
 			const unsigned        cartnum,
 			const unsigned         cutnum,
 			const unsigned       channels,
@@ -166,6 +167,14 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 	curl_easy_escape(curl,passwd,0),
 	CURLFORM_END);
 
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"TICKET",
+        CURLFORM_COPYCONTENTS,
+	curl_easy_escape(curl,ticket,0),
+	CURLFORM_END);
+
   sprintf(cart_buffer,"%u",cartnum);
   curl_formadd(&first,
 	&last,
@@ -242,7 +251,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 	CURLFORM_PTRNAME,
 	"FILENAME",
         CURLFORM_FILE,
-	curl_easy_escape(curl,checked_fname,0),
+	checked_fname,
 	CURLFORM_END);
 
   if((curl=curl_easy_init())==NULL) {

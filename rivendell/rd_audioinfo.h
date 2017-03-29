@@ -39,6 +39,7 @@ int RD_AudioInfo(struct rd_audioinfo *audioinfo[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned cartnumber,
                         const unsigned cutnumber,
 			unsigned *numrecs);

@@ -1,8 +1,8 @@
-/* rd_listgroups.c
+/* rd_createticket.c
  *
- * Implementation of the ListGroups Rivendell Access Library
+ * Implementation of the Create Ticket Rivendell Access Library
  *
- * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>             
+ * (C) Copyright 2017 Todd Baker  <bakert@rfa.org>             
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -25,30 +25,30 @@
 #include <expat.h>
 
 #include "rd_common.h"
-#include "rd_listgroups.h"
+#include "rd_createticket.h"
 
 struct xml_data {
-  unsigned grps_quan;
   char elem_name[256];
   char strbuf[1024];
-  struct rd_group *grps;
+  struct rd_ticketinfo *ticketinfo;
 };
 
 
-static void XMLCALL __ListGroupsElementStart(void *data, const char *el, 
+static void XMLCALL __CreateTicketElementStart(void *data, const char *el, 
 					     const char **attr)
 {
+  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
-  if(strcasecmp(el,"group")==0) {    // Allocate a new group entry
-    xml_data->grps=realloc(xml_data->grps,
-			   (xml_data->grps_quan+1)*sizeof(struct rd_group));
-    (xml_data->grps_quan)++;
+  if(strcasecmp(el,"ticketInfo")==0) {    // Allocate a new ticketinfo entry
+    xml_data->ticketinfo=realloc(xml_data->ticketinfo,
+			   sizeof(struct rd_ticketinfo));
   }
   strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
 
-static void XMLCALL __ListGroupsElementData(void *data,const XML_Char *s,
+
+static void XMLCALL __CreateTicketElementData(void *data,const XML_Char *s,
 					    int len)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
@@ -57,53 +57,23 @@ static void XMLCALL __ListGroupsElementData(void *data,const XML_Char *s,
 }
 
 
-static void XMLCALL __ListGroupsElementEnd(void *data, const char *el)
+static void XMLCALL __CreateTicketElementEnd(void *data, const char *el)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
-  struct rd_group *grp=xml_data->grps+(xml_data->grps_quan-1);
+  struct rd_ticketinfo *ticketinfo=xml_data->ticketinfo;
+  char hold_datetime[25];
 
-  if(strcasecmp(el,"name")==0) {
-    strlcpy(grp->grp_name,xml_data->strbuf,10);
+  if(strcasecmp(el,"ticket")==0) {
+    strlcpy(ticketinfo->ticket,xml_data->strbuf,256);
   }
-  if(strcasecmp(el,"description")==0) {
-    strlcpy(grp->grp_desc,xml_data->strbuf,256);
-  }
-  if(strcasecmp(el,"defaultcarttype")==0) {
-    if(strcasecmp(xml_data->strbuf,"audio")==0) {
-      grp->grp_default_cart_type=0;
-    }
-    if(strcasecmp(xml_data->strbuf,"macro")==0) {
-      grp->grp_default_cart_type=1;
-    }
-  }
-  if(strcasecmp(el,"defaultlowcart")==0) {
-    sscanf(xml_data->strbuf,"%u",&grp->grp_lo_limit);
-  }
-  if(strcasecmp(el,"defaulthighcart")==0) {
-    sscanf(xml_data->strbuf,"%u",&grp->grp_hi_limit);
-  }
-  if(strcasecmp(el,"cutshelflife")==0) {
-    sscanf(xml_data->strbuf,"%d",&grp->grp_shelf_life);
-  }
-  if(strcasecmp(el,"defaulttitle")==0) {
-    strlcpy(grp->grp_default_title,xml_data->strbuf,256);
-  }
-  if(strcasecmp(el,"enforcecartrange")==0) {
-    grp->grp_enforce_range=RD_ReadBool(xml_data->strbuf);
-  }
-  if(strcasecmp(el,"reporttfc")==0) {
-    grp->grp_report_tfc=RD_ReadBool(xml_data->strbuf);
-  }
-  if(strcasecmp(el,"reportmus")==0) {
-    grp->grp_report_mus=RD_ReadBool(xml_data->strbuf);
-  }
-  if(strcasecmp(el,"color")==0) {
-    strlcpy(grp->grp_color,xml_data->strbuf,8);
+  if(strcasecmp(el,"expires")==0) {
+    strlcpy(hold_datetime,xml_data->strbuf,26);
+    ticketinfo->tkt_expiration_datetime = RD_Cnv_DTString_to_tm(hold_datetime);
   }
 }
 
 
-size_t __ListGroupsCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
+size_t __CreateTicketCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
 {
   XML_Parser p=(XML_Parser)userdata;
 
@@ -113,11 +83,10 @@ size_t __ListGroupsCallback(void *ptr, size_t size, size_t nmemb, void *userdata
 }
 
 
-int RD_ListGroups(struct rd_group *grps[],
+int RD_CreateTicket(struct rd_ticketinfo *ticketinfo[],
 		  	const char hostname[],
-			const char username[],
-			const char passwd[],
-			const char ticket[],
+                  	const char username[],
+                  	const char passwd[],
                   	unsigned *numrecs)
 {
   char post[1500];
@@ -125,12 +94,11 @@ int RD_ListGroups(struct rd_group *grps[],
   CURL *curl=NULL;
   XML_Parser parser;
   struct xml_data xml_data;
-  struct rd_group groups[20];
   long response_code;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
 
-   /* set number of recs so if fail already set */
+   /* Set number of recs so if fail already set */
   *numrecs = 0;
 
   /*
@@ -139,19 +107,18 @@ int RD_ListGroups(struct rd_group *grps[],
   memset(&xml_data,0,sizeof(xml_data));
   parser=XML_ParserCreate(NULL);
   XML_SetUserData(parser,&xml_data);
-  XML_SetElementHandler(parser,__ListGroupsElementStart,
-			__ListGroupsElementEnd);
-  XML_SetCharacterDataHandler(parser,__ListGroupsElementData);
+  XML_SetElementHandler(parser,__CreateTicketElementStart,
+			__CreateTicketElementEnd);
+  XML_SetCharacterDataHandler(parser,__CreateTicketElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=4&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s",
+  snprintf(post,1500,"COMMAND=31&LOGIN_NAME=%s&PASSWORD=%s",
 	curl_easy_escape(curl,username,0),
-	curl_easy_escape(curl,passwd,0),
-	curl_easy_escape(curl,ticket,0));
+	curl_easy_escape(curl,passwd,0));
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
-  curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListGroupsCallback);
+  curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__CreateTicketCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);
   curl_easy_setopt(curl,CURLOPT_POST,1);
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
@@ -176,9 +143,9 @@ int RD_ListGroups(struct rd_group *grps[],
   curl_easy_getinfo(curl,CURLINFO_RESPONSE_CODE,&response_code);
   curl_easy_cleanup(curl);
   
-  if (response_code > 199 && response_code < 300) {
-    *grps=xml_data.grps;
-    *numrecs = xml_data.grps_quan;
+  if (response_code > 199 && response_code < 300) { 
+    *ticketinfo=xml_data.ticketinfo;
+    *numrecs = 1;
     return 0;
   }
   else {

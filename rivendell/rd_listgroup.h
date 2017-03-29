@@ -31,6 +31,7 @@ int RD_ListGroup(struct rd_group *grp[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const char group[],
 			unsigned *numrecs);
 

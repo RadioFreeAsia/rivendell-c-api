@@ -99,6 +99,7 @@ int RD_ListLog(struct rd_logline *logline[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const char logname[],
 			unsigned *numrecs);
 

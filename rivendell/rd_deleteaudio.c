@@ -68,6 +68,7 @@ size_t __DeleteAudioCallback(void *ptr, size_t size, size_t nmemb, void *userdat
 int RD_DeleteAudio( const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
                   	const unsigned cartnumber,
                   	const unsigned cutnumber)
 {
@@ -90,9 +91,10 @@ int RD_DeleteAudio( const char hostname[],
 			__DeleteAudioElementEnd);
   XML_SetCharacterDataHandler(parser,__DeleteAudioElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=3&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=3&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	cartnumber,
 	cutnumber);
   if((curl=curl_easy_init())==NULL) {

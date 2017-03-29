@@ -29,6 +29,7 @@ _MYRIVLIB_INIT_DECL
 int RD_DeleteLog(const char hostname[],
 		 const char username[],
 		 const char passwd[],
+		 const char ticket[],
 		 const char logname[]);
 
 _MYRIVLIB_FINI_DECL

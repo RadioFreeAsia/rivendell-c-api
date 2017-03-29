@@ -28,6 +28,7 @@ _MYRIVLIB_INIT_DECL
 int RD_CopyAudio( const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned src_cartnumber,
 			const unsigned src_cutnumber,
 			const unsigned dest_cartnumber,

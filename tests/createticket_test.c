@@ -1,8 +1,8 @@
-/* listservices_test.c
+/*createticket_test.c
  *
- * Test the listservices library.
+ * Test the Create Ticket WEB library.
  *
- * (C) Copyright 2015 Todd Baker  <bakert@rfa.org>             
+ * (C) Copyright 2017 Todd Baker  <bakert@rfa.org>             
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License version 2 as
@@ -22,20 +22,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rivendell/rd_listservices.h>
+#include <rivendell/rd_createticket.h>
 
 int main(int argc,char *argv[])
 {
   int i;
-  long int trackable=0;
-  char buf[BUFSIZ];
-  char *p;
-  struct rd_service *services=0;
+  struct rd_ticketinfo *ticketinfo=0;
+
   unsigned numrecs;
   char *host;
   char *user;
   char *passwd;
-  char ticket[40]="";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -59,28 +56,17 @@ int main(int argc,char *argv[])
     passwd = "";
   } 
 
-  printf("Please enter 1 if you want trackable logs ==>");
-  if (fgets(buf,sizeof(buf),stdin) != NULL)
-  {
-    trackable = strtol(buf,&p,10);
-    if ( (buf[0] != '\n') &&
-         ((*p != '\n') && (*p != '\0')))
-    {
-        fprintf(stderr," Illegal Characters detected! Exiting.\n");
-        exit(0);
-    }
-  }
   //
   // Call the function
   //
-  int result= RD_ListServices(&services,
-			host,
-			user,
-			passwd,
-			ticket,
-			(int)trackable,
-			&numrecs);
-  if(result<0) {
+
+  int result=RD_CreateTicket(&ticketinfo,
+		host,
+		user,
+		passwd,
+		&numrecs);
+
+  if (result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
     exit(256);
   }
@@ -88,22 +74,35 @@ int main(int argc,char *argv[])
   if ((result< 200 || result > 299) &&
        (result != 0))
   {
-    fprintf(stderr, "Unknown Error occurred ==> %d",result);
+    switch(result) {
+      case 403:
+         fprintf(stderr," ERROR: Invalid User Information\n");
+        break;
+      default:
+        fprintf(stderr, "Unknown Error occurred ==> %d\n",result);
+    }
     exit(256);
   }
   //
-  // List the results
+  // List the Results
   //
   for(i=0;i<numrecs;i++) {
-    printf("            Service Name: %s\n",services[i].service_name);
-    printf("     Service Description: %s\n",services[i].service_description);
+    printf("          Ticket: %s\n",ticketinfo[i].ticket);
+    printf("Ticket Expire year value  = %d\n",ticketinfo->tkt_expiration_datetime.tm_year);
+    printf("Ticket Expire month value = %d\n",ticketinfo->tkt_expiration_datetime.tm_mon);
+    printf("Ticket Expire day value   = %d\n",ticketinfo->tkt_expiration_datetime.tm_mday);
+    printf("Ticket Expire wday value  = %d\n",ticketinfo->tkt_expiration_datetime.tm_wday);
+    printf("Ticket Expire hour value  = %d\n",ticketinfo->tkt_expiration_datetime.tm_hour);
+    printf("Ticket Expire min value   = %d\n",ticketinfo->tkt_expiration_datetime.tm_min);
+    printf("Ticket Expire sec value   = %d\n",ticketinfo->tkt_expiration_datetime.tm_sec);
+    printf("Ticket Expire isdst value = %d\n",ticketinfo->tkt_expiration_datetime.tm_isdst);
     printf("\n");
+
   }
 
   //
-  // Free the services list when finished with it
+  // Free the ticketinfo list when finished with it
   //
-  free(services);
-
+  free(ticketinfo);
   exit(0);
 }

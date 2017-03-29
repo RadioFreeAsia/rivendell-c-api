@@ -30,6 +30,7 @@ int RD_ListGroups(struct rd_group *grps[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

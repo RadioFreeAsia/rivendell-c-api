@@ -181,6 +181,7 @@ int RD_EditCut(struct rd_cut *cut[],
 		  	const char 	hostname[],
 			const char 	username[],
 			const char 	passwd[],
+			const char      ticket[],
 			const unsigned  cartnum,
 			const unsigned  cutnum,
 			unsigned 	*numrecs)
@@ -206,9 +207,10 @@ int RD_EditCut(struct rd_cut *cut[],
 			__EditCutElementEnd);
   XML_SetCharacterDataHandler(parser,__EditCutElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=15&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=15&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	cartnum, 
 	cutnum);
   Build_Post_Cut_Fields(post,edit_cut_values);

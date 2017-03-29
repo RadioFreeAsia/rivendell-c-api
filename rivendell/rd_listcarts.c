@@ -174,6 +174,7 @@ int RD_ListCarts(struct rd_cart *carts[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const char group_name[],
 			const char filter[],
 			const char type[],
@@ -201,9 +202,10 @@ int RD_ListCarts(struct rd_cart *carts[],
 			__ListCartsElementEnd);
   XML_SetCharacterDataHandler(parser,__ListCartsElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=6&LOGIN_NAME=%s&PASSWORD=%s&GROUP_NAME=%s&FILTER=%s&TYPE=%s",
+  snprintf(post,1500,"COMMAND=6&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&GROUP_NAME=%s&FILTER=%s&TYPE=%s",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	curl_easy_escape(curl,group_name,0),
 	curl_easy_escape(curl,filter,0),
 	curl_easy_escape(curl,type,0));

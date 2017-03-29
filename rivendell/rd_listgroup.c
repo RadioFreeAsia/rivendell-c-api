@@ -116,6 +116,7 @@ int RD_ListGroup(struct rd_group *grp[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const char groupname[],
                   	unsigned *numrecs)
 {
@@ -141,9 +142,10 @@ int RD_ListGroup(struct rd_group *grp[],
 			__ListGroupElementEnd);
   XML_SetCharacterDataHandler(parser,__ListGroupElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=5&LOGIN_NAME=%s&PASSWORD=%s&GROUP_NAME=%s",
+  snprintf(post,1500,"COMMAND=5&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&GROUP_NAME=%s",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	curl_easy_escape(curl,groupname,0));
   if((curl=curl_easy_init())==NULL) {
     return -1;

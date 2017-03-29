@@ -104,6 +104,7 @@ int RD_EditCut(struct rd_cut *cut[],
                         const char      hostname[],
                         const char      username[],
                         const char      passwd[],
+			const char      ticket[],
                         const unsigned  cartnum,
                         const unsigned  cutnum,
                         unsigned        *numrecs);

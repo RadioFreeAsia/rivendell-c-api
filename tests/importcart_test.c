@@ -38,6 +38,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
+  char ticket[40]="";
   struct rd_cartimport *cartimport=0;
   unsigned numrecs;
 
@@ -114,6 +115,7 @@ fprintf(stderr," Group Name= %s\n",group_name);
                 host,
 		user,
 		passwd,
+		ticket,
 		(unsigned)cartnum,
 		(unsigned)cutnum,
 		(unsigned)2,

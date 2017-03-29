@@ -86,6 +86,7 @@ int RD_ListServices(struct rd_service *services[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
                         const int  trackable,
 			unsigned *numrecs)
 {
@@ -111,9 +112,10 @@ int RD_ListServices(struct rd_service *services[],
 			__ListServicesElementEnd);
   XML_SetCharacterDataHandler(parser,__ListServicesElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=21&LOGIN_NAME=%s&PASSWORD=%s&TRACKABLE=%d",
+  snprintf(post,1500,"COMMAND=21&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&TRACKABLE=%d",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	trackable);
   if((curl=curl_easy_init())==NULL) {
     return -1;

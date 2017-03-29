@@ -32,6 +32,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
+  char ticket[40]="";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -62,6 +63,7 @@ int main(int argc,char *argv[])
 			host,
 			user,
 			passwd,
+			ticket,
 			"",
 			"",
 			"Audio",
@@ -74,11 +76,14 @@ int main(int argc,char *argv[])
        (result != 0))
   {
     switch(result) {
+      case 403:
+        fprintf(stderr,"ERROR:  Invalid User Authentification \n");
+        break;
       case 404:
         fprintf(stderr,"ERROR:  No Such Group Exists! \n");
         break;
       default:
-        fprintf(stderr, "Unknown Error occurred ==> %d",result);
+        fprintf(stderr, "Unknown Error occurred ==> %d\n",result);
     }
     exit(256);
   }

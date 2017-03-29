@@ -70,6 +70,7 @@ size_t __UnAssignSchedCodeCallback(void *ptr, size_t size, size_t nmemb, void *u
 int RD_UnassignSchedCode( const char hostname[],
                   	const char username[],
                   	const char passwd[],
+			const char ticket[],
 			const unsigned cartnum,
 			const char code[])
 {
@@ -107,9 +108,10 @@ int RD_UnassignSchedCode( const char hostname[],
 			__UnAssignSchedCodeElementEnd);
   XML_SetCharacterDataHandler(parser,__UnAssignSchedCodeElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=26&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CODE=%s",
+  snprintf(post,1500,"COMMAND=26&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CODE=%s",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	cartnum,
 	curl_easy_escape(curl,code,0));
   if((curl=curl_easy_init())==NULL) {

@@ -33,6 +33,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
+  char ticket[40]="";
   char starttime_buf[15];
 
   /*      Get the Rivendell Host, User and Password if set in env */
@@ -68,6 +69,7 @@ int main(int argc,char *argv[])
 		host,
 		user,
 		passwd,
+		ticket,
 		buf,
 		&numrecs);
   if(result<0) {

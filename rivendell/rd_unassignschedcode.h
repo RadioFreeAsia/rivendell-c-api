@@ -28,6 +28,7 @@ _MYRIVLIB_INIT_DECL
 int RD_UnassignSchedCode( const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned cartnum,
 			const char code[]);
 

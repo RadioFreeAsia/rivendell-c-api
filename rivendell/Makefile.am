@@ -28,6 +28,7 @@ dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
 				rd_audiostore.c rd_audiostore.h \
                                 rd_common.c rd_common.h\
 				rd_copyaudio.c rd_copyaudio.h \
+				rd_createticket.c rd_createticket.h \
 				rd_deleteaudio.c rd_deleteaudio.h \
 				rd_deletelog.c rd_deletelog.h \
 				rd_editcart.c rd_editcart.h \
@@ -64,6 +65,7 @@ include_HEADERS = rd_addcart.h\
                   rd_cart.h\
                   rd_common.h\
                   rd_copyaudio.h\
+                  rd_createticket.h\
                   rd_cut.h\
                   rd_deleteaudio.h\
                   rd_deletelog.h\

@@ -78,6 +78,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	       const char hostname[],
 	       const char username[],
 	       const char passwd[],
+	       const char ticket[],
 	       const char logname[]);
 
 

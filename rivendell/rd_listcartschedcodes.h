@@ -30,6 +30,7 @@ int RD_ListCartSchedCodes(struct rd_schedcodes *schedcodes[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned cartnum,
 			unsigned *numrecs);
 

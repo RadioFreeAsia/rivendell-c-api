@@ -85,6 +85,7 @@ int RD_ListSchedCodes(struct rd_schedcodes *scodes[],
 		  	const char hostname[],
                   	const char username[],
                   	const char passwd[],
+			const char ticket[],
                   	unsigned *numrecs)
 {
   char post[1500];
@@ -109,9 +110,10 @@ int RD_ListSchedCodes(struct rd_schedcodes *scodes[],
 			__ListSchedCodesElementEnd);
   XML_SetCharacterDataHandler(parser,__ListSchedCodesElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=24&LOGIN_NAME=%s&PASSWORD=%s",
+  snprintf(post,1500,"COMMAND=24&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s",
 	curl_easy_escape(curl,username,0),
-	curl_easy_escape(curl,passwd,0));
+	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0));
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }

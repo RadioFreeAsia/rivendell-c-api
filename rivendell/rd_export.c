@@ -37,6 +37,7 @@ size_t write_data( void *ptr, size_t size, size_t nmemb, FILE *stream)
 int RD_ExportCart( const char hostname[],
 			const char         username[],
 			const char           passwd[],
+			const char           ticket[],
 			const unsigned        cartnum,
 			const unsigned         cutnum,
 			const int              format,
@@ -77,9 +78,10 @@ int RD_ExportCart( const char hostname[],
 //
 
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=1&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u&FORMAT=%d&CHANNELS=%d&SAMPLE_RATE=%d&BIT_RATE=%d&QUALITY=%d&START_POINT=%d&END_POINT=%d&NORMALIZATION_LEVEL=%d&ENABLE_METADATA=%d",
+  snprintf(post,1500,"COMMAND=1&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CUT_NUMBER=%u&FORMAT=%d&CHANNELS=%d&SAMPLE_RATE=%d&BIT_RATE=%d&QUALITY=%d&START_POINT=%d&END_POINT=%d&NORMALIZATION_LEVEL=%d&ENABLE_METADATA=%d",
         curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	cartnum, 
 	cutnum,
 	format,

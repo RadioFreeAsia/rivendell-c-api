@@ -35,6 +35,7 @@ noinst_PROGRAMS = listgroups_test \
 		removecart_test \
 		removecut_test \
 		audioinfo_test \
+                createticket_test \
 		audiostore_test \
 		trimaudio_test \
                 listlogs_test \
@@ -69,6 +70,7 @@ dist_deletelog_test_SOURCES = deletelog_test.c\
 dist_removecart_test_SOURCES = removecart_test.c 
 dist_removecut_test_SOURCES = removecut_test.c 
 dist_audioinfo_test_SOURCES = audioinfo_test.c 
+dist_createticket_test_SOURCES = createticket_test.c 
 dist_audiostore_test_SOURCES = audiostore_test.c 
 dist_trimaudio_test_SOURCES = trimaudio_test.c 
 dist_listlog_test_SOURCES = listlog_test.c 
@@ -101,6 +103,7 @@ deletelog_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 removecart_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 removecut_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 audioinfo_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
+createticket_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 audiostore_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 trimaudio_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 listlog_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm

@@ -38,6 +38,7 @@ size_t __ExportPeaks_write_peaks_data( void *ptr, size_t size, size_t nmemb, FIL
 int RD_ExportPeaks( const char hostname[],
 			const char         username[],
 			const char           passwd[],
+			const char           ticket[],
 			const unsigned        cartnum,
 			const unsigned         cutnum,
                         const char         filename[])
@@ -69,9 +70,10 @@ int RD_ExportPeaks( const char hostname[],
 //
 
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=16&LOGIN_NAME=%s&PASSWORD=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=16&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CUT_NUMBER=%u",
         curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	cartnum, 
 	cutnum);
 

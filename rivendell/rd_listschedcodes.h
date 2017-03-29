@@ -31,6 +31,7 @@ int RD_ListSchedCodes(struct rd_schedcodes *schedcodes[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

@@ -68,6 +68,7 @@ size_t __CopyAudioCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
 int RD_CopyAudio( const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
                   	const unsigned src_cartnumber,
                   	const unsigned src_cutnumber,
                   	const unsigned dest_cartnumber,
@@ -92,9 +93,10 @@ int RD_CopyAudio( const char hostname[],
 			__CopyAudioElementEnd);
   XML_SetCharacterDataHandler(parser,__CopyAudioElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=18&LOGIN_NAME=%s&PASSWORD=%s&SOURCE_CART_NUMBER=%u&SOURCE_CUT_NUMBER=%u&DESTINATION_CART_NUMBER=%u&DESTINATION_CUT_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=18&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&SOURCE_CART_NUMBER=%u&SOURCE_CUT_NUMBER=%u&DESTINATION_CART_NUMBER=%u&DESTINATION_CUT_NUMBER=%u",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
+	curl_easy_escape(curl,ticket,0),
 	src_cartnumber,
 	src_cutnumber,
 	dest_cartnumber,

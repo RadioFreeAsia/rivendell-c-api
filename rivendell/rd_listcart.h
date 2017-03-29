@@ -31,6 +31,7 @@ int RD_ListCart(struct rd_cart *carts[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
 

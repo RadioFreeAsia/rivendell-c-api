@@ -31,6 +31,7 @@ int RD_ListCuts(struct rd_cut *cuts[],
 		  	const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char ticket[],
 			const unsigned cartnumber,
 			unsigned *numrecs);
 
