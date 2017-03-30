@@ -38,6 +38,7 @@
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
+      <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const char <parameter>log_name[]</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -145,7 +146,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
           </entry>
         </row>
         <row>
@@ -159,7 +160,21 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
+          </entry>
+        </row>
+        <row>
+          <entry>
+            ticket
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Rivendell Authentification Ticket
+          </entry>
+          <entry>
+            Mandatory When NO User/Password Pair Provided.
           </entry>
         </row>
         <row>
@@ -250,7 +265,13 @@
       400          Invalid/Missing Parameter.
     </para>
     <para>
-      404          User Does Not Have Permission to Edit Logs or specified service does not exist.
+      403          User Authentification Error.
+    </para>
+    <para>
+      404          User Permission Error.
+    </para>
+    <para>
+      404          Service Does Not Exist.
     </para>
     <para>
       500          Server error.

@@ -4,14 +4,14 @@
                     Header
   -->
   <refmeta>
-    <refentrytitle>RD_ListGroups</refentrytitle>
+    <refentrytitle>RD_CreateTicket</refentrytitle>
     <manvolnum>7</manvolnum>
-    <refmiscinfo class='source'>October 2015</refmiscinfo>
+    <refmiscinfo class='source'>March 2017</refmiscinfo>
     <refmiscinfo class='manual'>Rivendell C Library Manual</refmiscinfo>
   </refmeta>
   <refnamediv>
-    <refname>rd_listgroups</refname>
-    <refpurpose>Rivendell List Groups C Library Function</refpurpose>
+    <refname>rd_createticket</refname>
+    <refpurpose>Rivendell Create Ticket C Library Function</refpurpose>
   </refnamediv>
   <info>
     <author>
@@ -29,15 +29,13 @@
   -->
   <refsynopsisdiv id='synopsis'>
     <funcsynopsis>
-    <funcsynopsisinfo>#include &lt;rivendell/rd_listgroups.h&gt;</funcsynopsisinfo>
+    <funcsynopsisinfo>#include &lt;rivendell/rd_createticket.h&gt;</funcsynopsisinfo>
     <funcprototype>
-    <funcdef>int <function>RD_ListGroups</function></funcdef>
-      <paramdef> struct rd_group * <parameter>group[]</parameter></paramdef>
+    <funcdef>int <function>RD_CreateTicket</function></funcdef>
+      <paramdef> struct rd_ticketinfo * <parameter>ticketinfo[]</parameter></paramdef>
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
-      <paramdef>const char <parameter>ticket[]</parameter></paramdef>
-      <paramdef>const char <parameter>groupname[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -46,14 +44,11 @@
 
   <refsect1 id='description'><title>Description</title>
   <para>
-    <command>RD_ListGroups</command> is  the function to use
-    to list the fields that are stored for a particular group within the Rivendell Database.
+    <command>RD_CreateTicket</command> is  the function to use
+    to create a Authentification Ticket within the Rivendell Database.
   </para>
-  <para>
-    This function lists the fields in all pre-existing Groups.  
-  </para>
-  <table xml:id="ex.listgroup" frame="all">
-    <title>RD_ListGroups function call fields</title>
+  <table xml:id="ex.audioinfo" frame="all">
+    <title>RD_CreateTicket function call fields</title>
     <tgroup cols="4" align="left" colsep="1" rowsep="1">
       <colspec colname="FIELD NAME" />
       <colspec colname="FIELD TYPE" />
@@ -78,13 +73,13 @@
       <tbody>
         <row>
           <entry>
-            *group
+            *rd_audioinfo
           </entry>
           <entry>
-          Pointer to rd_group structure
+          Pointer to rd_ticketinfo structure
           </entry>
           <entry>
-            Memory location to store group information
+            Memory location to store specific ticketinfo data
           </entry>
           <entry>
             Mandatory
@@ -115,7 +110,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory When NO Ticket Provided
+            Mandatory
           </entry>
         </row>
         <row>
@@ -129,21 +124,7 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory When NO Ticket Provided
-          </entry>
-        </row>
-        <row>
-          <entry>
-            ticket
-          </entry>
-          <entry>
-          Character Array
-          </entry>
-          <entry>
-            Rivendell Authentification Ticket
-          </entry>
-          <entry>
-            Mandatory When NO User/Password Pair Provided.
+            Mandatory 
           </entry>
         </row>
         <row>
@@ -165,38 +146,21 @@
   </table>
 
   <para>
-    When successful function will return the number of records sent (numrecs) and rd_group structure(s) which 
-    is stored in the provided memory locations. The rd_group structure has the following fields:
+    When successful function will return the number of records sent (numrecs) and a rd_ticketinfo structure which 
+    is stored in the provided memory locations. The rd_ticketinfo structure has the following fields:
   </para>
   <programlisting>
-	struct rd_group {
-  		char grp_name[11];			/* Group Name */
-  		char grp_desc[255];			/* Description */
-  		unsigned grp_default_cart_type;	/* Default cart type */
-  		unsigned grp_lo_limit;		/* Group starting Cart Number */
-  		unsigned grp_hi_limit;		/* Group Ending Cart Number */
-  		int grp_shelf_life;
-  		char grp_default_title[255];
-  		int grp_enforce_range;
-  		int grp_report_tfc;
-  		int grp_report_mus;
-  		int grp_now_next;
-  		char grp_color[8];
-  		char grp_reserved[457];
-	};
+    struct rd_ticketinfo {
+         char ticket[40];   
+          struct tm tkt_expiration_datetime;
+    }
 
-      All character arrays above are the sizes listed and must be null-terminated.
-
-      The cart number is a unsigned integer.
-
-      The Default cart_type is 1=Audio,2=Macro. 
-      
   </programlisting>
 
   </refsect1>
   <refsect2 id='returns'><title>RETURN VALUE</title>
     <para>
-      On success, zero is returned. Using the provided parameters an rd_group
+      On success, zero is returned. Using the provided parameters an rd_ticketinfo
 structure is returned and the number of records is returned.
     </para>
     <para>

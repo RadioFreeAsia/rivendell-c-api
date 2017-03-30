@@ -35,6 +35,7 @@
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
+      <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const unsigned <parameter>cartnumber</parameter></paramdef>
       <paramdef>const char <parameter>code[]</parameter></paramdef>
     </funcprototype> 
@@ -96,7 +97,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
           </entry>
         </row>
         <row>
@@ -110,7 +111,21 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
+          </entry>
+        </row>
+        <row>
+          <entry>
+            ticket
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Rivendell Authentification Ticket
+          </entry>
+          <entry>
+            Mandatory When NO User/Password Pair Provided.
           </entry>
         </row>
         <row>
@@ -163,6 +178,9 @@
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
       400          Missing Cart Number / Cut Number Error.
+    </para>
+    <para>
+      403          User Authentification Error.
     </para>
     <para>
       404          No Such Cart/Code.

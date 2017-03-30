@@ -36,6 +36,7 @@
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
+      <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const char <parameter>group[]</parameter></paramdef>
       <paramdef>const char <parameter>type[]</parameter></paramdef>
       <paramdef>const unsigned <parameter>cartnumber</parameter></paramdef>
@@ -116,7 +117,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided.
           </entry>
         </row>
         <row>
@@ -130,7 +131,21 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided.
+          </entry>
+        </row>
+        <row>
+          <entry>
+            ticket
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Rivendell Authentification Ticket
+          </entry>
+          <entry>
+            Mandatory When NO User/Password Pair Provided.
           </entry>
         </row>
         <row>
@@ -305,10 +320,10 @@ structure is returned and the number of records is returned.
       400          Invalid Parameter for GROUP or TYPE.
     </para>
     <para>
-      401          Unauthorized or Cart Out Of Range.
+      400          Cart Already Exists.
     </para>
     <para>
-      403          Cart Already Exists.
+      403          Auuthentification Error or Cart Out Of Range.
     </para>
     <para>
       404          No Such Group Exists.

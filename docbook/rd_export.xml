@@ -35,6 +35,7 @@
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
+      <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const unsigned <parameter>cartnumber</parameter></paramdef>
       <paramdef>const unsigned <parameter>cutnumber</parameter></paramdef>
       <paramdef>const int <parameter>format</parameter></paramdef>
@@ -106,7 +107,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
           </entry>
         </row>
         <row>
@@ -120,7 +121,21 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
+          </entry>
+        </row>
+        <row>
+          <entry>
+            ticket
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Rivendell Authentification Ticket
+          </entry>
+          <entry>
+            Mandatory When NO User/Password Pair Provided.
           </entry>
         </row>
         <row>
@@ -313,7 +328,10 @@
       400          Missing Input Parameter(s).
     </para>
     <para>
-      403          No Source Audio Present.
+      403          User Authentification Error.
+    </para>
+    <para>
+      404          No Source Audio Present.
     </para>
     <para>
       404          No Such Cart / Cut.

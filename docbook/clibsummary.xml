@@ -43,6 +43,10 @@ information about an entry in the audio store.
   <para><command>RD_CopyAudio</command> This function 
     copys PCM/MPEG data from one Cart/Cut to another Cart/Cut.
   </para>
+  <para><command>RD_CreateTicket</command> This function 
+    will create an Authentification ticket in the Rivendell database
+    that can be used in leu of username/password pair.
+  </para>
   <para><command>RD_DeleteAudio</command> This function 
     deletes PCM/MPEG data from the audio store.
   </para>

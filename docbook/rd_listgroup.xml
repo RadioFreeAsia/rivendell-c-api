@@ -36,6 +36,7 @@
       <paramdef>const char <parameter>hostname[]</parameter></paramdef>
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
+      <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const char <parameter>groupname[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
@@ -114,7 +115,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
           </entry>
         </row>
         <row>
@@ -128,7 +129,21 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory
+            Mandatory When NO Ticket Provided
+          </entry>
+        </row>
+        <row>
+          <entry>
+            ticket
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Rivendell Authentification Ticket
+          </entry>
+          <entry>
+            Mandatory When NO User/Password Pair Provided.
           </entry>
         </row>
         <row>
@@ -206,6 +221,9 @@ structure is returned and the number of records is returned.
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
       400          Missing Group Name.
+    </para>
+    <para>
+      403          User Authentification Error.
     </para>
     <para>
       404          No Such Group Exists.

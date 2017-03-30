@@ -55,6 +55,9 @@ all-local:	rd_addcart.html\
                 rd_copyaudio.html\
                 rd_copyaudio.pdf\
                 rd_copyaudio.xml\
+		rd_createticket.html\
+		rd_createticket.pdf\
+		rd_createticket.xml\
                 rd_deleteaudio.html\
                 rd_deleteaudio.pdf\
                 rd_deleteaudio.xml\
@@ -132,6 +135,7 @@ man_MANS = rd_addcart.7\
            rd_audioinfo.7\
            rd_audiostore.7\
            rd_copyaudio.7\
+           rd_createticket.7\
            rd_deleteaudio.7\
            rd_deletelog.7\
            rd_editcart.7\
@@ -187,6 +191,9 @@ EXTRA_DIST = rd_addcart.7\
              rd_copyaudio.html\
              rd_copyaudio.pdf\
              rd_copyaudio.xml\
+	     rd_createticket.html\
+	     rd_createticket.pdf\
+	     rd_createticket.xml\
              rd_deleteaudio.7\
              rd_deleteaudio.html\
              rd_deleteaudio.pdf\
