@@ -36,6 +36,7 @@ tests/assignschedcode_test
 tests/audioinfo_test
 tests/audiostore_test
 tests/copyaudio_test
+tests/createticket_test
 tests/deleteaudio_test
 tests/deletelog_test
 tests/editcart_test
