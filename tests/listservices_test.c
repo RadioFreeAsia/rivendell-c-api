@@ -92,6 +92,7 @@ int main(int argc,char *argv[])
     fprintf(stderr, "Unknown Error occurred ==> %d",result);
     exit(256);
   }
+
   //
   // List the results
   //
@@ -105,6 +106,12 @@ int main(int argc,char *argv[])
   // Free the services list when finished with it
   //
   free(services);
+
+  if (numrecs == 0)
+  {
+    printf(" No Services found\n");
+    exit(0);
+  }
 
 
 // Add test of create_ticket function 
