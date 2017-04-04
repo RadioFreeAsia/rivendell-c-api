@@ -352,16 +352,16 @@ structure is returned and the number of records is returned.
   </refsect2>
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
-      400          Invalid Parameter for GROUP or TYPE.
+      400          Invalid Input Parameter.
     </para>
     <para>
       403          User Authentification Error.
     </para>
     <para>
-      404          No Such Group or Cart Exists.
+      404          Unauthorized or No Such Group / Cart Exists.
     </para>
     <para>
-      409          Unauthorized or Cart Out Of Range.
+      409          Cart Out Of Range.
     </para>
     <para>
       500          Unable to Create Cart.

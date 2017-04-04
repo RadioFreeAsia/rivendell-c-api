@@ -283,13 +283,10 @@
       400          Missing Input Parameter(s).
     </para>
     <para>
-      403          No Authorization
-    </para>
-    <para>
       403          User Authentification Error.
     </para>
     <para>
-      404          No Such Cart, Cut, or Group.
+      404          Unauthorized or No Such Cart, Cut, or Group.
     </para>
     <para>
       415          Format Not Supported.

@@ -178,10 +178,7 @@
       403          User Authentification Error.
     </para>
     <para>
-      403          Unauthorized.
-    </para>
-    <para>
-      404          No Such Cart/Cut.
+      404          Unauthorized or No Such Cart/Cut.
     </para>
     <para>
       nnn          Unknown Error Occurred.

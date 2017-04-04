@@ -40,7 +40,7 @@ int RD_AddLog(const char hostname[],
    * Setup the CURL call
    */
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=29&LOGIN_NAME=%s&PASSWORD=%s&ticket=%s&LOG_NAME=%s&SERVICE_NAME=%s",
+  snprintf(post,1500,"COMMAND=29&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&LOG_NAME=%s&SERVICE_NAME=%s",
 	   curl_easy_escape(curl,username,0),
 	   curl_easy_escape(curl,passwd,0),
 	   curl_easy_escape(curl,ticket,0),

@@ -157,16 +157,13 @@
   </refsect2>
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
-      400          Missing Cart Number / Cut Number Error.
-    </para>
-    <para>
-      403          Unauthorized.
+      400          Missing Cart Number Error.
     </para>
     <para>
       403          User Authentification Error.
     </para>
     <para>
-      404          No Such Cart.
+      404          Unauthorized or No Such Cart.
     </para>
     <para>
       500          Unable to delete Cart.

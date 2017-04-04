@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include <rivendell/rd_removecart.h>
+#include <rivendell/rd_createticket.h>
 
 int main(int argc,char *argv[])
 {
@@ -33,7 +34,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
-  char ticket[40]="";
+  char ticket[41]="";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -73,6 +74,91 @@ int main(int argc,char *argv[])
   // Call the function
   //
   int result=RD_RemoveCart( host,
+		user,
+		passwd,
+		ticket,
+		(unsigned)cartnum);
+
+  if(result<0) {
+    fprintf(stderr,"Something went wrong!\n");
+    exit(256);
+  }
+
+  if ((result< 200 || result > 299) && 
+       (result != 0))
+  {
+    switch(result) {
+      case 404:
+        fprintf(stderr,"ERROR:  No Such Cart Exists! \n");
+        break;
+      case  401:
+        fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
+        break;
+      default:
+        fprintf(stderr, "Unknown Error occurred ==> %d",result);
+    }
+    exit(256);
+  }
+
+  //
+  // List the Results
+  //
+    printf(" Cart %ld was successfully deleted!\n",cartnum);
+    printf("\n");
+
+
+
+// Add test of create_ticket function 
+    
+    int i;
+    struct rd_ticketinfo *myticket=0;
+    unsigned numrecs=0;
+
+    result = RD_CreateTicket( &myticket,
+            host,
+            user,
+            passwd,
+            &numrecs);
+
+    if ((result< 200 || result > 299) &&
+       (result != 0))
+    {
+        switch(result) {
+            case 403:
+            fprintf(stderr," ERROR: Invalid User Information During Create Ticket\n");
+            break;
+        default:
+           fprintf(stderr, "Unknown Error occurred ==> %d\n",result);
+        }
+    exit(256);
+    }
+
+    //   We got a ticket created - use it and do the call again
+    //
+  // List the Results
+  //
+  for(i=0;i<numrecs;i++) {
+    printf("          Ticket: %s\n",myticket[i].ticket);
+    printf("Ticket Expire year value  = %d\n",myticket->tkt_expiration_datetime.tm_year);
+    printf("Ticket Expire month value = %d\n",myticket->tkt_expiration_datetime.tm_mon);
+    printf("Ticket Expire day value   = %d\n",myticket->tkt_expiration_datetime.tm_mday);
+    printf("Ticket Expire wday value  = %d\n",myticket->tkt_expiration_datetime.tm_wday);
+    printf("Ticket Expire hour value  = %d\n",myticket->tkt_expiration_datetime.tm_hour);
+    printf("Ticket Expire min value   = %d\n",myticket->tkt_expiration_datetime.tm_min);
+    printf("Ticket Expire sec value   = %d\n",myticket->tkt_expiration_datetime.tm_sec);
+    printf("Ticket Expire isdst value = %d\n",myticket->tkt_expiration_datetime.tm_isdst);
+    printf("\n");
+
+  }
+
+    user="";
+    passwd="";
+    strcpy( ticket,myticket->ticket);
+    fprintf(stderr, "Ticket was copied - = %s\n",ticket);
+  //
+  // Call the function
+  //
+  result=RD_RemoveCart( host,
 		user,
 		passwd,
 		ticket,

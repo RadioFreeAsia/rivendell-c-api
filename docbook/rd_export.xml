@@ -322,10 +322,7 @@
   </refsect2>
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
-      400          Missing Cart Number / Cut Number Error.
-    </para>
-    <para>
-      400          Missing Input Parameter(s).
+      400          Invalid Input Parameter(s).
     </para>
     <para>
       403          User Authentification Error.
@@ -334,7 +331,7 @@
       404          No Source Audio Present.
     </para>
     <para>
-      404          No Such Cart / Cut.
+      404          Unauthorized or No Such Cart / Cut.
     </para>
     <para>
       415          Invalid Settings.

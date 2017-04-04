@@ -108,7 +108,7 @@ int RD_AssignSchedCode( const char hostname[],
 			__AssignSchedCodeElementEnd);
   XML_SetCharacterDataHandler(parser,__AssignSchedCodeElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=25&LOGIN_NAME=%s&PASSWORD=%s&ticket=%s&CART_NUMBER=%u&CODE=%s",
+  snprintf(post,1500,"COMMAND=25&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CODE=%s",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
 	curl_easy_escape(curl,ticket,0),

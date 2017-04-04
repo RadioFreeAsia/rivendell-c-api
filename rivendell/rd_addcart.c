@@ -196,10 +196,10 @@ int RD_AddCart(struct rd_cart *cart[],
 			__AddCartElementEnd);
   XML_SetCharacterDataHandler(parser,__AddCartElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=12&LOGIN_NAME=%s&PASSWORD=%s&ticket=%s&GROUP_NAME=%s&TYPE=%s&CART_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=12&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&GROUP_NAME=%s&TYPE=%s&CART_NUMBER=%u",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
-	curl_easy_escape(curl,ticket,0),
+	curl_easy_escape(curl,ticket,0), 
 	curl_easy_escape(curl,group,0),
 	type,
 	cartnumber);
@@ -207,6 +207,7 @@ int RD_AddCart(struct rd_cart *cart[],
     curl_easy_cleanup(curl);
     return -1;
   }
+
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__AddCartCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);

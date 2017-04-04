@@ -323,10 +323,10 @@ structure is returned and the number of records is returned.
       400          Cart Already Exists.
     </para>
     <para>
-      403          Auuthentification Error or Cart Out Of Range.
+      403          User Authentification Error.
     </para>
     <para>
-      404          No Such Group Exists.
+      404          No Such Group Exists or Cart Out Of Range.
     </para>
     <para>
       500          Unable to Create Cart.

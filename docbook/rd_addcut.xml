@@ -247,10 +247,10 @@ structure is returned and the number of records is returned.
       400          Missing Cart Numer.
     </para>
     <para>
-      403          Invalid User Authentification Provided.
+      403          Invalid User Authentification.
     </para>
     <para>
-      404          No Such Cart Exists.
+      404          No Such Cart Exists or Invalid Permissions.
     </para>
     <para>
       500          Unable to Create Cut - No New Cuts.

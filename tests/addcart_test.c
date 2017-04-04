@@ -23,6 +23,8 @@
 #include <string.h>
 
 #include <rivendell/rd_addcart.h>
+#include <rivendell/rd_createticket.h>
+#include <rivendell/rd_removecart.h>
 
 int main(int argc,char *argv[])
 {
@@ -35,7 +37,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
-  char ticket[40]="";
+  char ticket[41]="";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -74,7 +76,7 @@ int main(int argc,char *argv[])
   //
   // Call the function
   //
-  int result=RD_AddCart(&cart,
+int result=RD_AddCart(&cart,
 		host,
 		user,
 		passwd,
@@ -94,19 +96,16 @@ int main(int argc,char *argv[])
   {
     switch(result) {
       case 400:
-         fprintf(stderr," ERROR: Invalid Parameter for GROUP or TYPE");
+         fprintf(stderr," ERROR: Invalid Parameter for GROUP or TYPE or Cart Exists\n");
         break;
       case 403:
-        fprintf(stderr,"ERROR:  That Cart Already Exists!\n");
+        fprintf(stderr,"ERROR:  User Authentification Error! \n");
         break;
       case 404:
-        fprintf(stderr,"ERROR:  No Such Group Exists! \n");
+        fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
         break;
       case 500:
         fprintf(stderr, "ERROR:  Unable to Create Cart! \n");
-        break;
-      case  401:
-        fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
         break;
       default:
         fprintf(stderr, "Unknown Error occurred ==> %d",result);
@@ -155,5 +154,173 @@ int main(int argc,char *argv[])
     printf("\n");
 
   free(cart);
+
+// Add test of create_ticket function 
+    
+    int i;
+    struct rd_ticketinfo *myticket=0;
+    numrecs=0;
+
+    result = RD_CreateTicket( &myticket,
+            host,
+            user,
+            passwd,
+            &numrecs);
+
+    if ((result< 200 || result > 299) &&
+       (result != 0))
+    {
+        switch(result) {
+            case 403:
+            fprintf(stderr," ERROR: Invalid User Information During Create Ticket\n");
+            break;
+        default:
+           fprintf(stderr, "Unknown Error occurred ==> %d\n",result);
+        }
+    exit(256);
+    }
+
+    //   We got a ticket created - use it and do the call again
+    //
+  // List the Results
+  //
+  for(i=0;i<numrecs;i++) {
+    printf("          Ticket: %s\n",myticket[i].ticket);
+    printf("Ticket Expire year value  = %d\n",myticket->tkt_expiration_datetime.tm_year);
+    printf("Ticket Expire month value = %d\n",myticket->tkt_expiration_datetime.tm_mon);
+    printf("Ticket Expire day value   = %d\n",myticket->tkt_expiration_datetime.tm_mday);
+    printf("Ticket Expire wday value  = %d\n",myticket->tkt_expiration_datetime.tm_wday);
+    printf("Ticket Expire hour value  = %d\n",myticket->tkt_expiration_datetime.tm_hour);
+    printf("Ticket Expire min value   = %d\n",myticket->tkt_expiration_datetime.tm_min);
+    printf("Ticket Expire sec value   = %d\n",myticket->tkt_expiration_datetime.tm_sec);
+    printf("Ticket Expire isdst value = %d\n",myticket->tkt_expiration_datetime.tm_isdst);
+    printf("\n");
+    strcpy( ticket,myticket[i].ticket);
+
+  }
+
+
+    user="USER";
+    passwd="blah";
+    fprintf(stderr, "Ticket was copied - = %s\n",ticket);
+  //
+  // Call the Remove Cart function
+  // so we can add it again - using the ticket for both
+  result=RD_RemoveCart( host,
+		user,
+		passwd,
+		ticket,
+		(unsigned)cartnum);
+
+  if(result<0) {
+    fprintf(stderr,"Something went wrong!\n");
+    exit(256);
+  }
+
+  if ((result< 200 || result > 299) && 
+       (result != 0))
+  {
+    switch(result) {
+      case 404:
+        fprintf(stderr,"ERROR:  No Such Cart Exists! \n");
+        break;
+      case  401:
+        fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
+        break;
+      default:
+        fprintf(stderr, "Unknown Error occurred ==> %d",result);
+    }
+    /*exit(256);*/
+  }
+
+  //
+  // List the Results
+  //
+    printf(" Cart %ld was successfully deleted!\n",cartnum);
+    printf("\n");
+
+
+     
+   result=RD_AddCart(&cart,
+                host,
+                user,
+                passwd,
+                ticket,
+                "TEST",
+                "audio",
+                (unsigned)cartnum,
+                &numrecs);
+
+  if(result<0) {
+    fprintf(stderr,"Something went wrong!\n");
+    exit(256);
+  }
+
+  if ((result< 200 || result > 299) &&
+       (result != 0))
+  {
+    switch(result) {
+      case 400:
+         fprintf(stderr," ERROR: Invalid Parameter for GROUP or TYPE");
+        break;
+      case 403:
+        fprintf(stderr,"ERROR:  User Authentification Error! \n");
+        break;
+      case 404:
+        fprintf(stderr,"ERROR:  No Such Group Exists! \n");
+        break;
+      case 500:
+        fprintf(stderr, "ERROR:  Unable to Create Cart! \n");
+        break;
+      case  401:
+        fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
+        break;
+      default:
+        fprintf(stderr, "Unknown Error occurred ==> %d",result);
+    }
+    exit(256);
+  } 
+  //
+  // List the Results
+  //
+    printf("              Cart Number: %d\n",cart->cart_number);
+    printf("                Cart Type: %d\n",cart->cart_type);
+    printf("               Group Name: %s\n",cart->cart_grp_name);
+    printf("               Cart Title: %s\n",cart->cart_title);
+    printf("              Cart Artist: %s\n",cart->cart_artist);
+    printf("               Cart Album: %s\n",cart->cart_album);
+    printf("                Cart Year: %d\n",cart->cart_year);
+    printf("               Cart Label: %s\n",cart->cart_label);
+    printf("              Cart Client: %s\n",cart->cart_client);
+    printf("              Cart Agency: %s\n",cart->cart_agency);
+    printf("           Cart Publisher: %s\n",cart->cart_publisher);
+    printf("            Cart Composer: %s\n",cart->cart_composer);
+    printf("        Cart User Defined: %s\n",cart->cart_user_defined);
+    printf("          Cart Usage Code: %d\n",cart->cart_usage_code);
+    printf("       Cart Forced Length: %d\n",cart->cart_forced_length);
+    printf("      Cart Average Length: %d\n",cart->cart_average_length);
+    printf("    Cart Length Deviation: %d\n",cart->cart_length_deviation);
+    printf("Cart Average Segue Length: %d\n",cart->cart_average_segue_length);
+    printf(" Cart Average Hook Length: %d\n",cart->cart_average_hook_length);
+    printf("        Cart Cut Quantity: %u\n",cart->cart_cut_quantity);
+    printf("     Cart Last Cut Played: %03u\n",cart->cart_last_cut_played);
+    printf("            Cart Validity: %u\n",cart->cart_validity);
+    printf("      Cart Enforce Length: %d\n",cart->cart_enforce_length);
+    printf("         Cart Asyncronous: %d\n",cart->cart_asyncronous);
+    printf("               Cart Owner: %s\n",cart->cart_owner);
+    printf("Cart Metadata year value = %d\n",cart->cart_metadata_datetime.tm_year);
+    printf("Cart Metadata month value = %d\n",cart->cart_metadata_datetime.tm_mon);
+    printf("Cart Metadata day value = %d\n",cart->cart_metadata_datetime.tm_mday);
+    printf("Cart Metadata wday value = %d\n",cart->cart_metadata_datetime.tm_wday);
+    printf("Cart Metadata hour value = %d\n",cart->cart_metadata_datetime.tm_hour);
+    printf("Cart Metadata min value = %d\n",cart->cart_metadata_datetime.tm_min);
+    printf("Cart Metadata sec value = %d\n",cart->cart_metadata_datetime.tm_sec);
+    printf("Cart Metadata isdst value = %d\n",cart->cart_metadata_datetime.tm_isdst);
+
+    //printf("   Cart Metadata Datetime: %s\n",cart->cart_metadata_datetime);
+    printf("\n");
+
+  free(cart);
+
   exit(0);
 }

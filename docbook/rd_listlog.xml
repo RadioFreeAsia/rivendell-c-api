@@ -369,9 +369,6 @@ structure is returned and the number of records is returned.
   </refsect2>
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
-      400          Missing Log File Name.
-    </para>
-    <para>
       403          User Authentification Error.
     </para>
     <para>

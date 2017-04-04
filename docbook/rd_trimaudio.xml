@@ -242,7 +242,7 @@ structure is returned and the number of records is returned.
       403          User Authentification Error.
     </para>
     <para>
-      404          No Such Cart or No Audio Exists.
+      404          Invalid Permissions or No Cart / Audio Exists.
     </para>
     <para>
       nnn  Unknown Error Occurred.

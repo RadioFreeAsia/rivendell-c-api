@@ -180,7 +180,7 @@
       403          User Authentification Error.
     </para>
     <para>
-      404          User Does Not Have Permission to Create New Logs.
+      404          User Permission Error or Invalid Service.
     </para>
     <para>
       500          Unable to Create Log.

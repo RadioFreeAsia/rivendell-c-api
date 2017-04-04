@@ -165,7 +165,7 @@
       403          User Authentification Error.
     </para>
     <para>
-      404          User Does Not Have Permission to Delete Logs.
+      404          User Permissions Error.
     </para>
     <para>
       500          Unable to Delete Log.

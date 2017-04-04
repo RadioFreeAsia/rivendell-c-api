@@ -238,7 +238,7 @@ int RD_AddCut(struct rd_cut *cut[],
 			__AddCutElementEnd);
   XML_SetCharacterDataHandler(parser,__AddCutElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=10&LOGIN_NAME=%s&PASSWORD=%s&ticket=%s&CART_NUMBER=%u",
+  snprintf(post,1500,"COMMAND=10&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u",
 	curl_easy_escape(curl,username,0),
 	curl_easy_escape(curl,passwd,0),
 	curl_easy_escape(curl,ticket,0),

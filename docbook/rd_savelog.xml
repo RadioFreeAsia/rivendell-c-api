@@ -271,7 +271,7 @@
       404          User Permission Error.
     </para>
     <para>
-      404          Service Does Not Exist.
+      404          Service or Log Does Not Exist.
     </para>
     <para>
       500          Server error.

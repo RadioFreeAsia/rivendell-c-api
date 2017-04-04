@@ -232,3 +232,9 @@
 2017-03-30 Todd Baker <bakert@rfa.org>
 	* Updated documentation files to include additional Authentification 
 	Ticket field and also updated return codes where applicable.
+2017-04-04 Todd Baker <bakert@rfa.org>
+	*  Updated test harnes to included testing of ticket Authentification
+	where possible and logical.  Delete tests are implemented in the add
+	procedures.
+	*  Updated tests and docbook entries to show correct error code 
+	return values.

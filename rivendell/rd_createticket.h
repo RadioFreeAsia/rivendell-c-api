@@ -26,7 +26,7 @@
 _MYRIVLIB_INIT_DECL
 
 struct rd_ticketinfo {
-  char ticket[40];
+  char ticket[41];
   struct tm tkt_expiration_datetime;
 };
 

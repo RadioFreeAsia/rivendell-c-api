@@ -177,13 +177,13 @@
   </refsect2>
   <refsect3 id='errors'><title>ERRORS</title>
     <para>
-      400          Missing Cart Number / Cut Number Error.
+      400          Missing Cart Number Error.
     </para>
     <para>
       403          User Authentification Error.
     </para>
     <para>
-      404          No Such Cart/Code.
+      404          No Such Cart / Scheduler Code.
     </para>
     <para>
       nnn          Unknown Error Occurred.

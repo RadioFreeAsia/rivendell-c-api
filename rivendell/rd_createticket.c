@@ -64,7 +64,7 @@ static void XMLCALL __CreateTicketElementEnd(void *data, const char *el)
   char hold_datetime[25];
 
   if(strcasecmp(el,"ticket")==0) {
-    strlcpy(ticketinfo->ticket,xml_data->strbuf,256);
+    strlcpy(ticketinfo->ticket,xml_data->strbuf,41);
   }
   if(strcasecmp(el,"expires")==0) {
     strlcpy(hold_datetime,xml_data->strbuf,26);

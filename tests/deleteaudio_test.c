@@ -34,7 +34,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
-  char ticket[40]="";
+  char ticket[41]="";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {

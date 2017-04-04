@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include <rivendell/rd_import.h>
+#include <rivendell/rd_createticket.h>
 
 int main(int argc,char *argv[])
 {
@@ -38,7 +39,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
-  char ticket[40]="";
+  char ticket[41]="";
   struct rd_cartimport *cartimport=0;
   unsigned numrecs;
 
@@ -112,6 +113,110 @@ fprintf(stderr," Create flag = %d\n",create_flag);
 fprintf(stderr," Group Name= %s\n",group_name);
   
   int result= RD_ImportCart(&cartimport,
+                host,
+		user,
+		passwd,
+		ticket,
+		(unsigned)cartnum,
+		(unsigned)cutnum,
+		(unsigned)2,
+		0,
+		0,
+		0,
+		create_flag,
+		group_name,
+                filename,
+		&numrecs);
+
+  if(result<0) {
+    fprintf(stderr,"Something went wrong! Result Code = %d\n",result);
+    exit(256);
+  }
+
+  if ((result< 200 || result > 299) && 
+       (result != 0))
+  {
+    switch(result) {
+      case 404:
+        fprintf(stderr,"ERROR:  No Such Cart/Cut Exists! \n");
+        break;
+      case  401:
+        fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
+        break;
+      default:
+        fprintf(stderr, "Unknown Error occurred ==> %d",result);
+    }
+    exit(256);
+  }
+
+  //
+  // List the results
+  //
+  for(i=0;i<numrecs;i++) {
+    printf("              Cart Number: %u\n",cartimport[i].cart_number);
+    printf("              Cut Number:  %u\n",cartimport[i].cut_number);
+    printf("\n");
+    printf(" Cart: %u  -  Cut: %u  - Filename: %s was successfully imported!\n",cartimport[i].cart_number,
+                                cartimport[i].cut_number,
+                                filename);
+    printf("\n");
+  }
+
+  //
+  // Free the cart import info when finished with it
+  //
+  free(cartimport);
+
+
+
+// Add test of create_ticket function 
+    
+    struct rd_ticketinfo *myticket=0;
+    numrecs=0;
+
+    result = RD_CreateTicket( &myticket,
+            host,
+            user,
+            passwd,
+            &numrecs);
+
+    if ((result< 200 || result > 299) &&
+       (result != 0))
+    {
+        switch(result) {
+            case 403:
+            fprintf(stderr," ERROR: Invalid User Information During Create Ticket\n");
+            break;
+        default:
+           fprintf(stderr, "Unknown Error occurred ==> %d\n",result);
+        }
+    exit(256);
+    }
+
+    //   We got a ticket created - use it and do the call again
+    //
+  // List the Results
+  //
+  for(i=0;i<numrecs;i++) {
+    printf("          Ticket: %s\n",myticket[i].ticket);
+    printf("Ticket Expire year value  = %d\n",myticket->tkt_expiration_datetime.tm_year);
+    printf("Ticket Expire month value = %d\n",myticket->tkt_expiration_datetime.tm_mon);
+    printf("Ticket Expire day value   = %d\n",myticket->tkt_expiration_datetime.tm_mday);
+    printf("Ticket Expire wday value  = %d\n",myticket->tkt_expiration_datetime.tm_wday);
+    printf("Ticket Expire hour value  = %d\n",myticket->tkt_expiration_datetime.tm_hour);
+    printf("Ticket Expire min value   = %d\n",myticket->tkt_expiration_datetime.tm_min);
+    printf("Ticket Expire sec value   = %d\n",myticket->tkt_expiration_datetime.tm_sec);
+    printf("Ticket Expire isdst value = %d\n",myticket->tkt_expiration_datetime.tm_isdst);
+    printf("\n");
+
+  }
+
+    user="";
+    passwd="";
+    strcpy( ticket,myticket->ticket);
+    fprintf(stderr, "Ticket was copied - = %s\n",ticket);
+
+  result= RD_ImportCart(&cartimport,
                 host,
 		user,
 		passwd,
