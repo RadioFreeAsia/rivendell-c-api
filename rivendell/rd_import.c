@@ -286,13 +286,15 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
-    size_t len = strlen(errbuf);
-    fprintf(stderr, "\nlibcurl error: (%d)", res);
-    if (len)
-        fprintf(stderr, "%s%s", errbuf,
-            ((errbuf[len-1] != '\n') ? "\n" : ""));
-    else
-        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #ifdef RIVC_DEBUG_OUT
+        size_t len = strlen(errbuf);
+        fprintf(stderr, "\nlibcurl error: (%d)", res);
+        if (len)
+            fprintf(stderr, "%s%s", errbuf,
+                ((errbuf[len-1] != '\n') ? "\n" : ""));
+        else
+            fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #endif
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -308,7 +310,9 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
     return 0;
   }
   else {
-    fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #endif
     return (int)response_code;
   }
 }

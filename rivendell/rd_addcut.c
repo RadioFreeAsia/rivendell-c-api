@@ -258,12 +258,14 @@ int RD_AddCut(struct rd_cut *cut[],
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     size_t len = strlen(errbuf);
-    fprintf(stderr, "\nlibcurl error: (%d)", res);
-    if (len)
-        fprintf(stderr, "%s%s", errbuf,
-            ((errbuf[len-1] != '\n') ? "\n" : ""));
-    else
-        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr, "\nlibcurl error: (%d)", res);
+        if (len)
+            fprintf(stderr, "%s%s", errbuf,
+                ((errbuf[len-1] != '\n') ? "\n" : ""));
+        else
+            fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #endif
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -278,7 +280,9 @@ int RD_AddCut(struct rd_cut *cut[],
     return 0;
   }
   else {
-    fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #endif
     return (int)response_code;
   }
 }

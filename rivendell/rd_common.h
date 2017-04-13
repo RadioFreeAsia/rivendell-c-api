@@ -36,6 +36,8 @@
 #endif  // MINGW32
 #endif
 
+#define RIVC_DEBUG_OUT 0    /* set to 1 for stderr output */
+
 #if defined(__cplusplus)
 #define _MYRIVLIB_INIT_DECL extern "C" {
 #define _MYRIVLIB_FINI_DECL }

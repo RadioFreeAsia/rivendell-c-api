@@ -89,7 +89,9 @@ int RD_ExportPeaks( const char hostname[],
   fp = fopen(checked_fname,"wb");
   if (!fp)
   {
-    fprintf(stderr,"Error Opening Destination File\n");
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr,"Error Opening Destination File\n");
+    #endif
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -103,13 +105,15 @@ int RD_ExportPeaks( const char hostname[],
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
-    size_t len = strlen(errbuf);
-    fprintf(stderr, "\nlibcurl error: (%d)", res);
-    if (len)
-        fprintf(stderr, "%s%s", errbuf,
-            ((errbuf[len-1] != '\n') ? "\n" : ""));
-    else
-        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #ifdef RIVC_DEBUG_OUT
+        size_t len = strlen(errbuf);
+        fprintf(stderr, "\nlibcurl error: (%d)", res);
+        if (len)
+            fprintf(stderr, "%s%s", errbuf,
+                ((errbuf[len-1] != '\n') ? "\n" : ""));
+        else
+            fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #endif
     curl_easy_cleanup(curl);
     fclose(fp);
     return -1;

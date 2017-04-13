@@ -238,3 +238,7 @@
 	procedures.
 	*  Updated tests and docbook entries to show correct error code 
 	return values.
+2017-04-13 Todd Baker <bakert@rfa.org>
+	* Added RIVC_DEBUG_OUT #define in rd_common.h.  This when changed to 1 (ON)
+        will make all stderr output visible in all of the rivendell c library modules.
+        Otherwise the errors will be silent (you must interpret the return code).
