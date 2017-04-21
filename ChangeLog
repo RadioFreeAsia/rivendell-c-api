@@ -242,3 +242,5 @@
 	* Added RIVC_DEBUG_OUT #define in rd_common.h.  This when changed to 1 (ON)
         will make all stderr output visible in all of the rivendell c library modules.
         Otherwise the errors will be silent (you must interpret the return code).
+2017-04-21 Todd Baker <bakert@rfa.org>
+	* Fixed bug in rivendell/rd_import.c. Group Name was getting corrupted.

@@ -111,14 +111,14 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   char autotrim_buffer[50];
   char use_metadata_buffer[50];
   char create_flag[50];
-  char group_name[50];
+  char checked_group_name[50];
   long userlen = strlen(username);
   long passwdlen = strlen(passwd);
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
 
   /*   Check File name */
-  memset(checked_fname,'\0',sizeof(checked_fname)-1);
+  memset(checked_fname,'\0',sizeof(checked_fname));
   arrayptr=&checked_fname[0];
 
   for (i = 0 ; i < strlen(filename) ; i++) {
@@ -129,8 +129,8 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   }
   
   /*   Check Group Name */
-  memset(group_name,'\0',sizeof(group)-1);
-  arrayptr=&group_name[0];
+  memset(checked_group_name,'\0',sizeof(checked_group_name));
+  arrayptr=&checked_group_name[0];
 
   for (i = 0 ; i < strlen(group) ; i++) {
     if (group[i]>32) {
@@ -138,6 +138,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
       arrayptr++;
     }
   }
+
 //
 // Generate POST Data
 //
@@ -243,7 +244,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 	CURLFORM_PTRNAME,
 	"GROUP_NAME",
         CURLFORM_COPYCONTENTS,
-	curl_easy_escape(curl,group_name,0),
+	curl_easy_escape(curl,checked_group_name,0),
 	CURLFORM_END);
 
   curl_formadd(&first,
@@ -253,7 +254,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
         CURLFORM_FILE,
 	checked_fname,
 	CURLFORM_END);
-
+  
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);
     
@@ -273,6 +274,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 			__ImportCartElementEnd);
   XML_SetCharacterDataHandler(parser,__ImportCartElementData);
 
+  //curl_easy_setopt(curl, CURLOPT_WRITEDATA, stderr);  Debug try
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_TIMEOUT,1200);
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
@@ -285,16 +287,18 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   curl_easy_setopt(curl,CURLOPT_VERBOSE,0);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   res = curl_easy_perform(curl);
+ 
   if(res != CURLE_OK) {
     #ifdef RIVC_DEBUG_OUT
         size_t len = strlen(errbuf);
-        fprintf(stderr, "\nlibcurl error: (%d)", res);
+		fprintf(stderr, "\nlibcurl error: (%d)", res);
         if (len)
-            fprintf(stderr, "%s%s", errbuf,
-                ((errbuf[len-1] != '\n') ? "\n" : ""));
-        else
+			fprintf(stderr, "%s%s", errbuf,
+			  ((errbuf[len-1] != '\n') ? "\n" : ""));
+		else
             fprintf(stderr, "%s\n", curl_easy_strerror(res));
     #endif
+		
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -303,16 +307,16 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   curl_easy_getinfo(curl,CURLINFO_RESPONSE_CODE,&response_code);
   curl_formfree(first);
   curl_easy_cleanup(curl);
-  
   if (response_code > 199 && response_code < 300) {
     *cartimport=xml_data.cartimport;
     *numrecs = 1;
-    return 0;
+  return 0;
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);		
     #endif
+
     return (int)response_code;
   }
 }
