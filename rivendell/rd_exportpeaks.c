@@ -55,7 +55,7 @@ int RD_ExportPeaks( const char hostname[],
   CURLcode res;
 
   /*   Check File name */
-  memset(checked_fname,'\0',sizeof(checked_fname)-1);
+  memset(checked_fname,'\0',sizeof(checked_fname));
   fnameptr=&checked_fname[0];
 
   for (i = 0 ; i < strlen(filename) ; i++) {

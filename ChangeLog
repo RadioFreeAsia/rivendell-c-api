@@ -244,3 +244,6 @@
         Otherwise the errors will be silent (you must interpret the return code).
 2017-04-21 Todd Baker <bakert@rfa.org>
 	* Fixed bug in rivendell/rd_import.c. Group Name was getting corrupted.
+2017-04-24 Todd Baker <bakert@rfa.org
+	* Modified rivendell/rd_export.c, rivendell/rd_exportpeaks.c to fix
+	possible filename corruption.
