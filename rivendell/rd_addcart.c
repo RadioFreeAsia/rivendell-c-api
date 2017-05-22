@@ -242,7 +242,7 @@ int RD_AddCart(struct rd_cart *cart[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr,"rd_addcart Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }

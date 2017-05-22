@@ -152,7 +152,7 @@ int RD_AssignSchedCode( const char hostname[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr,"rd_assignschedcode Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }

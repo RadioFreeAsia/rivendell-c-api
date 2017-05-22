@@ -247,3 +247,19 @@
 2017-04-24 Todd Baker <bakert@rfa.org
 	* Modified rivendell/rd_export.c, rivendell/rd_exportpeaks.c to fix
 	possible filename corruption.
+2017-05-18 Todd Baker <bakert@rfa.org>
+	* Modified  docbook/Makefile.am, tests/Makefile.am, docbook/clibsummary.xml,
+	rivendell/Makefile.am to include the new List System Settings functionality.
+	* Added  docbook/rd_listsystemsettings.xml ,rivendell/rd_listsystemsettings.c
+	rivendell/rd_listsystemsettings.h, tests/listsystemsettings_test.c
+2017-05-22 Todd Baker <bakert@rfa.org>
+	* Modified the following files to handle Error Reporting correctly:
+	rd_addcart.c, rd_addcut.c, rd_assignschedcode.c, rd_audioinfo.c
+	rd_audiostore.c, rd_common.h, rd_copyaudio.c, rd_createticket.c,
+	rd_deleteaudio.c, rd_editcart.c, rd_editcut.c, rd_import.c,
+	rd_listcart.c, rd_listcarts.c, rd_listcartschedcodes.c, rd_listcut.c,
+	rd_listcuts.c, rd_listgroup.c, rd_listgroups.c, rd_listlog.c, rd_listlogs.c,
+	rd_listschedcodes.c, rd_listservices.c, rd_listsystemsettings.c, rd_removecart.c,
+	rd_removecut.c, rd_trimaudio.c, rd_unassignschedcode.c
+
+

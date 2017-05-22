@@ -134,7 +134,7 @@ int RD_DeleteAudio( const char hostname[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr,"rd_deleteaudio Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }

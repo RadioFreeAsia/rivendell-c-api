@@ -185,7 +185,7 @@ int RD_ListGroup(struct rd_group *grp[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr," rd_listgroup Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }

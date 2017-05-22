@@ -160,7 +160,7 @@ int RD_ListSystemSettings(struct rd_system_settings *system_settings[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr," rd_listsystemsettings Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }

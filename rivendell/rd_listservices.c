@@ -155,7 +155,7 @@ int RD_ListServices(struct rd_service *services[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr," rd_listservices Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }

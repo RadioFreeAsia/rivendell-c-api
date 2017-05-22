@@ -284,7 +284,7 @@ int RD_ListCut(struct rd_cut *cuts[],
   }
   else {
     #ifdef RIVC_DEBUG_OUT
-        fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+        fprintf(stderr," rd_listcut Call Returned Error: %s\n",xml_data.strbuf);
     #endif
     return (int)response_code;
   }
