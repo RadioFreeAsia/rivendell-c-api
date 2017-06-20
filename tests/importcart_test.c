@@ -40,6 +40,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
+  char title[BUFSIZ]="";
   struct rd_cartimport *cartimport=0;
   unsigned numrecs;
 
@@ -104,13 +105,15 @@ int main(int argc,char *argv[])
       if (fgets(group_name,sizeof(group_name),stdin) != NULL)
       {
       }
+      printf("Optional Title Field (Checks Duplicate titles)===> ");
+      if (fgets(title,sizeof(title),stdin) != NULL)
+      {
+      }
     }
   }
   //
   // Call the function
   //
-fprintf(stderr," Create flag = %d\n",create_flag);
-fprintf(stderr," Group Name= %s\n",group_name);
   
   int result= RD_ImportCart(&cartimport,
                 host,
@@ -125,6 +128,7 @@ fprintf(stderr," Group Name= %s\n",group_name);
 		0,
 		create_flag,
 		group_name,
+		title,
                 filename,
 		&numrecs);
 
@@ -138,7 +142,7 @@ fprintf(stderr," Group Name= %s\n",group_name);
   {
     switch(result) {
       case 404:
-        fprintf(stderr,"ERROR:  No Such Cart/Cut Exists! \n");
+        fprintf(stderr,"ERROR:  %s \n",cartimport->error_string);
         break;
       case  401:
         fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
@@ -153,8 +157,8 @@ fprintf(stderr," Group Name= %s\n",group_name);
   // List the results
   //
   for(i=0;i<numrecs;i++) {
-    printf("              Cart Number: %u\n",cartimport[i].cart_number);
-    printf("              Cut Number:  %u\n",cartimport[i].cut_number);
+    printf("Cart Number: %u\n",cartimport[i].cart_number);
+    printf("Cut Number:  %u\n",cartimport[i].cut_number);
     printf("\n");
     printf(" Cart: %u  -  Cut: %u  - Filename: %s was successfully imported!\n",cartimport[i].cart_number,
                                 cartimport[i].cut_number,
@@ -229,6 +233,7 @@ fprintf(stderr," Group Name= %s\n",group_name);
 		0,
 		create_flag,
 		group_name,
+		title,
                 filename,
 		&numrecs);
 
@@ -242,7 +247,8 @@ fprintf(stderr," Group Name= %s\n",group_name);
   {
     switch(result) {
       case 404:
-        fprintf(stderr,"ERROR:  No Such Cart/Cut Exists! \n");
+        fprintf(stderr,"ERROR:  %s \n",cartimport->error_string);
+        //fprintf(stderr,"ERROR:  No Such Cart/Cut Exists! \n");
         break;
       case  401:
         fprintf(stderr, "ERROR:  Unauthorized Or Cart out of Range! \n");
@@ -257,8 +263,8 @@ fprintf(stderr," Group Name= %s\n",group_name);
   // List the results
   //
   for(i=0;i<numrecs;i++) {
-    printf("              Cart Number: %u\n",cartimport[i].cart_number);
-    printf("              Cut Number:  %u\n",cartimport[i].cut_number);
+    printf("Cart Number: %u\n",cartimport[i].cart_number);
+    printf("Cut Number:  %u\n",cartimport[i].cut_number);
     printf("\n");
     printf(" Cart: %u  -  Cut: %u  - Filename: %s was successfully imported!\n",cartimport[i].cart_number,
                                 cartimport[i].cut_number,

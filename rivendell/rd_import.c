@@ -38,9 +38,11 @@ static void XMLCALL __ImportCartElementStart(void *data, const char *el,
 					     const char **attr)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
-  if(strcasecmp(el,"RDWebResult")==0) {    // Allocate a new cart entry
-    xml_data->cartimport=realloc(xml_data->cartimport, sizeof(struct rd_cartimport));
-  }
+  // Always allocate - because even if error we want to get error string
+  // if(strcasecmp(el,"RDWebResult")==0) {    // Allocate a new cart entry
+  //
+  xml_data->cartimport=realloc(xml_data->cartimport, sizeof(struct rd_cartimport));
+  //}
   strncpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
@@ -64,6 +66,11 @@ static void XMLCALL __ImportCartElementEnd(void *data, const char *el)
   if(strcasecmp(el,"CutNumber")==0) {
     sscanf(xml_data->strbuf,"%u",&cartimport->cut_number);
   }
+
+  if(strcasecmp(el,"ErrorString")==0) {
+    strlcpy(cartimport->error_string,xml_data->strbuf,256);
+  }
+
 }
 
 
@@ -90,6 +97,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
                         const int  use_metadata,
                         const int  create,
                         const char group[],
+                        const char title[],
                         const char filename[],
 			unsigned *numrecs)
 {
@@ -250,6 +258,14 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   curl_formadd(&first,
 	&last,
 	CURLFORM_PTRNAME,
+	"TITLE",
+        CURLFORM_COPYCONTENTS,
+        title,
+	CURLFORM_END);
+
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
 	"FILENAME",
         CURLFORM_FILE,
 	checked_fname,
@@ -316,7 +332,8 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
     #ifdef RIVC_DEBUG_OUT
         fprintf(stderr," rd_import Call Returned Error: %s\n",xml_data.strbuf);		
     #endif
-
+    *cartimport=xml_data.cartimport;
+    *numrecs = 0;
     return (int)response_code;
   }
 }
