@@ -55,6 +55,7 @@ tests/listlog_test
 tests/listlogs_test
 tests/listschedcodes_test
 tests/listservices_test
+tests/listsystemsettings_test
 tests/removecart_test
 tests/removecut_test
 tests/savelog_test
