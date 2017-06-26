@@ -116,12 +116,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     snprintf(str,1024,"&LINE%u_GRACE_TIME=%u",i,linevals[i].logline_gracetime);
     post=AppendString(post,str);
 
-    if(linevals[i].logline_time_type==1) {
-      snprintf(str,1024,"&LINE%u_TIME_TYPE=Hard",i);
-    }
-    else {
-      snprintf(str,1024,"&LINE%u_TIME_TYPE=Relative",i);
-    }
+    snprintf(str,1024,"&LINE%u_TIME_TYPE=%u",i,linevals[i].logline_time_type);
     post=AppendString(post,str);
 
     switch(linevals[i].logline_transition_type) {

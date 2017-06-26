@@ -247,3 +247,6 @@
 	'save_logline_values' struct in 'rivendell/rd_savelog.h'.
 	* Added 'logline_fadedown_gain' to the 'rd_logline' struct in
 	'rivendell/rd_listlog.h'.
+2017-06-26 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'rivendell_rd_savelog.c' that caused the
+	'TIME_TYPE' value to fail to be saved.
