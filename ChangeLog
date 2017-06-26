@@ -220,12 +220,12 @@
 	* Added a conditional compile in 'rivendell/rd_common.c' to
 	avoid the use of localtime_r() on MingW32.
 2017-03-02 Todd Baker <bakert@rfa.org>
-        * Fixed Typo in README for Expat Library.
+	* Fixed Typo in README for Expat Library.
 2017-03-29 Todd Baker <bakert@rfa.org>
 	* Added ticket field to all of the Rivendell Web Libary calls.  
 	When provided - the ticket will be used for authentification
 	instead of user/password.
-        * Added rd_create_ticked.c and rd_create_ticket.h for creating
+	* Added rd_create_ticked.c and rd_create_ticket.h for creating
 	an authentification ticket via the Rivendell Web API.
 	* Added createticket_test.c test harness for testing of 
 	creation of authentification tickets.
@@ -240,8 +240,8 @@
 	return values.
 2017-04-13 Todd Baker <bakert@rfa.org>
 	* Added RIVC_DEBUG_OUT #define in rd_common.h.  This when changed to 1 (ON)
-        will make all stderr output visible in all of the rivendell c library modules.
-        Otherwise the errors will be silent (you must interpret the return code).
+	will make all stderr output visible in all of the rivendell c library modules.
+	Otherwise the errors will be silent (you must interpret the return code).
 2017-04-21 Todd Baker <bakert@rfa.org>
 	* Fixed bug in rivendell/rd_import.c. Group Name was getting corrupted.
 2017-04-24 Todd Baker <bakert@rfa.org
@@ -261,5 +261,8 @@
 	rd_listcuts.c, rd_listgroup.c, rd_listgroups.c, rd_listlog.c, rd_listlogs.c,
 	rd_listschedcodes.c, rd_listservices.c, rd_listsystemsettings.c, rd_removecart.c,
 	rd_removecut.c, rd_trimaudio.c, rd_unassignschedcode.c
-
+2017-06-20 Todd Baker <bakert@rfa.org>
+	* Modified rivendell/rd_import.c and rivendell/rd_import.h to use
+	the new RD_Import Title Parameter if it is present. Added Title test
+	to the test for import_cart. Updated docbook for rdimport.
 
