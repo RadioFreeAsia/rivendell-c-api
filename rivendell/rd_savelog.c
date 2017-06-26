@@ -116,12 +116,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     snprintf(str,1024,"&LINE%u_GRACE_TIME=%u",i,linevals[i].logline_gracetime);
     post=AppendString(post,str);
 
-    if(linevals[i].logline_time_type==1) {
-      snprintf(str,1024,"&LINE%u_TIME_TYPE=Hard",i);
-    }
-    else {
-      snprintf(str,1024,"&LINE%u_TIME_TYPE=Relative",i);
-    }
+    snprintf(str,1024,"&LINE%u_TIME_TYPE=%u",i,linevals[i].logline_time_type);
     post=AppendString(post,str);
 
     switch(linevals[i].logline_transition_type) {
@@ -139,35 +134,43 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
     }
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_START_POINT=%u",i,
+    snprintf(str,1024,"&LINE%u_START_POINT=%d",i,
 	     linevals[i].logline_start_point_log);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_END_POINT=%u",i,
+    snprintf(str,1024,"&LINE%u_END_POINT=%d",i,
 	     linevals[i].logline_end_point_log);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_SEGUE_START_POINT=%u",i,
+    snprintf(str,1024,"&LINE%u_SEGUE_START_POINT=%d",i,
 	     linevals[i].logline_segue_start_point_log);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_SEGUE_END_POINT=%u",i,
+    snprintf(str,1024,"&LINE%u_SEGUE_END_POINT=%d",i,
 	     linevals[i].logline_segue_end_point_log);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_FADEUP_POINT=%u",i,
+    snprintf(str,1024,"&LINE%u_FADEUP_POINT=%d",i,
 	     linevals[i].logline_fadeup_point_log);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_FADEDOWN_POINT=%u",i,
+    snprintf(str,1024,"&LINE%u_FADEUP_GAIN=%d",i,
+	     linevals[i].logline_fadeup_gain);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_FADEDOWN_POINT=%d",i,
 	     linevals[i].logline_fadedown_point_log);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_DUCK_UP_GAIN=%u",i,
+    snprintf(str,1024,"&LINE%u_FADEDOWN_GAIN=%d",i,
+	     linevals[i].logline_fadedown_gain);
+    post=AppendString(post,str);
+
+    snprintf(str,1024,"&LINE%u_DUCK_UP_GAIN=%d",i,
 	     linevals[i].logline_duckup_gain);
     post=AppendString(post,str);
 
-    snprintf(str,1024,"&LINE%u_DUCK_DOWN_GAIN=%u",i,
+    snprintf(str,1024,"&LINE%u_DUCK_DOWN_GAIN=%d",i,
 	     linevals[i].logline_duckdown_gain);
     post=AppendString(post,str);
 

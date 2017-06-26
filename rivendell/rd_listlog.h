@@ -73,6 +73,7 @@ struct rd_logline {
   int  logline_fadeup_gain;
   int  logline_fadedown_point_cart;
   int  logline_fadedown_point_log;
+  int  logline_fadedown_gain;
   int  logline_duckup_gain;
   int  logline_duckdown_gain;
   int  logline_talk_start_point;

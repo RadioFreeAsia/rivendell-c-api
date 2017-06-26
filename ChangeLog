@@ -265,4 +265,15 @@
 	* Modified rivendell/rd_import.c and rivendell/rd_import.h to use
 	the new RD_Import Title Parameter if it is present. Added Title test
 	to the test for import_cart. Updated docbook for rdimport.
-
+2017-06-26 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed bugs in 'rivendell/rd_savelog.c' that caused negative values
+	for 'START_POINT', 'END_POINT', 'SEGUE_START_POINT',
+	'SEGUE_END_POINT', 'FADEUP_POINT', 'FADEDOWN_POINT',
+	'DUCK_UP_GAIN' and 'DUCK_DOWN_GAIN' to be corrupted.
+	* Added 'logline_fadeup_gain' and 'logline_fadedown_gain' to the
+	'save_logline_values' struct in 'rivendell/rd_savelog.h'.
+	* Added 'logline_fadedown_gain' to the 'rd_logline' struct in
+	'rivendell/rd_listlog.h'.
+2017-06-26 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'rivendell_rd_savelog.c' that caused the
+	'TIME_TYPE' value to fail to be saved.
