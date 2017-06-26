@@ -327,6 +327,9 @@ static void XMLCALL __ListLogElementEnd(void *data, const char *el)
       }
     }
   }
+  if(strcasecmp(el,"fadedownGain")==0) {
+      sscanf(xml_data->strbuf,"%d",&logline->logline_fadedown_gain);
+  }
   if(strcasecmp(el,"duckUpGain")==0) {
       sscanf(xml_data->strbuf,"%d",&logline->logline_duckup_gain);
   }

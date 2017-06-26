@@ -49,7 +49,9 @@ struct save_logline_values {
   int  logline_segue_start_point_log;
   int  logline_segue_end_point_log;
   int  logline_fadeup_point_log;
+  int  logline_fadeup_gain;
   int  logline_fadedown_point_log;
+  int  logline_fadedown_gain;
   int  logline_duckup_gain;
   int  logline_duckdown_gain;
   char logline_marker_comment[256];
