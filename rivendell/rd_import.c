@@ -38,9 +38,11 @@ static void XMLCALL __ImportCartElementStart(void *data, const char *el,
 					     const char **attr)
 {
   struct xml_data *xml_data=(struct xml_data *)data;
-  if(strcasecmp(el,"RDWebResult")==0) {    // Allocate a new cart entry
-    xml_data->cartimport=realloc(xml_data->cartimport, sizeof(struct rd_cartimport));
-  }
+  // Always allocate - because even if error we want to get error string
+  // if(strcasecmp(el,"RDWebResult")==0) {    // Allocate a new cart entry
+  //
+  xml_data->cartimport=realloc(xml_data->cartimport, sizeof(struct rd_cartimport));
+  //}
   strncpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);
 }
@@ -64,6 +66,11 @@ static void XMLCALL __ImportCartElementEnd(void *data, const char *el)
   if(strcasecmp(el,"CutNumber")==0) {
     sscanf(xml_data->strbuf,"%u",&cartimport->cut_number);
   }
+
+  if(strcasecmp(el,"ErrorString")==0) {
+    strlcpy(cartimport->error_string,xml_data->strbuf,256);
+  }
+
 }
 
 
@@ -90,6 +97,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
                         const int  use_metadata,
                         const int  create,
                         const char group[],
+                        const char title[],
                         const char filename[],
 			unsigned *numrecs)
 {
@@ -111,14 +119,14 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   char autotrim_buffer[50];
   char use_metadata_buffer[50];
   char create_flag[50];
-  char group_name[50];
+  char checked_group_name[50];
   long userlen = strlen(username);
   long passwdlen = strlen(passwd);
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
 
   /*   Check File name */
-  memset(checked_fname,'\0',sizeof(checked_fname)-1);
+  memset(checked_fname,'\0',sizeof(checked_fname));
   arrayptr=&checked_fname[0];
 
   for (i = 0 ; i < strlen(filename) ; i++) {
@@ -129,8 +137,8 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   }
   
   /*   Check Group Name */
-  memset(group_name,'\0',sizeof(group)-1);
-  arrayptr=&group_name[0];
+  memset(checked_group_name,'\0',sizeof(checked_group_name));
+  arrayptr=&checked_group_name[0];
 
   for (i = 0 ; i < strlen(group) ; i++) {
     if (group[i]>32) {
@@ -138,6 +146,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
       arrayptr++;
     }
   }
+
 //
 // Generate POST Data
 //
@@ -243,7 +252,15 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 	CURLFORM_PTRNAME,
 	"GROUP_NAME",
         CURLFORM_COPYCONTENTS,
-	curl_easy_escape(curl,group_name,0),
+	curl_easy_escape(curl,checked_group_name,0),
+	CURLFORM_END);
+
+  curl_formadd(&first,
+	&last,
+	CURLFORM_PTRNAME,
+	"TITLE",
+        CURLFORM_COPYCONTENTS,
+        title,
 	CURLFORM_END);
 
   curl_formadd(&first,
@@ -253,7 +270,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
         CURLFORM_FILE,
 	checked_fname,
 	CURLFORM_END);
-
+  
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);
     
@@ -273,6 +290,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 			__ImportCartElementEnd);
   XML_SetCharacterDataHandler(parser,__ImportCartElementData);
 
+  //curl_easy_setopt(curl, CURLOPT_WRITEDATA, stderr);  Debug try
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_TIMEOUT,1200);
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
@@ -285,14 +303,18 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   curl_easy_setopt(curl,CURLOPT_VERBOSE,0);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   res = curl_easy_perform(curl);
+ 
   if(res != CURLE_OK) {
-    size_t len = strlen(errbuf);
-    fprintf(stderr, "\nlibcurl error: (%d)", res);
-    if (len)
-        fprintf(stderr, "%s%s", errbuf,
-            ((errbuf[len-1] != '\n') ? "\n" : ""));
-    else
-        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #ifdef RIVC_DEBUG_OUT
+        size_t len = strlen(errbuf);
+		fprintf(stderr, "\nlibcurl error: (%d)", res);
+        if (len)
+			fprintf(stderr, "%s%s", errbuf,
+			  ((errbuf[len-1] != '\n') ? "\n" : ""));
+		else
+            fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #endif
+		
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -301,14 +323,17 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   curl_easy_getinfo(curl,CURLINFO_RESPONSE_CODE,&response_code);
   curl_formfree(first);
   curl_easy_cleanup(curl);
-  
   if (response_code > 199 && response_code < 300) {
     *cartimport=xml_data.cartimport;
     *numrecs = 1;
-    return 0;
+  return 0;
   }
   else {
-    fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr," rd_import Call Returned Error: %s\n",xml_data.strbuf);		
+    #endif
+    *cartimport=xml_data.cartimport;
+    *numrecs = 0;
     return (int)response_code;
   }
 }

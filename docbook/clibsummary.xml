@@ -98,6 +98,9 @@ information about an entry in the audio store.
   <para><command>RD_ListServices</command> This function 
     lists the Servicess that are stored within the Rivendell Database.
   </para>
+  <para><command>RD_ListSystemSettings</command> This function 
+    lists the System Settings that are stored within the Rivendell Database.
+  </para>
   <para><command>RD_RemoveCart</command> This function 
     removes a cart from the Rivendell database.
   </para>

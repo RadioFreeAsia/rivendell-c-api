@@ -26,6 +26,7 @@ noinst_PROGRAMS = listgroups_test \
 		listcart_test \
 		listcuts_test \
 		listcut_test \
+                listsystemsettings_test \
 		listschedcodes_test \
 		listcartschedcodes_test \
 		assignschedcode_test \
@@ -59,6 +60,7 @@ dist_listcart_test_SOURCES = listcart_test.c
 dist_listcuts_test_SOURCES = listcuts_test.c 
 dist_listcut_test_SOURCES = listcut_test.c 
 dist_listschedcodes_test_SOURCES = listschedcodes_test.c 
+dist_listsystemsettings_test_SOURCES = listsystemsettings_test.c 
 dist_assignschedcode_test_SOURCES = assignschedcode_test.c 
 dist_unassignschedcode_test_SOURCES = unassignschedcode_test.c 
 dist_addcart_test_SOURCES = addcart_test.c 
@@ -93,6 +95,7 @@ listcart_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
 listcuts_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
 listcut_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
 listschedcodes_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
+listsystemsettings_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
 assignschedcode_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
 listcartschedcodes_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm
 unassignschedcode_test_LDADD =  -lrivwebcapi -lexpat -lcurl -lm

@@ -147,12 +147,14 @@ int RD_AudioInfo(struct rd_audioinfo *audioinfo[],
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     size_t len = strlen(errbuf);
-    fprintf(stderr, "\nlibcurl error: (%d)", res);
-    if (len)
-        fprintf(stderr, "%s%s", errbuf,
-            ((errbuf[len-1] != '\n') ? "\n" : ""));
-    else
-        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr, "\nlibcurl error: (%d)", res);
+        if (len)
+            fprintf(stderr, "%s%s", errbuf,
+                ((errbuf[len-1] != '\n') ? "\n" : ""));
+        else
+            fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #endif
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -168,7 +170,9 @@ int RD_AudioInfo(struct rd_audioinfo *audioinfo[],
     return 0;
   }
   else {
-    fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr," rd_audioinfo Call Returned Error: %s\n",xml_data.strbuf);
+    #endif
     return (int)response_code;
   }
 }

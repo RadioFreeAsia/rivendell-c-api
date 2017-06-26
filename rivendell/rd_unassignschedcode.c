@@ -95,7 +95,9 @@ int RD_UnassignSchedCode( const char hostname[],
 
   if (!code_valid)
   {
-    fprintf(stderr," Scheduler Code : %s Is Invalid! \n",code);
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr," Scheduler Code : %s Is Invalid! \n",code);
+    #endif
     return -1;
   }
   /*
@@ -127,13 +129,15 @@ int RD_UnassignSchedCode( const char hostname[],
   //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
-    size_t len = strlen(errbuf);
-    fprintf(stderr, "\nlibcurl error: (%d)", res);
-    if (len)
-        fprintf(stderr, "%s%s", errbuf,
-            ((errbuf[len-1] != '\n') ? "\n" : ""));
-    else
-        fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #ifdef RIVC_DEBUG_OUT
+        size_t len = strlen(errbuf);
+        fprintf(stderr, "\nlibcurl error: (%d)", res);
+        if (len)
+            fprintf(stderr, "%s%s", errbuf,
+                ((errbuf[len-1] != '\n') ? "\n" : ""));
+        else
+            fprintf(stderr, "%s\n", curl_easy_strerror(res));
+    #endif
     curl_easy_cleanup(curl);
     return -1;
   }
@@ -147,7 +151,9 @@ int RD_UnassignSchedCode( const char hostname[],
     return 0;
   }
   else {
-    fprintf(stderr," Call Returned Error: %s\n",xml_data.strbuf);
+    #ifdef RIVC_DEBUG_OUT
+        fprintf(stderr," rd_unassignschedcode Call Returned Error: %s\n",xml_data.strbuf);
+    #endif
     return (int)response_code;
   }
 }

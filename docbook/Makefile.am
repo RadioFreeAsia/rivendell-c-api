@@ -112,6 +112,9 @@ all-local:	rd_addcart.html\
                 rd_listservices.html\
                 rd_listservices.pdf\
                 rd_listservices.xml\
+                rd_listsystemsettings.html\
+                rd_listsystemsettings.pdf\
+                rd_listsystemsettings.xml\
                 rd_removecart.html\
                 rd_removecart.pdf\
                 rd_removecart.xml\
@@ -154,6 +157,7 @@ man_MANS = rd_addcart.7\
            rd_listlog.7\
            rd_listschedcodes.7\
            rd_listservices.7\
+           rd_listsystemsettings.7\
            rd_removecart.7\
            rd_removecut.7\
            rd_savelog.7\
@@ -266,6 +270,10 @@ EXTRA_DIST = rd_addcart.7\
              rd_listservices.html\
              rd_listservices.pdf\
              rd_listservices.xml\
+             rd_listsystemsettings.7\
+             rd_listsystemsettings.html\
+             rd_listsystemsettings.pdf\
+             rd_listsystemsettings.xml\
              rd_removecart.7\
              rd_removecart.html\
              rd_removecart.pdf\

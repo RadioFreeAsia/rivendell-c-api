@@ -44,6 +44,7 @@
       <paramdef>const int <parameter>use_metadata</parameter></paramdef>
       <paramdef>const int <parameter>create</parameter></paramdef>
       <paramdef>const char <parameter>group[]</parameter></paramdef>
+      <paramdef>const char <parameter>title[]</parameter></paramdef>
       <paramdef>const char <parameter>filename[]</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -247,6 +248,20 @@
             Mandatory IF Creating Cart
           </entry>
         </row>
+	<row>
+          <entry>
+            title
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            Cart Title
+          </entry>
+          <entry>
+            Optional - If present used for Duplicate Cart Check
+          </entry>
+        </row>
         <row>
           <entry>
             filename
@@ -286,7 +301,8 @@
       403          User Authentification Error.
     </para>
     <para>
-      404          Unauthorized or No Such Cart, Cut, or Group.
+      404          Unauthorized, or No Such Cart/Cut/Group,
+                   or Duplicate Cart Titles Not Allowed.
     </para>
     <para>
       415          Format Not Supported.
