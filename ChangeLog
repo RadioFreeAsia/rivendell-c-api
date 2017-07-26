@@ -277,3 +277,5 @@
 2017-06-26 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in 'rivendell_rd_savelog.c' that caused the
 	'TIME_TYPE' value to fail to be saved.
+2017-07-25 Todd Baker <bakert@rfa.org>
+	* Fixed bug in rivendell/rd_listlogs.h" that was truncating Log Name
