@@ -279,3 +279,5 @@
 	'TIME_TYPE' value to fail to be saved.
 2017-07-25 Todd Baker <bakert@rfa.org>
 	* Fixed bug in rivendell/rd_listlogs.h" that was truncating Log Name
+2017-07-25 Todd Baker <bakert@rfa.org>
+	* Fixed bug in rivendell/rd_listlogs.c" that was truncating Log Name

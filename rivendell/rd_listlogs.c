@@ -65,7 +65,7 @@ static void XMLCALL __ListLogsElementEnd(void *data, const char *el)
   char hold_datetime[25];
 
   if(strcasecmp(el,"name")==0) {
-    strlcpy(logs->log_name,xml_data->strbuf,10);
+    strlcpy(logs->log_name,xml_data->strbuf,64);
   }
   if(strcasecmp(el,"serviceName")==0) {
     strlcpy(logs->log_service,xml_data->strbuf,10);
