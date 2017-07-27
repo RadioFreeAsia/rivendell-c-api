@@ -206,7 +206,7 @@ size_t __ListCutsCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
   XML_Parser p=(XML_Parser)userdata;
 
   XML_Parse(p,ptr,size*nmemb,0);
-  
+
   return size*nmemb;
 }
 
