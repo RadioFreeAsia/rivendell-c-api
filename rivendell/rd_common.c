@@ -87,6 +87,10 @@ struct tm RD_Cnv_DTString_to_tm( const char *datein)
     tmptr->tm_hour = atoi(thehr);
     tmptr->tm_min  = atoi(themin);
     tmptr->tm_sec  = atoi(thesec);
+    /*  This is to fix if Windows Assumes apply DST */
+    #ifdef _WIN32   
+        tmptr->tm_isdst = -1;
+    #endif     
     rawtime = mktime (tmptr);  
     newrawtime = rawtime; 
     if ((strcmp(plusminusz,"Z")) != 0)
@@ -264,6 +268,10 @@ double get_local_offset()
     timeinfo = localtime(&currtime);
     time_t local = mktime(timeinfo);
     double offsetfromutc = difftime(local,utc);
+    #ifdef _WIN32
+        if (timeinfo->tm_isdst)
+            offsetfromutc += 3600;
+    #endif
     return offsetfromutc;
 }
 
