@@ -108,6 +108,19 @@ int main(int argc,char *argv[])
     exit(256);
   }
 
+  if ((result< 200 || result > 299) &&
+       (result != 0))
+    {
+        switch(result) {
+            case 403:
+            fprintf(stderr," ERROR: Invalid User Information During ListLogs call\n");
+            break;
+        default:
+           fprintf(stderr, "Unknown Error occurred ==> %d\n",result);
+        }
+    exit(256);
+    }
+
   //
   // List the results
   //

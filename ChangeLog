@@ -281,6 +281,9 @@
 	* Fixed bug in rivendell/rd_listlogs.h" that was truncating Log Name
 2017-07-25 Todd Baker <bakert@rfa.org>
 	* Fixed bug in rivendell/rd_listlogs.c" that was truncating Log Name
+2017-08-16 Todd Baker <bakert@rfa.org>
+	* Fixed Windows DST Time conversion bug in rivendell/rd_common.c
+	* Added Error checking from Web Call in tests/listlogs_test.c
 2017-08-30 Todd Baker <bakert@rfa.org>
 	* Modified ALL modules to include a USER_AGENT optional parameter
 	that can be used to set the User Agent header in the HTTP request.
