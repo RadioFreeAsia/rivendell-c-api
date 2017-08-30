@@ -107,6 +107,7 @@ int RD_EditCut(struct rd_cut *cut[],
 			const char      ticket[],
                         const unsigned  cartnum,
                         const unsigned  cutnum,
+                        const char    user_agent[],
                         unsigned        *numrecs);
 
 void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values);

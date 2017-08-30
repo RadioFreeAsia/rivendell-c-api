@@ -40,6 +40,7 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
 			const unsigned cartnumber,
                         const unsigned cutnumber,
 			const int trimlevel,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

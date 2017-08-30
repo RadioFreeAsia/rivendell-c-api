@@ -30,7 +30,8 @@ int RD_DeleteAudio( const char hostname[],
 			const char passwd[],
 			const char ticket[],
 			const unsigned cartnumber,
-			const unsigned cutnumber);
+			const unsigned cutnumber,
+			const char user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 

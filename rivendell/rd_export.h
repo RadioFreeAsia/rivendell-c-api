@@ -40,7 +40,8 @@ int RD_ExportCart( const char hostname[],
             	const int           end_point,
             	const int normalization_level,
             	const int     enable_metadata,
-            	const char         filename[]);
+            	const char         filename[],
+		const char       user_agent[]);
 
 
 _MYRIVLIB_FINI_DECL

@@ -37,7 +37,8 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	       const char username[],
 	       const char passwd[],
 	       const char ticket[],
-	       const char logname[])
+	       const char logname[],
+               const char user_agent[])
 {
   char url[1500];
   char str[1024];
@@ -258,6 +259,16 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     #ifdef RIVC_DEBUG_OUT

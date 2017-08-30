@@ -118,6 +118,7 @@ int RD_ListGroup(struct rd_group *grp[],
 			const char passwd[],
 			const char ticket[],
 			const char groupname[],
+                        const char user_agent[],
                   	unsigned *numrecs)
 {
   char post[1500];
@@ -149,6 +150,15 @@ int RD_ListGroup(struct rd_group *grp[],
 	curl_easy_escape(curl,groupname,0));
   if((curl=curl_easy_init())==NULL) {
     return -1;
+  }
+  //
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
   }
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListGroupCallback);

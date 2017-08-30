@@ -33,6 +33,7 @@ int RD_ListCart(struct rd_cart *carts[],
 			const char passwd[],
 			const char ticket[],
 			const unsigned cartnumber,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

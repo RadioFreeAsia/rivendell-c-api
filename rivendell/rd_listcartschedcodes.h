@@ -32,6 +32,7 @@ int RD_ListCartSchedCodes(struct rd_schedcodes *schedcodes[],
 			const char passwd[],
 			const char ticket[],
 			const unsigned cartnum,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

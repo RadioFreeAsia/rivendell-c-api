@@ -42,6 +42,7 @@ int RD_AudioInfo(struct rd_audioinfo *audioinfo[],
 			const char ticket[],
 			const unsigned cartnumber,
                         const unsigned cutnumber,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

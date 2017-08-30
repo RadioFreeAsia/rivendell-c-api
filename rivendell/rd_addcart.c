@@ -173,6 +173,7 @@ int RD_AddCart(struct rd_cart *cart[],
 			const char group[],
 			const char type[],
                   	const unsigned cartnumber,
+                        const char user_agent[],
 			unsigned *numrecs)
 {
   char post[1500];
@@ -206,6 +207,15 @@ int RD_AddCart(struct rd_cart *cart[],
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);
     return -1;
+  }
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
   }
 
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);

@@ -31,7 +31,8 @@ int RD_AddLog(const char hostname[],
 	      const char passwd[],
 	      const char ticket[],
 	      const char logname[],
-	      const char servicename[]);
+	      const char servicename[],
+	      const char user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 

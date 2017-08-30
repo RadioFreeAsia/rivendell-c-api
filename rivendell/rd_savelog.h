@@ -81,7 +81,8 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
 	       const char username[],
 	       const char passwd[],
 	       const char ticket[],
-	       const char logname[]);
+	       const char logname[],
+	       const char user_agent[]);
 
 
 _MYRIVLIB_FINI_DECL

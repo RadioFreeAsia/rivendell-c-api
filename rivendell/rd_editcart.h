@@ -73,6 +73,7 @@ int RD_EditCart(struct rd_cart *cart[],
 			const char passwd[],
 			const char ticket[],
                 	const unsigned cartnum,
+			const char user_agent[],
 			unsigned *numrecs);
 
 

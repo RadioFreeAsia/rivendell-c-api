@@ -38,6 +38,7 @@
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
       <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const int  <parameter>trackable</parameter></paramdef>
+      <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -155,6 +156,20 @@
           </entry>
           <entry>
             Limit returns to services that have a valid voicetracking configuration. 0=No(Default), 1=Yes.
+          </entry>
+          <entry>
+            Optional
+          </entry>
+        </row>
+        <row>
+          <entry>
+            user_agent
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            User Agent Value put into HTTP request
           </entry>
           <entry>
             Optional

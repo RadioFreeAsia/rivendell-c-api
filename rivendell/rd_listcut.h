@@ -34,6 +34,7 @@ int RD_ListCut(struct rd_cut *cuts[],
 			const char ticket[],
 			const unsigned cartnumber,
                         const unsigned cutnumber,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

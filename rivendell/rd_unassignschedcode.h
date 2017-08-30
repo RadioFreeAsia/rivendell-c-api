@@ -30,7 +30,8 @@ int RD_UnassignSchedCode( const char hostname[],
 			const char passwd[],
 			const char ticket[],
 			const unsigned cartnum,
-			const char code[]);
+			const char code[],
+			const char user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 #endif  // RD_UNASSIGNSCHEDCODE_H

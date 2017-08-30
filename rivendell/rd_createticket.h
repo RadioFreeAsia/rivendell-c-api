@@ -34,6 +34,7 @@ int RD_CreateTicket(struct rd_ticketinfo *ticketinfo[],
                         const char hostname[],
 			const char username[],
 			const char passwd[],
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

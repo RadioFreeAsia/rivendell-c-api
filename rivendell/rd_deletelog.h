@@ -30,7 +30,8 @@ int RD_DeleteLog(const char hostname[],
 		 const char username[],
 		 const char passwd[],
 		 const char ticket[],
-		 const char logname[]);
+		 const char logname[],
+		 const char user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 

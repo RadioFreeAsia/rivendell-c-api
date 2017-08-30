@@ -72,7 +72,8 @@ int RD_AssignSchedCode( const char hostname[],
                   	const char passwd[],
 			const char ticket[],
 			const unsigned cartnum,
-			const char code[])
+			const char code[],
+                        const char user_agent[])
 {
   char post[1500];
   char url[1500];
@@ -119,6 +120,16 @@ int RD_AssignSchedCode( const char hostname[],
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }
+  //
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+   
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__AssignSchedCodeCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);

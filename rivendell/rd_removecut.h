@@ -29,7 +29,8 @@ int RD_RemoveCut( const char hostname[],
 			const char passwd[],
 			const char ticket[],
 			const unsigned cartnumber,
-			const unsigned cutnumber);
+			const unsigned cutnumber,
+			const char user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 #endif  // RD_REMOVECUT_H

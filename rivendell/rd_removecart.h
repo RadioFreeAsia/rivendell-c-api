@@ -29,7 +29,8 @@ int RD_RemoveCart( const char hostname[],
 			const char username[],
 			const char passwd[],
 			const char ticket[],
-			const unsigned cartnumber);
+			const unsigned cartnumber,
+			const char user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 #endif  // RD_REMOVECART_H

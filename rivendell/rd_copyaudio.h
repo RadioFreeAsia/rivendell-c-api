@@ -32,7 +32,8 @@ int RD_CopyAudio( const char hostname[],
 			const unsigned src_cartnumber,
 			const unsigned src_cutnumber,
 			const unsigned dest_cartnumber,
-			const unsigned dest_cutnumber);
+			const unsigned dest_cutnumber,
+			const char user_agent[]);
 
 
 _MYRIVLIB_FINI_DECL
