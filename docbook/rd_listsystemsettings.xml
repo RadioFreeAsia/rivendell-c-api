@@ -37,6 +37,7 @@
       <paramdef>const char <parameter>username[]</parameter></paramdef>
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
       <paramdef>const char <parameter>ticket[]</parameter></paramdef>
+      <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -140,6 +141,20 @@
           </entry>
           <entry>
             Mandatory When NO User/Password Pair Provided.
+          </entry>
+        </row>
+        <row>
+          <entry>
+            user_agent
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            User Agent Value put into HTTP request
+          </entry>
+          <entry>
+            Optional
           </entry>
         </row>
         <row>

@@ -41,7 +41,8 @@ int RD_ExportPeaks( const char hostname[],
 			const char           ticket[],
 			const unsigned        cartnum,
 			const unsigned         cutnum,
-                        const char         filename[])
+                        const char         filename[],
+                        const char 	  user_agent[])
 {
   char post[1500];
   char url[1500];
@@ -96,6 +97,15 @@ int RD_ExportPeaks( const char hostname[],
     return -1;
   }
   
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_URL, url);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ExportPeaks_write_peaks_data);
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,fp);
@@ -103,6 +113,7 @@ int RD_ExportPeaks( const char hostname[],
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
   curl_easy_setopt(curl,CURLOPT_VERBOSE,0);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
+
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     #ifdef RIVC_DEBUG_OUT

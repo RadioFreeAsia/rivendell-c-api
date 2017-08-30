@@ -39,6 +39,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
+  char user_agent[25]="Riv-C-API test Suite 1.0";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -125,6 +126,7 @@ int main(int argc,char *argv[])
 		ticket,
 		(unsigned)cartnum,
 		(unsigned)cutnum,
+                user_agent,
 		&numrecs);
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
@@ -246,6 +248,7 @@ int main(int argc,char *argv[])
             host,
             user,
             passwd,
+            user_agent,
             &numrecs);
 
     if ((result< 200 || result > 299) &&
@@ -314,6 +317,7 @@ int main(int argc,char *argv[])
 		ticket,
 		(unsigned)cartnum,
 		(unsigned)cutnum,
+                user_agent,
 		&numrecs);
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");

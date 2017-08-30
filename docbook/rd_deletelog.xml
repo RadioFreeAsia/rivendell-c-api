@@ -37,6 +37,7 @@
       <paramdef>const char <parameter>passwd[]</parameter></paramdef>
       <paramdef>const char <parameter>ticket[]</parameter></paramdef>
       <paramdef>const char <parameter>log_name[]</parameter></paramdef>
+      <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
 
@@ -142,6 +143,20 @@
           </entry>
           <entry>
             Mandatory
+          </entry>
+        </row>
+        <row>
+          <entry>
+            user_agent
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            User Agent Value put into HTTP request
+          </entry>
+          <entry>
+            Optional
           </entry>
         </row>
       </tbody>

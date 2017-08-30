@@ -35,6 +35,7 @@ int RD_ListServices(struct rd_service *services[],
 			const char passwd[],
 			const char ticket[],
 			const int  trackable,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

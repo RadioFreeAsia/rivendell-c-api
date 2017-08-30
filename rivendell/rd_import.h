@@ -47,6 +47,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
                         const char group[],
 			const char title[],
                         const char filename[],
+			const char user_agent[],
 			unsigned *numrecs);
 
 

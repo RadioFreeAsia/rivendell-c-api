@@ -178,6 +178,7 @@ int RD_ListCarts(struct rd_cart *carts[],
 			const char group_name[],
 			const char filter[],
 			const char type[],
+                        const char user_agent[],
 			unsigned *numrecs)
 {
   char post[1500];
@@ -212,6 +213,16 @@ int RD_ListCarts(struct rd_cart *carts[],
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }
+  
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListCartsCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);
@@ -219,7 +230,7 @@ int RD_ListCarts(struct rd_cart *carts[],
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
-  //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
+
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     #ifdef RIVC_DEBUG_OUT

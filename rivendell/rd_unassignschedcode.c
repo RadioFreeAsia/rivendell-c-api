@@ -72,7 +72,8 @@ int RD_UnassignSchedCode( const char hostname[],
                   	const char passwd[],
 			const char ticket[],
 			const unsigned cartnum,
-			const char code[])
+			const char code[],
+                        const char user_agent[])
 {
   char post[1500];
   char url[1500];
@@ -126,7 +127,16 @@ int RD_UnassignSchedCode( const char hostname[],
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
-  //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     #ifdef RIVC_DEBUG_OUT

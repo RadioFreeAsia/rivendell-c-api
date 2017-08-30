@@ -52,6 +52,7 @@ int RD_ListLogs(struct rd_log *logs[],
 			const char servicename[],
 			const char logname[],
                         const int  trackable,
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

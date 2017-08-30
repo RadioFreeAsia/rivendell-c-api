@@ -26,7 +26,8 @@ int RD_DeleteLog(const char hostname[],
 		 const char username[],
 		 const char passwd[],
 	         const char ticket[],
-		 const char logname[])
+		 const char logname[],
+                 const char user_agent[])
 {
   char post[1500];
   char url[1500];
@@ -48,6 +49,16 @@ int RD_DeleteLog(const char hostname[],
     curl_easy_cleanup(curl);
     return -1;
   }
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_URL,url);
   curl_easy_setopt(curl,CURLOPT_POST,1);
   curl_easy_setopt(curl,CURLOPT_POSTFIELDS,post);

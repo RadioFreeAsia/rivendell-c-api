@@ -70,7 +70,8 @@ int RD_DeleteAudio( const char hostname[],
 			const char passwd[],
 			const char ticket[],
                   	const unsigned cartnumber,
-                  	const unsigned cutnumber)
+                  	const unsigned cutnumber,
+                        const char user_agent[])
 {
   char post[1500];
   char url[1500];
@@ -102,6 +103,16 @@ int RD_DeleteAudio( const char hostname[],
     
     return -1;
   }
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__DeleteAudioCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);

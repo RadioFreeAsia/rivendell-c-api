@@ -48,6 +48,7 @@
       <paramdef>const int <parameter>normalization_level</parameter></paramdef>
       <paramdef>const int <parameter>enable_metadata</parameter></paramdef>
       <paramdef>const char <parameter>filename[]</parameter></paramdef>
+      <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
 
@@ -304,6 +305,20 @@
           </entry>
           <entry>
             Mandatory
+          </entry>
+        </row>
+        <row>
+          <entry>
+            user_agent
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            User Agent Value put into HTTP request
+          </entry>
+          <entry>
+            Optional
           </entry>
         </row>
       </tbody>

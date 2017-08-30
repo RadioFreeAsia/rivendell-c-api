@@ -87,6 +87,7 @@ int RD_CreateTicket(struct rd_ticketinfo *ticketinfo[],
 		  	const char hostname[],
                   	const char username[],
                   	const char passwd[],
+                        const char user_agent[],
                   	unsigned *numrecs)
 {
   char post[1500];
@@ -117,6 +118,16 @@ int RD_CreateTicket(struct rd_ticketinfo *ticketinfo[],
   if((curl=curl_easy_init())==NULL) {
     return -1;
   }
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__CreateTicketCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);

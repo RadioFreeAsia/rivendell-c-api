@@ -40,6 +40,7 @@
       <paramdef>const unsigned <parameter>cartnumber</parameter></paramdef>
       <paramdef>const unsigned <parameter>cutnumber</parameter></paramdef>
       <paramdef>const int <parameter>trimlevel</parameter></paramdef>
+      <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -188,6 +189,20 @@
           </entry>
           <entry>
             Mandatory
+          </entry>
+        </row>
+        <row>
+          <entry>
+            user_agent
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            User Agent Value put into HTTP request
+          </entry>
+          <entry>
+            Optional
           </entry>
         </row>
         <row>

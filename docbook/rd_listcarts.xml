@@ -40,6 +40,7 @@
       <paramdef>const char <parameter>group_name[]</parameter></paramdef>
       <paramdef>const char <parameter>filter[]</parameter></paramdef>
       <paramdef>const char <parameter>type[]</parameter></paramdef>
+      <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
     </funcsynopsis>
@@ -187,6 +188,20 @@
           </entry>
           <entry>
             Type of Cart records. If set can be Audio, or Macro.
+          </entry>
+          <entry>
+            Optional
+          </entry>
+        </row>
+        <row>
+          <entry>
+            user_agent
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+            User Agent Value put into HTTP request
           </entry>
           <entry>
             Optional

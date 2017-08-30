@@ -72,7 +72,8 @@ int RD_CopyAudio( const char hostname[],
                   	const unsigned src_cartnumber,
                   	const unsigned src_cutnumber,
                   	const unsigned dest_cartnumber,
-                  	const unsigned dest_cutnumber)
+                  	const unsigned dest_cutnumber,
+                        const char user_agent[])
 {
   char post[1500];
   char url[1500];
@@ -106,6 +107,16 @@ int RD_CopyAudio( const char hostname[],
     
     return -1;
   }
+    
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__CopyAudioCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);

@@ -35,6 +35,7 @@ int RD_ListCarts(struct rd_cart *carts[],
 			const char group_name[],
                         const char filter[],
                         const char type[],
+			const char user_agent[],
 			unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL

@@ -31,7 +31,8 @@ int RD_ExportPeaks( const char hostname[],
 			const char           ticket[],
 			const unsigned        cartnum,
                         const unsigned         cutnum,
-                        const char         filename[]);
+                        const char         filename[],
+			const char 	user_agent[]);
 
 _MYRIVLIB_FINI_DECL
 

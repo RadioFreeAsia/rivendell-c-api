@@ -184,6 +184,7 @@ int RD_EditCut(struct rd_cut *cut[],
 			const char      ticket[],
 			const unsigned  cartnum,
 			const unsigned  cutnum,
+                        const char      user_agent[],
 			unsigned 	*numrecs)
 {
   char post[3500];
@@ -219,6 +220,16 @@ int RD_EditCut(struct rd_cut *cut[],
     
     return -1;
   }
+
+  // Check if User Agent Present otherwise set to default
+  if (strlen(user_agent)> 0){
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+  }
+  else
+  {
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+  }
+
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__EditCutCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);
@@ -227,6 +238,7 @@ int RD_EditCut(struct rd_cut *cut[],
   curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1);
   curl_easy_setopt(curl,CURLOPT_ERRORBUFFER,errbuf);
   //  curl_easy_setopt(curl,CURLOPT_VERBOSE,1);
+
   res = curl_easy_perform(curl);
   if(res != CURLE_OK) {
     #ifdef RIVC_DEBUG_OUT

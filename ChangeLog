@@ -281,3 +281,7 @@
 	* Fixed bug in rivendell/rd_listlogs.h" that was truncating Log Name
 2017-07-25 Todd Baker <bakert@rfa.org>
 	* Fixed bug in rivendell/rd_listlogs.c" that was truncating Log Name
+2017-08-30 Todd Baker <bakert@rfa.org>
+	* Modified ALL modules to include a USER_AGENT optional parameter
+	that can be used to set the User Agent header in the HTTP request.
+	If not present it will put "Rivendell-C-Api-1.0" as the User_Agent
