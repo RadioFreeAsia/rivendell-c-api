@@ -288,3 +288,8 @@
 	* Modified ALL modules to include a USER_AGENT optional parameter
 	that can be used to set the User Agent header in the HTTP request.
 	If not present it will put "Rivendell-C-Api-1.0" as the User_Agent
+2017-09-01 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'cut_origin_login_name' and 'cut_source_hostname' fields to
+	the 'rd_cut' structure in 'rivendell/rd_cut.h'.
+	* Added support for the '<originLoginName>' and '<sourceHostname>'
+	tags in the 'ListCut' and 'ListCuts' calls.

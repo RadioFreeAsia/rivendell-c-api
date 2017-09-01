@@ -45,6 +45,8 @@ struct rd_cut {
   char cut_start_daypart[15];
   char cut_end_daypart[15];
   char cut_origin_name[65];
+  char cut_origin_login_name[256];
+  char cut_source_hostname[256];
   unsigned cut_weight;
   struct tm cut_last_play_datetime;
   unsigned cut_play_counter;
