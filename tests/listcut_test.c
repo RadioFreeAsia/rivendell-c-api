@@ -172,6 +172,8 @@ int main(int argc,char *argv[])
     printf("        Cut Start Daypart: %s\n",cuts[i].cut_start_daypart);
     printf("          Cut End Daypart: %s\n",cuts[i].cut_end_daypart);
     printf("          Cut Origin Name: %s\n",cuts[i].cut_origin_name);
+    printf("    Cut Origin Login Name: %s\n",cuts[i].cut_origin_login_name);
+    printf("          Source Hostname: %s\n",cuts[i].cut_source_hostname);
     printf("               Cut Weight: %u\n",cuts[i].cut_weight);
     printf("  Cut Last Play Date Time\n");
     printf("Cut LastPlay year value  : %d\n",cuts[i].cut_last_play_datetime.tm_year);
@@ -342,6 +344,8 @@ int main(int argc,char *argv[])
     printf("        Cut Start Daypart: %s\n",cuts[i].cut_start_daypart);
     printf("          Cut End Daypart: %s\n",cuts[i].cut_end_daypart);
     printf("          Cut Origin Name: %s\n",cuts[i].cut_origin_name);
+    printf("    Cut Origin Login Name: %s\n",cuts[i].cut_origin_login_name);
+    printf("          Source Hostname: %s\n",cuts[i].cut_source_hostname);
     printf("               Cut Weight: %u\n",cuts[i].cut_weight);
     printf("  Cut Last Play Date Time\n");
     printf("Cut LastPlay year value  : %d\n",cuts[i].cut_last_play_datetime.tm_year);

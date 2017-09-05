@@ -132,6 +132,12 @@ static void XMLCALL __ListCutElementEnd(void *data, const char *el)
   if(strcasecmp(el,"originName")==0) {
     strlcpy(cuts->cut_origin_name,xml_data->strbuf,65);
   }
+  if(strcasecmp(el,"originLoginName")==0) {
+    strlcpy(cuts->cut_origin_login_name,xml_data->strbuf,256);
+  }
+  if(strcasecmp(el,"sourceHostname")==0) {
+    strlcpy(cuts->cut_source_hostname,xml_data->strbuf,256);
+  }
   if(strcasecmp(el,"weight")==0) {
     sscanf(xml_data->strbuf,"%u",&cuts->cut_weight);
   }
