@@ -266,7 +266,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
   }
 
   res = curl_easy_perform(curl);

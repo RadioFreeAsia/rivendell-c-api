@@ -293,3 +293,8 @@
 	the 'rd_cut' structure in 'rivendell/rd_cut.h'.
 	* Added support for the '<originLoginName>' and '<sourceHostname>'
 	tags in the 'ListCut' and 'ListCuts' calls.
+2017-09-05 Todd Baker <bakert@rfa.org>
+	* Changed USER_AGENT default for Rivendell modules to
+	'Rivendell-C-API/0.0.1'.  Changed test program's USER_AGENT
+	to 'Rivendell-C-API Test Suite/0.0.1. Fixed minor typos
+	and updated docbook entries to show default USER_AGENT.

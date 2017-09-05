@@ -103,7 +103,7 @@ int RD_ExportPeaks( const char hostname[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
   }
 
   curl_easy_setopt(curl,CURLOPT_URL, url);

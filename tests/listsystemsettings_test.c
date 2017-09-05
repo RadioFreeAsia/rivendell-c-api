@@ -34,7 +34,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
-  char user_agent[25]="Riv-C-API test Suite 1.0";
+  char user_agent[27]="Rivendell-Test-Suite/0.0.1";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {

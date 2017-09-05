@@ -271,7 +271,7 @@ int RD_ListCut(struct rd_cut *cuts[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-Api-1.0");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
   }
 
   res = curl_easy_perform(curl);

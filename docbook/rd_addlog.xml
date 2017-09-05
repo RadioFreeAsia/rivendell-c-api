@@ -171,7 +171,7 @@
             User Agent Value put into HTTP request
           </entry>
           <entry>
-            Optional
+            Optional (default is Rivendell-C-API/x.x.x)
           </entry>
         </row>
       </tbody>

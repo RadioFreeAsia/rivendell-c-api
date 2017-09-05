@@ -116,7 +116,7 @@
             Rivendell User Name
           </entry>
           <entry>
-            Mandatory Wnen NO Ticket Provided.
+            Mandatory When NO Ticket Provided.
           </entry>
         </row>
         <row>
@@ -130,7 +130,7 @@
             Rivendell User Password
           </entry>
           <entry>
-            Mandatory Wnen NO Ticket Provided.
+            Mandatory When NO Ticket Provided.
           </entry>
         </row>
         <row>
@@ -144,7 +144,7 @@
             Rivendell Authentification Ticket
           </entry>
           <entry>
-            Mandatory Wnen NO User/Password Pair Provided.
+            Mandatory When NO User/Password Pair Provided.
           </entry>
         </row>
         <row>
@@ -172,7 +172,7 @@
             User Agent Value put into HTTP request
           </entry>
           <entry>
-            Optional
+            Optional (default is Rivendell-C-API/x.x.x)
           </entry>
         </row>
         <row>
