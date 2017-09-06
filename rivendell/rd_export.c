@@ -63,6 +63,7 @@ int RD_ExportCart( const char hostname[],
   int i;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
+  char PkgVersion[255]="Rivendell-C-API/";
 
   /*   Check File name */
   memset(checked_fname,'\0',sizeof(checked_fname));
@@ -121,7 +122,8 @@ int RD_ExportCart( const char hostname[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
+    strcat(PkgVersion,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
   }
 
   curl_easy_setopt(curl,CURLOPT_URL, url);

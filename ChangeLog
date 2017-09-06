@@ -298,3 +298,10 @@
 	'Rivendell-C-API/0.0.1'.  Changed test program's USER_AGENT
 	to 'Rivendell-C-API Test Suite/0.0.1. Fixed minor typos
 	and updated docbook entries to show default USER_AGENT.
+2017-09-06 Todd Baker <bakert@rfa.org>
+	* Modified ALL modules to use autotools (LINUX) to figure out
+	PACKGE_VERSION information.  Added this to USER_AGENT default,
+	setting it to RIVENDELL-C-API/x.x.x. Created rivendell/rd_getversion.c
+	and rivendell/rd_getversion.h to return current pkacge version.
+	Added tests/getversion_test.c and updated tests to use RD_GetVersion
+	call in setting USER_AGENT field.

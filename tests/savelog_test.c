@@ -24,6 +24,7 @@
 
 #include <rivendell/rd_savelog.h>
 #include <rivendell/rd_createticket.h>
+#include <rivendell/rd_getversion.h>
 
 #include "common.h"
 
@@ -34,7 +35,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
-  char user_agent[27]="Rivendell-Test-Suite/0.0.1";
+  char user_agent[30]="Rivendell-Test-Suite/";
   struct save_loghdr_values hdr_values;
 
   /*      Get the Rivendell Host, User and Password if set in env */
@@ -65,6 +66,10 @@ int main(int argc,char *argv[])
   memset(&hdr_values,0,sizeof(hdr_values));
   strcpy(hdr_values.loghdr_service,"Fred");
 
+
+  // Add the Rivendell-C-API Version
+  strcat(user_agent,RD_GetVersion());
+  
   //
   // Call the function
   //

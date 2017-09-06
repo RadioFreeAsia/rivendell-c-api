@@ -159,6 +159,7 @@ int RD_ListLogs(struct rd_log *logs[],
   int i;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
+  char PkgVersion[255]="Rivendell-C-API/";
 
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
@@ -222,7 +223,8 @@ int RD_ListLogs(struct rd_log *logs[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
+    strcat(PkgVersion,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
   }
 
   res = curl_easy_perform(curl);

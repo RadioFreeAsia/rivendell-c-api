@@ -36,6 +36,7 @@ int RD_AddLog(const char hostname[],
   long response_code;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
+  char PkgVersion[255]="Rivendell-C-API/";
 
   /*
    * Setup the CURL call
@@ -58,7 +59,8 @@ int RD_AddLog(const char hostname[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
+    strcat(PkgVersion,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
   }
   curl_easy_setopt(curl,CURLOPT_URL,url);
   curl_easy_setopt(curl,CURLOPT_POST,1);

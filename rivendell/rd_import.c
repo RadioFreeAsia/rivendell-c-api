@@ -125,6 +125,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   long passwdlen = strlen(passwd);
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
+  char PkgVersion[255]="Rivendell-C-API/";
 
   /*   Check File name */
   memset(checked_fname,'\0',sizeof(checked_fname));
@@ -310,7 +311,8 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
+    strcat(PkgVersion,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
   }
 
   res = curl_easy_perform(curl);

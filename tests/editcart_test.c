@@ -24,6 +24,7 @@
 
 #include <rivendell/rd_editcart.h>
 #include <rivendell/rd_createticket.h>
+#include <rivendell/rd_getversion.h>
   
 int main(int argc,char *argv[])
 {
@@ -39,7 +40,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
-  char user_agent[27]="Rivendell-Test-Suite/0.0.1";
+  char user_agent[30]="Rivendell-Test-Suite/";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -92,6 +93,10 @@ int main(int argc,char *argv[])
   strcpy(edit_cart.cart_title,"This is the new title");
   edit_cart.use_cart_composer=1;
   strcpy(edit_cart.cart_composer,"Thomas VanderBrook");
+
+  // Add the Rivendell-C-API Version
+  strcat(user_agent,RD_GetVersion());
+  
   //
   //
   //

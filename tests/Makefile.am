@@ -26,7 +26,7 @@ noinst_PROGRAMS = listgroups_test \
 		listcart_test \
 		listcuts_test \
 		listcut_test \
-                listsystemsettings_test \
+		listsystemsettings_test \
 		listschedcodes_test \
 		listcartschedcodes_test \
 		assignschedcode_test \
@@ -36,22 +36,23 @@ noinst_PROGRAMS = listgroups_test \
 		removecart_test \
 		removecut_test \
 		audioinfo_test \
-                createticket_test \
+		createticket_test \
 		audiostore_test \
 		trimaudio_test \
-                listlogs_test \
-                listservices_test \
-                addlog_test \
-                deletelog_test \
-                listlog_test \
-                savelog_test \
+		listlogs_test \
+		listservices_test \
+		addlog_test \
+		deletelog_test \
+		listlog_test \
+		savelog_test \
 		editcart_test \
 		editcut_test \
 		importcart_test \
 		exportcart_test \
 		exportpeaks_test \
 		deleteaudio_test \
-		copyaudio_test
+		copyaudio_test \
+		getversion_test 
 
 dist_listgroups_test_SOURCES = listgroups_test.c 
 dist_listgroup_test_SOURCES = listgroup_test.c 
@@ -87,6 +88,7 @@ dist_exportcart_test_SOURCES = exportcart_test.c
 dist_exportpeaks_test_SOURCES = exportpeaks_test.c 
 dist_deleteaudio_test_SOURCES = deleteaudio_test.c 
 dist_copyaudio_test_SOURCES = copyaudio_test.c 
+dist_getversion_test_SOURCES = getversion_test.c 
 
 listgroups_test_LDADD = -lrivwebcapi -lexpat -lcurl -lm
 listgroup_test_LDADD = -lrivwebcapi -lexpat -lcurl -lm
@@ -120,6 +122,7 @@ exportcart_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 exportpeaks_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 deleteaudio_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 copyaudio_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
+getversion_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 
 CLEANFILES = *~\
              moc_*

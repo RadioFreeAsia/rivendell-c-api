@@ -22,11 +22,11 @@ AM_CFLAGS = -I$(top_srcdir)
 lib_LTLIBRARIES = librivwebcapi.la 
 dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
 				rd_addcut.c rd_addcut.h \
-                                rd_addlog.c rd_addlog.h \
+				rd_addlog.c rd_addlog.h \
 				rd_assignschedcode.c rd_assignschedcode.h\
 				rd_audioinfo.c rd_audioinfo.h \
 				rd_audiostore.c rd_audiostore.h \
-                                rd_common.c rd_common.h\
+				rd_common.c rd_common.h \
 				rd_copyaudio.c rd_copyaudio.h \
 				rd_createticket.c rd_createticket.h \
 				rd_deleteaudio.c rd_deleteaudio.h \
@@ -34,25 +34,26 @@ dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
 				rd_editcart.c rd_editcart.h \
 				rd_editcut.c rd_editcut.h \
 				rd_export.c rd_export.h \
-				rd_exportpeaks.c rd_exportpeaks.h\
+				rd_exportpeaks.c rd_exportpeaks.h \
+				rd_getversion.c rd_getversion.h \
 				rd_import.c rd_import.h \
 				rd_listcartschedcodes.c rd_listcartschedcodes.h\
 				rd_listcart.c rd_listcart.h \
 				rd_listcarts.c rd_listcarts.h \
 				rd_listcut.c rd_listcut.h \
 				rd_listcuts.c rd_listcuts.h \
-                                rd_listgroups.c rd_listgroups.h \
+				rd_listgroups.c rd_listgroups.h \
 				rd_listgroup.c rd_listgroup.h \
 				rd_listlog.c rd_listlog.h \
 				rd_listlogs.c rd_listlogs.h \
 				rd_listservices.c rd_listservices.h \
-				rd_listschedcodes.c rd_listschedcodes.h\
-                                rd_listsystemsettings.c rd_listsystemsettings.h \
+				rd_listschedcodes.c rd_listschedcodes.h \
+				rd_listsystemsettings.c rd_listsystemsettings.h \
 				rd_removecart.c rd_removecart.h \
 				rd_removecut.c rd_removecut.h \
-                                rd_savelog.c rd_savelog.h \
+				rd_savelog.c rd_savelog.h \
 				rd_trimaudio.c rd_trimaudio.h \
-				rd_unassignschedcode.c rd_unassignschedcode.h
+				rd_unassignschedcode.c rd_unassignschedcode.h 
 
 librivwebcapi_la_LDFLAGS = -version-info $(INTERFACE_CURRENT):$(INTERFACE_REVISION):$(INTERFACE_AGE)
 
@@ -74,6 +75,7 @@ include_HEADERS = rd_addcart.h\
                   rd_editcut.h\
                   rd_export.h\
                   rd_exportpeaks.h\
+                  rd_getversion.h\
                   rd_group.h\
                   rd_import.h\
                   rd_listcart.h\

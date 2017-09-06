@@ -26,6 +26,8 @@
 #include <rivendell/rd_createticket.h>
 #include <rivendell/rd_removecart.h>
 
+#include <rivendell/rd_getversion.h>
+
 int main(int argc,char *argv[])
 {
   struct rd_cart *cart=0;
@@ -38,7 +40,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
-  char user_agent[27]="Rivendell-Test-Suite/0.0.1";
+  char user_agent[27]="Rivendell-Test-Suite/";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -75,6 +77,10 @@ int main(int argc,char *argv[])
     }
   } 
 
+
+  // Add the Rivendell-C-API Version
+  strcat(user_agent,RD_GetVersion());
+  
   //
   // Call the function
   //

@@ -129,6 +129,7 @@ int RD_ListGroup(struct rd_group *grp[],
   long response_code;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
+  char PkgVersion[255]="Rivendell-C-API/";
 
    /* set number of recs so if fail already set */
   *numrecs = 0;
@@ -158,7 +159,8 @@ int RD_ListGroup(struct rd_group *grp[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
+    strcat(PkgVersion,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
   }
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListGroupCallback);

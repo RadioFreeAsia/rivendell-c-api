@@ -85,6 +85,7 @@ int RD_AssignSchedCode( const char hostname[],
   int code_valid = 1;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
+  char PkgVersion[255]="Rivendell-C-API/";
 
   /*   Check Code */
   for (i = 0 ; i < strlen(code) ; i++) {
@@ -127,7 +128,8 @@ int RD_AssignSchedCode( const char hostname[],
   }
   else
   {
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,"Rivendell-C-API/0.0.1");
+    strcat(PkgVersion,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
   }
    
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
