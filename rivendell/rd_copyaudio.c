@@ -34,7 +34,6 @@ struct xml_data {
 static void XMLCALL __CopyAudioElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   strlcpy(xml_data->elem_name,el,256);
   memset(xml_data->strbuf,0,1024);

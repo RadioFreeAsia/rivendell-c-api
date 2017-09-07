@@ -37,7 +37,6 @@ struct xml_data {
 static void XMLCALL __CreateTicketElementStart(void *data, const char *el, 
 					     const char **attr)
 {
-  unsigned i;
   struct xml_data *xml_data=(struct xml_data *)data;
   if(strcasecmp(el,"ticketInfo")==0) {    // Allocate a new ticketinfo entry
     xml_data->ticketinfo=realloc(xml_data->ticketinfo,

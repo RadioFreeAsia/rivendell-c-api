@@ -21,8 +21,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rd_common.h>
-#include <rd_getversion.h>
+#include "rd_common.h"
+#include "rd_getversion.h"
 
 char * RD_GetVersion()
 {
