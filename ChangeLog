@@ -305,3 +305,7 @@
 	and rivendell/rd_getversion.h to return current pkacge version.
 	Added tests/getversion_test.c and updated tests to use RD_GetVersion
 	call in setting USER_AGENT field.
+2017-09-07 Todd Baker <bakert@rfa.org>
+	* Made Windows Specific code (Hack Hack) to try to get version info
+	into the compilation. Need to revisit later. Fixed extraneous warnings
+	and includes for Windows.
