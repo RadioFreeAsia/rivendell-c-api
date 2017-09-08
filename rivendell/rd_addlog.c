@@ -21,6 +21,7 @@
 #include <curl/curl.h>
 
 #include "rd_addlog.h"
+#include "rd_getuseragent.h"
 
 int RD_AddLog(const char hostname[],
 	      const char username[],
@@ -36,7 +37,7 @@ int RD_AddLog(const char hostname[],
   long response_code;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
-  char PkgVersion[255]="Rivendell-C-API/";
+  char user_agent_string[255];
 
   /*
    * Setup the CURL call
@@ -59,8 +60,9 @@ int RD_AddLog(const char hostname[],
   }
   else
   {
-    strcat(PkgVersion,VERSION);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
+    strcpy(user_agent_string, RD_GetUserAgent());
+    strcat(user_agent_string,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent_string);
   }
   curl_easy_setopt(curl,CURLOPT_URL,url);
   curl_easy_setopt(curl,CURLOPT_POST,1);

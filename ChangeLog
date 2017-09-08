@@ -309,3 +309,9 @@
 	* Made Windows Specific code (Hack Hack) to try to get version info
 	into the compilation. Need to revisit later. Fixed extraneous warnings
 	and includes for Windows.
+2017-09-07 Todd Baker <bakert@rfa.org>
+	* Created rivendell/rd_getuseragent.c and rivendell/rd_getuseragent.h
+	which provides the User Agent String. Created test program for User Agent
+	String. Updated all rivendell modules to use get user agent and
+	get version functions by default unless otherwise specified. Test
+	suite also adds '(Test Suite)' to user agent string.

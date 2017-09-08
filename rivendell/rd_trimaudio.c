@@ -25,6 +25,7 @@
 #include <expat.h>
 
 #include "rd_trimaudio.h"
+#include "rd_getuseragent.h"
 #include "rd_common.h"
 
 struct xml_data {
@@ -108,7 +109,7 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
   long response_code;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
-  char PkgVersion[255]="Rivendell-C-API/";
+  char user_agent_string[255];
 
    /* Set number of recs so if fail already set */
   *numrecs = 0;
@@ -147,8 +148,9 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
   }
   else
   {
-    strcat(PkgVersion,VERSION);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
+    strcpy(user_agent_string, RD_GetUserAgent());
+    strcat(user_agent_string,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent_string);
   }
 
   res = curl_easy_perform(curl);

@@ -21,6 +21,7 @@
 #include <curl/curl.h>
 
 #include "rd_savelog.h"
+#include "rd_getuseragent.h"
 
 char *AppendString(char *str,const char *added_str)
 {
@@ -50,7 +51,7 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
   long response_code;
   unsigned i=0;
   post[0]=0;
-  char PkgVersion[255]="Rivendell-C-API/";
+  char user_agent_string[255];
 
   if((curl=curl_easy_init())==NULL) {
     curl_easy_cleanup(curl);
@@ -267,8 +268,9 @@ int RD_SaveLog(struct save_loghdr_values *hdrvals,
   }
   else
   {
-    strcat(PkgVersion,VERSION);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
+    strcpy(user_agent_string, RD_GetUserAgent());
+    strcat(user_agent_string,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent_string);
   }
 
   res = curl_easy_perform(curl);

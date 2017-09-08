@@ -25,6 +25,7 @@
 #include <rivendell/rd_addlog.h>
 #include <rivendell/rd_createticket.h>
 #include <rivendell/rd_deletelog.h>
+#include <rivendell/rd_getuseragent.h>
 #include <rivendell/rd_getversion.h>
 
 #include "common.h"
@@ -37,7 +38,7 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
-  char user_agent[30]="Rivendell-Test-Suite/";
+  char user_agent[255];
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -66,10 +67,11 @@ int main(int argc,char *argv[])
   PromptForString("Please enter the Name of the Service for the log that you want to Add ==> ",
 		  servicename,BUFSIZ);
 
-  // Add the Rivendell-C-API Version
+  // Add the User Agent and Version
+  strcat(user_agent,RD_GetUserAgent());
   strcat(user_agent,RD_GetVersion());
+  strcat(user_agent," (Test Suite)");
   
-
   //
   // Call the function
   //

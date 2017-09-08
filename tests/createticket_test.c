@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include <rivendell/rd_createticket.h>
+#include <rivendell/rd_getuseragent.h>
 #include <rivendell/rd_getversion.h>
 
 int main(int argc,char *argv[])
@@ -34,7 +35,7 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
-  char user_agent[30]="Rivendell-Test-Suite/";
+  char user_agent[255];
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -59,8 +60,10 @@ int main(int argc,char *argv[])
   } 
 
 
-  // Add the Rivendell-C-API Version
+  // Add the User Agent and Version
+  strcat(user_agent,RD_GetUserAgent());
   strcat(user_agent,RD_GetVersion());
+  strcat(user_agent," (Test Suite)");
   
   //
   // Call the function

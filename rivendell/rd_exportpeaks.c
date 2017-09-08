@@ -24,6 +24,7 @@
 #include <curl/curl.h>
 
 #include "rd_exportpeaks.h"
+#include "rd_getuseragent.h"
 #include "rd_common.h"
 
 size_t __ExportPeaks_write_peaks_data( void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -54,7 +55,7 @@ int RD_ExportPeaks( const char hostname[],
   int i;
   char errbuf[CURL_ERROR_SIZE];
   CURLcode res;
-  char PkgVersion[255]="Rivendell-C-API/";
+  char user_agent_string[255];
 
   /*   Check File name */
   memset(checked_fname,'\0',sizeof(checked_fname));
@@ -104,8 +105,9 @@ int RD_ExportPeaks( const char hostname[],
   }
   else
   {
-    strcat(PkgVersion,VERSION);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,PkgVersion);
+    strcpy(user_agent_string, RD_GetUserAgent());
+    strcat(user_agent_string,VERSION);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent_string);
   }
 
   curl_easy_setopt(curl,CURLOPT_URL, url);

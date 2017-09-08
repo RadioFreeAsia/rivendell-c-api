@@ -35,6 +35,7 @@ dist_librivwebcapi_la_SOURCES = rd_addcart.c rd_addcart.h \
 				rd_editcut.c rd_editcut.h \
 				rd_export.c rd_export.h \
 				rd_exportpeaks.c rd_exportpeaks.h \
+				rd_getuseragent.c rd_getuseragent.h \
 				rd_getversion.c rd_getversion.h \
 				rd_import.c rd_import.h \
 				rd_listcartschedcodes.c rd_listcartschedcodes.h\
@@ -75,6 +76,7 @@ include_HEADERS = rd_addcart.h\
                   rd_editcut.h\
                   rd_export.h\
                   rd_exportpeaks.h\
+                  rd_getuseragent.h\
                   rd_getversion.h\
                   rd_group.h\
                   rd_import.h\

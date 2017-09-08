@@ -76,6 +76,12 @@ all-local:	rd_addcart.html\
                 rd_export.html\
                 rd_export.pdf\
                 rd_export.xml\
+                rd_getuseragent.html\
+                rd_getuseragent.pdf\
+                rd_getuseragent.xml\
+                rd_getversion.html\
+                rd_getversion.pdf\
+                rd_getversion.xml\
                 rd_import.html\
                 rd_import.pdf\
                 rd_import.xml\
@@ -145,6 +151,8 @@ man_MANS = rd_addcart.7\
            rd_editcut.7\
            rd_exportpeaks.7\
            rd_export.7\
+           rd_getuseragent.7\
+           rd_getversion.7\
            rd_import.7\
            rd_listcartschedcodes.7\
            rd_listcarts.7\

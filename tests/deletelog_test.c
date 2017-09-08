@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include <rivendell/rd_deletelog.h>
+#include <rivendell/rd_getuseragent.h>
 #include <rivendell/rd_getversion.h>
 
 #include "common.h"
@@ -33,8 +34,8 @@ int main(int argc,char *argv[])
   char *host;
   char *user;
   char *passwd;
+  char user_agent[255];
   char ticket[41]="";
-  char user_agent[30]="Rivendell-Test-Suite/";
 
   /*      Get the Rivendell Host, User and Password if set in env */
   if (getenv("RIVHOST")!=NULL) {
@@ -61,8 +62,10 @@ int main(int argc,char *argv[])
   PromptForString("Please enter the Name of the Log that you want to Delete ==> ",
 		  logname,BUFSIZ);
 
-  // Add the Rivendell-C-API Version
+  // Add the User Agent and Version
+  strcat(user_agent,RD_GetUserAgent());
   strcat(user_agent,RD_GetVersion());
+  strcat(user_agent," (Test Suite)");
   
   //
   // Call the function

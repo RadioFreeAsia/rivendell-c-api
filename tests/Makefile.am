@@ -52,7 +52,8 @@ noinst_PROGRAMS = listgroups_test \
 		exportpeaks_test \
 		deleteaudio_test \
 		copyaudio_test \
-		getversion_test 
+		getversion_test \
+		getuseragent_test
 
 dist_listgroups_test_SOURCES = listgroups_test.c 
 dist_listgroup_test_SOURCES = listgroup_test.c 
@@ -89,6 +90,7 @@ dist_exportpeaks_test_SOURCES = exportpeaks_test.c
 dist_deleteaudio_test_SOURCES = deleteaudio_test.c 
 dist_copyaudio_test_SOURCES = copyaudio_test.c 
 dist_getversion_test_SOURCES = getversion_test.c 
+dist_getuseragent_test_SOURCES = getuseragent_test.c 
 
 listgroups_test_LDADD = -lrivwebcapi -lexpat -lcurl -lm
 listgroup_test_LDADD = -lrivwebcapi -lexpat -lcurl -lm
@@ -123,6 +125,7 @@ exportpeaks_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 deleteaudio_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 copyaudio_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 getversion_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
+getuseragent_test_LDADD  =  -lrivwebcapi -lexpat -lcurl -lm
 
 CLEANFILES = *~\
              moc_*
