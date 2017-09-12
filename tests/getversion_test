@@ -31,13 +31,13 @@ DUALCASE=1; export DUALCASE # for MKS sh
 # if CDPATH is set.
 (unset CDPATH) >/dev/null 2>&1 && unset CDPATH
 
-relink_command="(cd /home/bakert/Riv-C-NewApi/tests; { test -z \"\${LIBRARY_PATH+set}\" || unset LIBRARY_PATH || { LIBRARY_PATH=; export LIBRARY_PATH; }; }; { test -z \"\${COMPILER_PATH+set}\" || unset COMPILER_PATH || { COMPILER_PATH=; export COMPILER_PATH; }; }; { test -z \"\${GCC_EXEC_PREFIX+set}\" || unset GCC_EXEC_PREFIX || { GCC_EXEC_PREFIX=; export GCC_EXEC_PREFIX; }; }; { test -z \"\${LD_RUN_PATH+set}\" || unset LD_RUN_PATH || { LD_RUN_PATH=; export LD_RUN_PATH; }; }; { test -z \"\${LD_LIBRARY_PATH+set}\" || unset LD_LIBRARY_PATH || { LD_LIBRARY_PATH=; export LD_LIBRARY_PATH; }; }; PATH=/usr/lib64/qt-3.3/bin:/home/bakert/perl5/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/bakert/.local/bin:/home/bakert/bin:/home/bakert/.:.; export PATH; gcc -Wall -I.. -g -O2 -o \$progdir/\$file getversion_test.o  /home/bakert/Riv-C-NewApi/rivendell/.libs/librivwebcapi.so -lexpat -lcurl -lm -L../rivendell -Wl,-rpath -Wl,/home/bakert/Riv-C-NewApi/rivendell/.libs -Wl,-rpath -Wl,/usr/local/lib)"
+relink_command="(cd /home/fredg/rivendell-c-api-ElvishArtisan/tests; { test -z \"\${LIBRARY_PATH+set}\" || unset LIBRARY_PATH || { LIBRARY_PATH=; export LIBRARY_PATH; }; }; { test -z \"\${COMPILER_PATH+set}\" || unset COMPILER_PATH || { COMPILER_PATH=; export COMPILER_PATH; }; }; { test -z \"\${GCC_EXEC_PREFIX+set}\" || unset GCC_EXEC_PREFIX || { GCC_EXEC_PREFIX=; export GCC_EXEC_PREFIX; }; }; { test -z \"\${LD_RUN_PATH+set}\" || unset LD_RUN_PATH || { LD_RUN_PATH=; export LD_RUN_PATH; }; }; { test -z \"\${LD_LIBRARY_PATH+set}\" || unset LD_LIBRARY_PATH || { LD_LIBRARY_PATH=; export LD_LIBRARY_PATH; }; }; PATH=/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/fredg/.local/bin:/home/fredg/bin; export PATH; gcc -Wall -I.. -g -O2 -o \$progdir/\$file getversion_test.o  /home/fredg/rivendell-c-api-ElvishArtisan/rivendell/.libs/librivwebcapi.so -lexpat -lcurl -lm -L../rivendell -Wl,-rpath -Wl,/home/fredg/rivendell-c-api-ElvishArtisan/rivendell/.libs)"
 
 # This environment variable determines our operation mode.
 if test "$libtool_install_magic" = "%%%MAGIC variable%%%"; then
   # install mode needs the following variables:
   generated_by_libtool_version='2.4.2'
-  notinst_deplibs=' /home/bakert/Riv-C-NewApi/rivendell/librivwebcapi.la'
+  notinst_deplibs=' /home/fredg/rivendell-c-api-ElvishArtisan/rivendell/librivwebcapi.la'
 else
   # When we are sourced in execute mode, $file and $ECHO are already set.
   if test "$libtool_execute_magic" != "%%%MAGIC variable%%%"; then
