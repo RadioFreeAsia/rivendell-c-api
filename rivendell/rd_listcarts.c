@@ -194,6 +194,11 @@ int RD_ListCarts(struct rd_cart *carts[],
 
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
+
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
   
    /*
    * Setup the CURL call
@@ -212,13 +217,10 @@ int RD_ListCarts(struct rd_cart *carts[],
 	curl_easy_escape(curl,group_name,0),
 	curl_easy_escape(curl,filter,0),
 	curl_easy_escape(curl,type,0));
-  if((curl=curl_easy_init())==NULL) {
-    return -1;
-  }
   
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {

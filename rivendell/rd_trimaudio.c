@@ -111,6 +111,11 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
   CURLcode res;
   char user_agent_string[255];
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
    /* Set number of recs so if fail already set */
   *numrecs = 0;
 
@@ -131,9 +136,6 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
 	cartnumber,
 	cutnumber,
 	trimlevel);
-  if((curl=curl_easy_init())==NULL) {
-    return -1;
-  }
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__TrimAudioCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);
@@ -144,7 +146,7 @@ int RD_TrimAudio(struct rd_trimaudio *trimaudio[],
 
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {

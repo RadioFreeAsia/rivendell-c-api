@@ -68,6 +68,12 @@ int RD_ExportPeaks( const char hostname[],
     }
   }
   
+
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
 //
 // Generate POST Data
 //
@@ -79,11 +85,6 @@ int RD_ExportPeaks( const char hostname[],
 	curl_easy_escape(curl,ticket,0),
 	cartnum, 
 	cutnum);
-
-  if((curl=curl_easy_init())==NULL) {
-    curl_easy_cleanup(curl);
-    return -1;
-  }
 
   /*
    * Setup the CURL call

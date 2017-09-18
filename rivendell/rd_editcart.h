@@ -20,6 +20,7 @@
 
 #ifndef RD_EDITCART_H
 #define RD_EDITCART_H
+#include <curl/curl.h>
 #include <rivendell/rd_common.h>
 
 _MYRIVLIB_INIT_DECL
@@ -77,7 +78,7 @@ int RD_EditCart(struct rd_cart *cart[],
 			unsigned *numrecs);
 
 
-void Build_Post_Cart_Fields(char *post, struct edit_cart_values edit_values);
+void Build_Post_Cart_Fields(char *post, CURL * curl, struct edit_cart_values edit_values);
 
 _MYRIVLIB_FINI_DECL
 

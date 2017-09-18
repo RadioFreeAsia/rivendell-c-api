@@ -188,6 +188,10 @@ int RD_ListLogs(struct rd_log *logs[],
     }
   }
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
     
    /*
    * Setup the CURL call
@@ -198,9 +202,6 @@ int RD_ListLogs(struct rd_log *logs[],
   XML_SetElementHandler(parser,__ListLogsElementStart,
 			__ListLogsElementEnd);
   XML_SetCharacterDataHandler(parser,__ListLogsElementData);
-  if((curl=curl_easy_init())==NULL) {
-    return -1;
-  }
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&SERVICE_NAME=%s&LOG_NAME=%s&TRACKABLE=%d",
 	   curl_easy_escape(curl,username,0),
@@ -220,7 +221,7 @@ int RD_ListLogs(struct rd_log *logs[],
 
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {

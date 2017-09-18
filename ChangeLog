@@ -315,3 +315,15 @@
 	String. Updated all rivendell modules to use get user agent and
 	get version functions by default unless otherwise specified. Test
 	suite also adds '(Test Suite)' to user agent string.
+2017-09-18 Todd Baker <bakert@rfa.org>
+	* Modified : rd_addcart.c, rd_addcut.c, rd_addlog.c, rd_assignschedcode.c 
+	rd_audioinfo.c, rd_audiostore.c, rd_copyaudio.c, rd_createticket.c, 
+	rd_deleteaudio.c, rd_deletelog.c, rd_editcart.c, rd_editcart.h, 
+	rd_editcut.c, rd_editcut.h, rd_export.c, rd_exportpeaks.c,
+	rd_import.c, rd_listcart.c, rd_listcarts.c, rd_listcartschedcodes.c 
+	rd_listcut.c, rd_listcuts.c, rd_listgroup.c, rd_listgroups.c,
+	rd_listlog.c, rd_listlogs.c , rd_listschedcodes.c, rd_listservices.c,
+	rd_listsystemsettings.c, rd_removecart.c, rd_removecut.c,
+	rd_savelog.c, rd_trimaudio.c, rd_unassignschedcode.c. 
+	Fixes include correct order for curl_easy_init() calls and added 
+	curl_easy_escape calls for all string fields.

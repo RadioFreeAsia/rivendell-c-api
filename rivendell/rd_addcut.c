@@ -228,6 +228,11 @@ int RD_AddCut(struct rd_cut *cut[],
   CURLcode res;
   char user_agent_string[255];
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
 
@@ -246,13 +251,9 @@ int RD_AddCut(struct rd_cut *cut[],
 	curl_easy_escape(curl,passwd,0),
 	curl_easy_escape(curl,ticket,0),
 	cartnumber);
-  if((curl=curl_easy_init())==NULL) {
-    curl_easy_cleanup(curl);
-    return -1;
-  }
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {

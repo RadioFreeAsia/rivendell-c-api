@@ -22,6 +22,8 @@
 #define RD_EDITCUT_H
 
 #include <rivendell/rd_common.h>
+#include <curl/curl.h>
+
 
 _MYRIVLIB_INIT_DECL
 
@@ -110,7 +112,7 @@ int RD_EditCut(struct rd_cut *cut[],
                         const char    user_agent[],
                         unsigned        *numrecs);
 
-void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values);
+void Build_Post_Cut_Fields(char *post, CURL * curl, struct edit_cut_values edit_values);
 
 _MYRIVLIB_FINI_DECL
 #endif  // RD_EDITCUT_H

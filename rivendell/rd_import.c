@@ -150,6 +150,11 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
     }
   }
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
 //
 // Generate POST Data
 //
@@ -263,7 +268,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 	CURLFORM_PTRNAME,
 	"TITLE",
         CURLFORM_COPYCONTENTS,
-        title,
+        curl_easy_escape(curl,title,0),
 	CURLFORM_END);
 
   curl_formadd(&first,
@@ -274,11 +279,6 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 	checked_fname,
 	CURLFORM_END);
   
-  if((curl=curl_easy_init())==NULL) {
-    curl_easy_cleanup(curl);
-    
-    return -1;
-  }
 
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
@@ -308,7 +308,7 @@ int RD_ImportCart(struct rd_cartimport *cartimport[],
 
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {

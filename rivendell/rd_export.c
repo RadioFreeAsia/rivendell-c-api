@@ -81,6 +81,11 @@ int RD_ExportCart( const char hostname[],
 // Generate POST Data
 //
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
   snprintf(post,1500,"COMMAND=1&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&CART_NUMBER=%u&CUT_NUMBER=%u&FORMAT=%d&CHANNELS=%d&SAMPLE_RATE=%d&BIT_RATE=%d&QUALITY=%d&START_POINT=%d&END_POINT=%d&NORMALIZATION_LEVEL=%d&ENABLE_METADATA=%d",
         curl_easy_escape(curl,username,0),
@@ -98,11 +103,6 @@ int RD_ExportCart( const char hostname[],
 	normalization_level,
 	enable_metadata);
 
-  if((curl=curl_easy_init())==NULL) {
-    curl_easy_cleanup(curl);
-    return -1;
-  }
-
   /*
    * Setup the CURL call
    */
@@ -119,7 +119,7 @@ int RD_ExportCart( const char hostname[],
 
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {

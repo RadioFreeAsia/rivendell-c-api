@@ -198,6 +198,11 @@ int RD_EditCut(struct rd_cut *cut[],
   CURLcode res;
   char user_agent_string[255];
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
   /*
@@ -216,12 +221,7 @@ int RD_EditCut(struct rd_cut *cut[],
 	curl_easy_escape(curl,ticket,0),
 	cartnum, 
 	cutnum);
-  Build_Post_Cut_Fields(post,edit_cut_values);
-  if((curl=curl_easy_init())==NULL) {
-    curl_easy_cleanup(curl);
-    
-    return -1;
-  }
+  Build_Post_Cut_Fields(post, curl, edit_cut_values);
 
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
@@ -274,7 +274,7 @@ int RD_EditCut(struct rd_cut *cut[],
   }
 }
 
-void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values)
+void Build_Post_Cut_Fields(char *post, CURL *curl, struct edit_cut_values edit_values)
 { 
 
   char buffer[1024];
@@ -291,25 +291,25 @@ void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values)
 
   if (edit_values.use_cut_description)
   {
-    snprintf(buffer,1024,"&DESCRIPTION=%s",edit_values.cut_description);
+    snprintf(buffer,1024,"&DESCRIPTION=%s",curl_easy_escape(curl,edit_values.cut_description,0));
     strcat(post,buffer);
   }
 
   if (edit_values.use_cut_outcue)
   {
-    snprintf(buffer,1024,"&OUTCUE=%s",edit_values.cut_outcue);
+    snprintf(buffer,1024,"&OUTCUE=%s",curl_easy_escape(curl,edit_values.cut_outcue,0));
     strcat(post,buffer);
   }
 
   if (edit_values.use_cut_isrc)
   {
-    snprintf(buffer,1024,"&ISRC=%s",edit_values.cut_isrc);
+    snprintf(buffer,1024,"&ISRC=%s",curl_easy_escape(curl,edit_values.cut_isrc,0));
     strcat(post,buffer);
   }
 
   if (edit_values.use_cut_isci)
   {
-    snprintf(buffer,1024,"&ISCI=%s",edit_values.cut_isci);
+    snprintf(buffer,1024,"&ISCI=%s",curl_easy_escape(curl,edit_values.cut_isci,0));
     strcat(post,buffer);
   }
 
@@ -377,13 +377,13 @@ void Build_Post_Cut_Fields(char *post, struct edit_cut_values edit_values)
 
   if (edit_values.use_cut_start_daypart)
   {
-    snprintf(buffer,1024,"&START_DAYPART=%s",edit_values.cut_start_daypart);
+    snprintf(buffer,1024,"&START_DAYPART=%s",curl_easy_escape(curl,edit_values.cut_start_daypart,0));
     strcat(post,buffer);
   }
 
   if (edit_values.use_cut_end_daypart)
   {
-    snprintf(buffer,1024,"&END_DAYPART=%s",edit_values.cut_end_daypart);
+    snprintf(buffer,1024,"&END_DAYPART=%s",curl_easy_escape(curl,edit_values.cut_end_daypart,0));
     strcat(post,buffer);
   }
 

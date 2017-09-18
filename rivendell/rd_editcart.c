@@ -191,6 +191,11 @@ int RD_EditCart(struct rd_cart *cart[],
   CURLcode res;
   char user_agent_string[255];
 
+  if((curl=curl_easy_init())==NULL) {
+    curl_easy_cleanup(curl);
+    return -1;
+  }
+
   /*  Set number of recs so if fail already set */
   *numrecs = 0;
   /*
@@ -208,15 +213,11 @@ int RD_EditCart(struct rd_cart *cart[],
 		curl_easy_escape(curl,passwd,0),
 	        curl_easy_escape(curl,ticket,0),
 		cartnum);
-  Build_Post_Cart_Fields(post,edit_c_values);
-  if((curl=curl_easy_init())==NULL) {
-    curl_easy_cleanup(curl);
-    return -1;
-  }
+  Build_Post_Cart_Fields(post,curl,edit_c_values);
   
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
   }
   else
   {
@@ -265,29 +266,29 @@ int RD_EditCart(struct rd_cart *cart[],
   }
 }
 
-void Build_Post_Cart_Fields(char *post, struct edit_cart_values edit_values)
+void Build_Post_Cart_Fields(char *post, CURL *curl, struct edit_cart_values edit_values)
 { 
   char buffer[1024];
   /*  Copy all of the applicable values into the post string */
 
   if (edit_values.use_cart_grp_name)
   {
-    snprintf(buffer,1024,"&GROUP_NAME=%s",edit_values.cart_grp_name);
+    snprintf(buffer,1024,"&GROUP_NAME=%s",curl_easy_escape(curl,edit_values.cart_grp_name,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_title)
   {
-    snprintf(buffer,1024,"&TITLE=%s",edit_values.cart_title);
+    snprintf(buffer,1024,"&TITLE=%s",curl_easy_escape(curl,edit_values.cart_title,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_artist)
   {
-    snprintf(buffer,1024,"&ARTIST=%s",edit_values.cart_artist);
+    snprintf(buffer,1024,"&ARTIST=%s",curl_easy_escape(curl,edit_values.cart_artist,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_album)
   {
-    snprintf(buffer,1024,"&ALBUM=%s",edit_values.cart_album);
+    snprintf(buffer,1024,"&ALBUM=%s",curl_easy_escape(curl,edit_values.cart_album,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_year)
@@ -297,37 +298,37 @@ void Build_Post_Cart_Fields(char *post, struct edit_cart_values edit_values)
   }
   if (edit_values.use_cart_label)
   {
-    snprintf(buffer,1024,"&LABEL=%s",edit_values.cart_label);
+    snprintf(buffer,1024,"&LABEL=%s",curl_easy_escape(curl,edit_values.cart_label,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_client)
   {
-    snprintf(buffer,1024,"&CLIENT=%s",edit_values.cart_client);
+    snprintf(buffer,1024,"&CLIENT=%s",curl_easy_escape(curl,edit_values.cart_client,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_agency)
   {
-    snprintf(buffer,1024,"&AGENCY=%s",edit_values.cart_agency);
+    snprintf(buffer,1024,"&AGENCY=%s",curl_easy_escape(curl,edit_values.cart_agency,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_publisher)
   {
-    snprintf(buffer,1024,"&PUBLISHER=%s",edit_values.cart_publisher);
+    snprintf(buffer,1024,"&PUBLISHER=%s",curl_easy_escape(curl,edit_values.cart_publisher,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_composer)
   {
-    snprintf(buffer,1024,"&COMPOSER=%s",edit_values.cart_composer);
+    snprintf(buffer,1024,"&COMPOSER=%s",curl_easy_escape(curl,edit_values.cart_composer,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_conductor)
   {
-    snprintf(buffer,1024,"&CONDUCTOR=%s",edit_values.cart_conductor);
+    snprintf(buffer,1024,"&CONDUCTOR=%s",curl_easy_escape(curl,edit_values.cart_conductor,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_user_defined)
   {
-    snprintf(buffer,1024,"&USER_DEFINED=%s",edit_values.cart_user_defined);
+    snprintf(buffer,1024,"&USER_DEFINED=%s",curl_easy_escape(curl,edit_values.cart_user_defined,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_usage_code)
@@ -352,12 +353,12 @@ void Build_Post_Cart_Fields(char *post, struct edit_cart_values edit_values)
   }
   if (edit_values.use_cart_owner)
   {
-    snprintf(buffer,1024,"&OWNER=%s",edit_values.cart_owner);
+    snprintf(buffer,1024,"&OWNER=%s",curl_easy_escape(curl,edit_values.cart_owner,0));
     strcat(post,buffer);
   }
   if (edit_values.use_cart_notes)
   {
-    snprintf(buffer,1024,"&NOTES=%s",edit_values.cart_notes);
+    snprintf(buffer,1024,"&NOTES=%s",curl_easy_escape(curl,edit_values.cart_notes,0));
     strcat(post,buffer);
   }
 
