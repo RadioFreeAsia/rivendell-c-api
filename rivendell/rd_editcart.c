@@ -217,7 +217,7 @@ int RD_EditCart(struct rd_cart *cart[],
   
   // Check if User Agent Present otherwise set to default
   if (strlen(user_agent)> 0){
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,curl_easy_escape(curl,user_agent,0));
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,user_agent);
   }
   else
   {
