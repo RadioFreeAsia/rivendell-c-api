@@ -34,7 +34,7 @@
 #define strcasecmp _stricmp
 #define sscanf_s sscanf
 #endif  // MINGW32
-#define VERSION "0.0.1"
+#define VERSION "0.0.5"
 #endif
 
 /*   #define RIVC_DEBUG_OUT  Uncomment for stderr output */

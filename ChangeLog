@@ -327,3 +327,7 @@
 	rd_savelog.c, rd_trimaudio.c, rd_unassignschedcode.c. 
 	Fixes include correct order for curl_easy_init() calls and added 
 	curl_easy_escape calls for all string fields.
+2017-09-18 Todd Baker <bakert@rfa.org>
+	Modified: PACKAGE_VERSION ,rivendell/rd_common.h - updated to 0.0.5.
+	also modified configure.ac to clean up not a literal warnings.
+
