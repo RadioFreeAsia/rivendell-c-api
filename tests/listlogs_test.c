@@ -41,6 +41,8 @@ int main(int argc,char *argv[])
   char *user;
   char *passwd;
   char ticket[41]="";
+  char filter[255];
+  long int recent=0;
   char user_agent[255];
 
   /*      Get the Rivendell Host, User and Password if set in env */
@@ -77,10 +79,27 @@ int main(int argc,char *argv[])
     strncpy(logname,buf,64);
   } 
   fflush(stdin);
+  printf("Please enter the Filter string (default is none) ==> ");
+  if(fgets(buf,sizeof(buf),stdin) != NULL)
+  {
+    strncpy(filter,buf,255);
+  } 
+  fflush(stdin);
   printf("Please enter 1 if you want trackable logs ==>");
   if (fgets(buf,sizeof(buf),stdin) != NULL)
   {
     trackable = strtol(buf,&p,10);
+    if ( (buf[0] != '\n') &&
+         ((*p != '\n') && (*p != '\0')))
+    {
+        fprintf(stderr," Illegal Characters detected! Exiting.\n");
+        exit(0);
+    }
+  }
+  printf("Please enter 1 if you want only recent logs ==>");
+  if (fgets(buf,sizeof(buf),stdin) != NULL)
+  {
+    recent = strtol(buf,&p,10);
     if ( (buf[0] != '\n') &&
          ((*p != '\n') && (*p != '\0')))
     {
@@ -101,15 +120,17 @@ int main(int argc,char *argv[])
   // Call the function
   //
   int result= RD_ListLogs(&logs,
-		host,
-		user,
-		passwd,
-		ticket,
-		&svcname[0],
-		&logname[0],
-		(int)trackable,
-                user_agent,
-		&numrecs); 
+			  host,
+			  user,
+			  passwd,
+			  ticket,
+			  &svcname[0],
+			  &logname[0],
+			  (int)trackable,
+			  filter,
+			  (int)recent,
+			  user_agent,
+			  &numrecs); 
 
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");
@@ -261,15 +282,17 @@ int main(int argc,char *argv[])
   // Call the function
   //
   result= RD_ListLogs(&logs,
-		host,
-		user,
-		passwd,
-		ticket,
-		&svcname[0],
-		&logname[0],
-		(int)trackable,
-                user_agent,
-		&numrecs); 
+		      host,
+		      user,
+		      passwd,
+		      ticket,
+		      &svcname[0],
+		      &logname[0],
+		      (int)trackable,
+		      filter,
+		      recent,
+		      user_agent,
+		      &numrecs); 
 
   if(result<0) {
     fprintf(stderr,"Error: Web function Failure!\n");

@@ -40,6 +40,8 @@
       <paramdef>const char <parameter>logname[]</parameter></paramdef>
       <paramdef>const char <parameter>servicename[]</parameter></paramdef>
       <paramdef>const int  <parameter>trackable</parameter></paramdef>
+      <paramdef>const char <parameter>filter[]</parameter></paramdef>
+      <paramdef>const int  <parameter>recent</parameter></paramdef>
       <paramdef>const char <parameter>user_agent[]</parameter></paramdef>
       <paramdef>unsigned * <parameter>numrecs</parameter></paramdef>
     </funcprototype> 
@@ -186,6 +188,35 @@
           </entry>
           <entry>
             Limit returns to logs that contain voicetrack(s). 0=No, 1=Yes (Default).
+          </entry>
+          <entry>
+            Optional
+          </entry>
+        </row>
+        <row>
+          <entry>
+            filter
+          </entry>
+          <entry>
+          Character Array
+          </entry>
+          <entry>
+	    Limit returns to logs that contain the specified string
+	    in their Name, Description or Service fields.
+          </entry>
+          <entry>
+            Optional
+          </entry>
+        </row>
+        <row>
+          <entry>
+	    recent
+          </entry>
+          <entry>
+          integer
+          </entry>
+          <entry>
+	    Return only the 14 most recently modified logs.
           </entry>
           <entry>
             Optional
