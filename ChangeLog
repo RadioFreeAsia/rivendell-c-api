@@ -332,3 +332,5 @@
 	also modified configure.ac to clean up not a literal warnings.
 2017-09-18 Todd Baker <bakert@rfa.org>
 	Fixed rivendell/*.c funtion calls that use user provided User_Agent field.
+2017-12-04 Fred Gleason <fredg@paravelsystems.com>
+	* Added support for the 'filter' and 'recent' fields to rd_listlogs(5).

@@ -136,15 +136,17 @@ size_t __ListLogsCallback(void *ptr, size_t size, size_t nmemb, void *userdata)
 
 
 int RD_ListLogs(struct rd_log *logs[],
-		  	const char hostname[],
-			const char username[],
-			const char passwd[],
-			const char ticket[],
-                  	const char servicename[],
-                  	const char logname[],
-                        const int  trackable,
-                        const char user_agent[],
-			unsigned *numrecs)
+		const char hostname[],
+		const char username[],
+		const char passwd[],
+		const char ticket[],
+		const char servicename[],
+		const char logname[],
+		const int  trackable,
+		const char filter[],
+		const int recent,
+		const char user_agent[],
+		unsigned *numrecs)
 {
   char post[1500];
   char url[1500];
@@ -155,6 +157,7 @@ int RD_ListLogs(struct rd_log *logs[],
   char checked_logname[65]={0};
   char *check_logname = &checked_logname[0];
   int checked_trackable = 0;
+  int checked_recent = 0;
   struct xml_data xml_data;
   long response_code;
   int i;
@@ -167,6 +170,9 @@ int RD_ListLogs(struct rd_log *logs[],
 
   if (trackable == 1) {
     checked_trackable = 1;
+  }
+  if (recent == 1) {
+    checked_recent = 1;
   }
   memset(checked_service,'\0',sizeof(checked_service)); 
   if ((strlen(servicename) > 0) && 
@@ -203,13 +209,15 @@ int RD_ListLogs(struct rd_log *logs[],
 			__ListLogsElementEnd);
   XML_SetCharacterDataHandler(parser,__ListLogsElementData);
   snprintf(url,1500,"http://%s/rd-bin/rdxport.cgi",hostname);
-  snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&SERVICE_NAME=%s&LOG_NAME=%s&TRACKABLE=%d",
+  snprintf(post,1500,"COMMAND=20&LOGIN_NAME=%s&PASSWORD=%s&TICKET=%s&SERVICE_NAME=%s&LOG_NAME=%s&TRACKABLE=%d&FILTER=%s&RECENT=%d",
 	   curl_easy_escape(curl,username,0),
 	   curl_easy_escape(curl,passwd,0),
 	   curl_easy_escape(curl,ticket,0),
 	   curl_easy_escape(curl,checked_service,0),
 	   curl_easy_escape(curl,checked_logname,0),
-	   checked_trackable);
+	   checked_trackable,
+	   curl_easy_escape(curl,filter,0),
+	   checked_recent);
   curl_easy_setopt(curl,CURLOPT_WRITEDATA,parser);
   curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,__ListLogsCallback);
   curl_easy_setopt(curl,CURLOPT_URL,url);

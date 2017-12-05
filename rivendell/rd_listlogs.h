@@ -45,15 +45,17 @@ struct rd_log {
 };
 
 int RD_ListLogs(struct rd_log *logs[],
-		  	const char hostname[],
-			const char username[],
-			const char passwd[],
-			const char ticket[],
-			const char servicename[],
-			const char logname[],
-                        const int  trackable,
-			const char user_agent[],
-			unsigned *numrecs);
+		const char hostname[],
+		const char username[],
+		const char passwd[],
+		const char ticket[],
+		const char servicename[],
+		const char logname[],
+		const int  trackable,
+		const char filter[],
+		const int recent,
+		const char user_agent[],
+		unsigned *numrecs);
 
 _MYRIVLIB_FINI_DECL
 
