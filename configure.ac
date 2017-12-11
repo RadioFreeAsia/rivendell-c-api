@@ -78,9 +78,9 @@ AC_ARG_ENABLE(docbook,[  --disable-docbook       disable building of documentati
 #      increment 'AGE'.
 #   6. If any interfaces have been removed since the last public release,
 #      then set 'AGE' to 0.
-CURRENT=0
+CURRENT=1
 REVISION=0
-AGE=0
+AGE=1
 POINT=$(($CURRENT - $AGE))
 
 #

@@ -334,3 +334,7 @@
 	Fixed rivendell/*.c funtion calls that use user provided User_Agent field.
 2017-12-04 Fred Gleason <fredg@paravelsystems.com>
 	* Added support for the 'filter' and 'recent' fields to rd_listlogs(5).
+2017-12-07 Todd Baker <bakert@rfa.org>
+	* Changed PACKAGE_RELEASE to version 0.0.6.
+	* Updated configure.ac Library Version to 1:0:1
+	* Removed /tests/get_version and tests/get_useragent executables.
