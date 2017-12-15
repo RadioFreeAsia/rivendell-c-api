@@ -43,6 +43,8 @@ tests/editcart_test
 tests/editcut_test
 tests/exportcart_test
 tests/exportpeaks_test
+tests/getversion_test
+tests/getuseragent_test
 tests/importcart_test
 tests/listcart_test
 tests/listcarts_test
