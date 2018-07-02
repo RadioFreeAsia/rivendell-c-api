@@ -338,3 +338,5 @@
 	* Changed PACKAGE_RELEASE to version 0.0.6.
 	* Updated configure.ac Library Version to 1:0:1
 	* Removed /tests/get_version and tests/get_useragent executables.
+2018-07-02 Todd Baker  <bakert@rfa.org>
+	* Changed PACKAGE_RELEASE to version 1.0.0.
