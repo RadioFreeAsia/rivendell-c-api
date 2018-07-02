@@ -230,6 +230,14 @@ EXTRA_DIST = rd_addcart.7\
              rd_export.html\
              rd_export.pdf\
              rd_export.xml\
+             rd_getuseragent.7\
+             rd_getuseragent.html\
+             rd_getuseragent.pdf\
+             rd_getuseragent.xml\
+             rd_getversion.7\
+             rd_getversion.html\
+             rd_getversion.pdf\
+             rd_getversion.xml\
              rd_import.7\
              rd_import.html\
              rd_import.pdf\
