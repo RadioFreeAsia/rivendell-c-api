@@ -342,3 +342,5 @@
 	* Changed PACKAGE_RELEASE to version 1.0.0.
 2018-07-02 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed bugs that broke the 'make rpm' target.
+2018-07-03 Todd Baker  <bakert@rfa.org>
+	* Added Visual Studio 2013 Building Instructions to INSTALL 
