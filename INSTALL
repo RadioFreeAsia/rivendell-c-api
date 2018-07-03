@@ -9,7 +9,7 @@ are permitted in any medium without royalty provided the copyright
 notice and this notice are preserved.  This file is offered as-is,
 without warranty of any kind.
 
-Basic Installation
+Basic Installation - Linux Systems
 ==================
 
    Briefly, the shell commands `./configure; make; make install' should
@@ -362,4 +362,35 @@ operates.
 
 `configure' also accepts some other, not widely useful, options.  Run
 `configure --help' for more details.
+
+Basic Installation - Windows Systems
+=====================================
+
+Building with Visual Studio 2013
+
+ Start Visual Studio 2013 - 
+      Create New Project from Existing Code
+         Use the type of project - Visual C++ - Click Next
+
+            Browse to the directory or enter the directory where rivendell-c-api installed
+              Type in the Proect name (usually rivendell-c-api).
+              Click the add files to the project from these folders checkbox
+                Click the Add subfolders checkbox to include sub folders
+                Click Show all files in Solution Explorer checkbox.  Click Next
+
+              Click the Project Type and choose Static lib (LIB) project. Click Next
+                  Click the Additional Include Directories box and include the Curl, Expat 
+                    and the rivendell-c-api directories (for example:  c:\Project\rivendell-c-api). 
+                    
+              Click Finish
+
+This will create the project for you.  If all the include directories are correct, you should 
+be able to build the rivendell-c-api project successfully.  
+
+If it cannot find things (like header files *.h) then go into the Project Properties page and check
+that the Additional Include directory settings are correct for all libraries.
+
+(Note: The Curl and EXPAT Library include directories must exist before you can build rivendell-c-api).
+
+Also make sure you are creating a static .LIB file. 
 
